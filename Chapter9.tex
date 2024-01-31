@@ -1,0 +1,296 @@
+\documentclass[14pt]{extarticle}
+\usepackage[T1]{fontenc}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsthm,amsmath}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}{Lemma}[section]
+\newtheorem*{example}{Example}
+\newtheorem{definition}{Definition}[section]
+\setcounter{section}{9}
+
+\newcommand{\inv}[1]{#1^{-1}}
+\newcommand{\join}[3][,]{#2_0 #1 #2_1 #1 \cdots #1 #2_{#3}}
+
+\begin{document}
+
+\begin{theorem}[Normal Subgroup Test]
+  \label{9.1}
+  A subgroup $H$ of $G$ is normal in G $\iff$ $xH\inv{x} \subseteq H$ for all $x$ in $G$.
+\end{theorem}
+
+\begin{proof}
+  We must show fisrt:
+  \begin{center}
+    \fbox{
+      The subgroup $H \subseteq G$ is normal $\implies$
+      $\forall x \in G, xH\inv{x} \subseteq H$
+    }
+  \end{center}
+
+  By the definition of normal, we know $\forall a \in G, aH = Ha$,
+  that is, $\forall a \in G, h \in H, \exists h', ah = h'a$.
+  Therefore, for all elements $xh\inv{x}$ in $xH\inv{x}$,
+  $xh\inv{x} = h'x\inv{x} = h'e = h$ which is in $H$.
+
+  So $xH\inv{x} \subseteq H$.
+
+  Secondly, we must show:
+
+  \begin{center}
+    \fbox{
+      $\forall x \in G, xH\inv{x} \subseteq H \implies$ the subgroup $H \subseteq G$ is normal
+    }
+  \end{center}
+
+  By the definition of normal, we need to show $\forall a \in G, aH = Ha$,
+  or equivalently, $aH \subseteq Ha$ and $Ha \subseteq aH$.
+  
+  By the hypothesis, we know $aH\inv{a} \subseteq H$, that is,
+  $\forall h \in H, ah\inv{a} \in H$.
+
+  By multiplying $a$ at right side, we get $(ah\inv{a})a = ah(\inv{a}a) = ah \in Ha$
+  where $ah \in aH$. And we finished the left half part of our goal. 
+  By taking $\inv{a}$ as the argument of hypothesis, 
+  we can finish the right half part in this way.
+\end{proof}
+
+\begin{example}
+  Let $H$ be a normal subgroup of $G$ and $K$ be any subgroup of $G$. 
+  Shows that $HK = \{ hk \ | \ h \in H, k \in K \}$ is a subgroup of $G$.
+\end{example}
+\begin{proof}
+  By two-steps test of subgroup:
+  \begin{enumerate}
+    \item $ee \in HK$, thus $HK$ is not empty.
+    \item $\forall h_0k_0 \ h_1k_1 \in HK$,
+      $h_0k_0h_1k_1 = h_0(k_0h_1)k_1 = h_0h_1'k_0k_1 = h_0(h_1'k_0)k_1 \in HK$,
+      thus $HK$ is closed under multiplication.
+    \item $\forall hk \in HK$, $\inv{(hk)} = \inv{k}\inv{h} = (\inv{h})^\prime \inv{k} \in HK$.
+  \end{enumerate}
+\end{proof}
+
+\begin{theorem}[Quotient Group]
+  Let $G$ a group and $H$ a normal group of $G$, 
+  the quotient group $G/H = \{ aH \ | \ a \in G \}$ is a group under multiplication
+  $\forall aH \ bH \in G/H \mapsto (aH)(bH)$.
+\end{theorem}
+
+\begin{proof}
+  Before our proof, we need to show an important property of this multiplication:
+
+  \begin{center}
+    \boxed{\forall aH \ bH \in G, (aH)(bH) = abH}
+  \end{center}
+
+  For all $h_0 \ h_1 \in H$, $ah_0bh_1 = a(h_0b)h_1 = a(bh_0^\prime)h_1 = abh_0^\prime h_1 \in abH$.
+  Also, for all $h \in H$, $abh = aebh \in (aH)(bH)$.
+
+  Group axioms:
+  \begin{itemize}
+    \item $eH$ is the identity:
+      \begin{itemize}
+        \item $\forall aH \in G/H, aHeH = aeH = aH$
+        \item $\forall aH \in G/H, eHaH = eaH = aH$
+      \end{itemize}
+    \item For all $aH \in G/H$, $\inv{a}H$ is the inverse of $aH$:
+      \begin{itemize}
+        \item $aH\inv{a}H = a\inv{a}H = eH$
+        \item $\inv{a}HaH = \inv{a}aH = eH$
+      \end{itemize}
+    \item For all $aH \ bH \ cH \in G/H$, the associativity: \\
+      $(aHbH)cH = abHcH = (ab)cH = a(bc)H = aHbcH = aH(bHcH)$
+  \end{itemize}
+\end{proof}
+
+\begin{theorem}[G/Z]
+  Let $G$ a group, $Z(G)$ the center of $G$, if $G/Z(G)$ is cyclic, $G$ is Abelian.
+\end{theorem}
+\begin{proof}
+  Let $b \ c \in G$ but $b \ c \notin Z(G)$. If no such $b$ or $c$, then $G$ is Abelian.
+  Since $G/Z(G)$ is cyclic, $G/Z(G) = \langle aZ(G) \rangle$ for some $a$.
+  $b$ and $c$ must in some coset, say, $b \in a^mZ(G)$ and $c \in a^nZ(G)$.
+  \begin{align*}
+    bc &= a^m g a^n g^\prime \\
+       &= a^m a^n g g^\prime \qquad \text{($g \in Z(G)$)} \\
+       &= a^n a^m g g^\prime \qquad \text{(By property of power)} \\
+       &= a^n a^m g^\prime g \qquad \text{($g \in Z(G)$)} \\
+       &= a^n g^\prime a^m g \qquad \text{($g \in Z(G)$)} \\
+       &= cb \qquad \text{(By definition)}
+  \end{align*}
+
+  Thus, $b$ and $c$ commute.
+\end{proof}
+
+\begin{lemma}
+  \label{lemma9.1}
+  Suppose $G$ is a finite group, and $H$ is a normal subgroup of $G$.
+  If $| aH \in G/H | = n$. Then there is an element of order $n$ in $G$.
+\end{lemma}
+\begin{proof}
+  Since $| aH | = n$, $(aH)^n = a^nH = H$, and suppose $| a | = k$.
+  $n$ must divides $k$, so we have $| a^{\frac{k}{n}} | = n$. where $a^{\frac{k}{n}} \in G$.
+\end{proof}
+
+\begin{theorem}[$G/Z(G) \approx Inn(G)$]
+  For any group $G$, $G/Z(G)$ is isomorphic to 
+  $Inn(G) = \{ \phi_g(x) = gx\inv{g} \mid g \in G \}$.
+\end{theorem}
+\begin{proof}
+  We claim the following function is an isomorphism:
+  \begin{center}
+    \boxed{\psi(aZ(G)) = \phi_a}
+  \end{center} 
+
+  However, we must show that it \textbf{is} a function. 
+  That is, for all $a \ b \in G$, $aZ(G) = bZ(G) \implies \psi(aZ(G)) = \psi(bZ(G))$.
+  Since $aZ(G) = bZ(G)$, by property of coset, $a \in bZ(G)$. 
+  Then $\forall x, \phi_a(x) = ax\inv{a} = (bg)x\inv{(bg)} = bgx\inv{g}\inv{b} = bx\inv{b} = \phi_b(x)$.
+  Thus $\psi$ is a function.
+
+  \begin{itemize}
+    \item One-to-one: $\forall aZ(G) \ bZ(G) \in G/Z(G), \psi(aZ(G)) = \psi(bZ(G))$.
+      \begin{align*}
+        \psi(aZ(G)) &= \psi(bZ(G)) \\
+        \phi_a &= \phi_b \\
+        ax\inv{a} &= bx\inv{b} \quad \text{(introduce $x$)} \\ 
+        \inv{b}ax &= x \inv{b}a \\
+      \end{align*}
+      Thus $\inv{b}a \in Z(G)$, by property of coset, $aZ(G) = bZ(G)$.
+    \item Onto: $\forall \phi_g \in Inn(G)$, $\psi(gZ(G)) = \phi_g$
+    \item Structure-Preserve: $\forall aZ(G) \ bZ(G) \in G/Z(G)$
+      \begin{align*}
+        \psi(aZ(G)bZ(G)) 
+          &= \psi(abZ(G)) \\
+          &= \phi_{ab} \\
+          &= \phi_{a} \circ \phi{b} \\
+          &= \psi(aZ(G)) \circ \psi(bZ(G))
+      \end{align*}
+  \end{itemize}
+\end{proof}
+
+\begin{theorem}[Cauchy's Theorem]
+  Let $G$ be finite Abelian group and let $p$ be a prime where $p$ divides $|G|$.
+  Then there is an element of order $p$ in $G$.
+\end{theorem}
+\begin{proof}
+  Induction on the number of prime factors of $|G|$:
+  \begin{itemize}
+    \item Base: We must show that $\forall G, G \ \text{is Abelian}, |G| = p$ where $p$ is prime has an element of order $p$.
+      Since $|G| = p$, $G$ must be cyclic, then the order of the generator of $G$ is $p$.
+    \item Induction: We have the induction hypothesis: 
+      $\forall G$ a Abelian group, $|G| =$ product of $n$ primes,
+      $p$ divides $|G|$,
+      $\exists x \in G, |x| = p$.
+
+      Suppose $g \in G$, if $p$ divides $|g|$, then $|g^\frac{|g|}{p}| = p$, 
+      we assume that $p$ doesn't divide $|g|$.
+      Let $q$ a prime that divides $|g|$, then $|g^\frac{|g|}{q}| = q$.
+      We let $h = g^\frac{|g|}{q}$, and $H = \langle h \rangle$.
+      Since $G$ is Abelian, $\langle h \rangle$ is a normal subgroup.
+      Consider $G/H$, since $G$ is abelian, so is $G/H$,
+      and $|G/H| = \frac{|G|}{|H|}$ which is the product of $n + 1 - 1 = n$ primes.
+      Also, $p$ divides $G$ but not divides $H$, so $p$ divides $G/H$.
+      Then by induction hypothesis, we know $\exists x \in G/H, |x| = p$.
+      By Lemma \ref{lemma9.1}, $\exists x \in G, |x| = p$.
+  \end{itemize}
+\end{proof}
+
+\begin{definition}[Internal Direct Product]
+  Let $\{ H_0 , H_1 , H_2 \cdots H_{n-1} \}$ be a finite collection of normal subgroups of $G$.
+  We say $G$ is an internal direct product of $\{ H_0 , H_1 , H_2 \cdots H_{n-1} \}$
+  (write $G = H_0 \times H_1 \times \cdots \times H_{n-1}$) if:
+  \begin{itemize}
+    \item $G = H_0H_1 \cdots H_{n-1} = \{ h_0h_1 \cdots h_{n-1} \ | \ h_i \in H_i \}$
+    \item $(H_0H_1 \cdots H_{i - 1}) \cap H_i = \{ e \}$ for all $0 \le i < n$
+  \end{itemize}
+\end{definition}
+
+\begin{lemma}[Unique Representation of Internal Direct Product]
+  \label{lemma9.2}
+  For all $h = h_0h_1 \cdots h_{n - 1}$ and $h^\prime = h_0^\prime h_1^\prime \cdots h_{n - 1}^\prime$,
+  $h = h^\prime$ implies $h_i = h_i^\prime$ for all $0 \le i < n$
+\end{lemma}
+\begin{proof}
+  Induction on $n$:
+  \begin{itemize}
+    \item Base: We must show $h_0 = h_0^\prime$ implies $h_0 = h_0^\prime$ which is trivial.
+    \item Induction: We have the following induction hypothesis:
+      \begin{center}
+        \boxed{h_0h_1 \cdots h_{i - 1} = h_0^\prime h_1^\prime \cdots h_{i - 1}^\prime \implies h_j = h_j^\prime \quad (\forall 0 \le j < i)}
+      \end{center}
+      and we must show:
+      \begin{center}
+        \boxed{h_0h_1 \cdots h_i = h_0^\prime h_1^\prime \cdots h_i^\prime \implies h_j = h_j^\prime \quad (\forall 0 \le j \le i)}
+      \end{center}
+
+      Let $h = h_0h_1 \cdots h_{i - 1}$ and $h^\prime = h_0^\prime h_1^\prime \cdots h_{i - 1}^\prime$,
+      $hh_i = h^\prime h_i^\prime$ gives $h = h^\prime h_i^\prime \inv{h_i}$,
+      where $h \ h^\prime \in H_0H_1 \cdots H_{i - 1}$ and $\inv{h_i} \ h_i^\prime \in H_i$.
+      Then $h^\prime h_i^\prime \inv{h_i} \in H_0H_1 \cdots H_{i - 1}$.
+      By the property of group multiplication, $h_i^\prime \inv{h_i} \in H_0H_1 \cdots H_{i - 1}$.
+      But by the property of internal direct product, $(H_0H_1 \cdots H_{i - 1}) \cap H_i = \{ e \}$.
+      So $h_i^\prime \inv{h_i} = e \rightarrow h_i = h_i^\prime$, 
+      $hh_i = h^\prime h_i^\prime \rightarrow h = h^\prime$.
+      By induction hypothesis, $h_j = h_j^\prime \quad (\forall 0 \le j < i)$.
+  \end{itemize}
+\end{proof}
+
+\begin{example}
+  Let $G$ is the internal direct product of subgroups $H_0, H_1 \cdots H_{n - 1}$.
+  Let $h_i \in H_i$, $h_j \in H_j$ where $0 \le i, j < n$. $h_ih_j = h_jh_i$ if $i \neq j$.
+\end{example}
+\begin{proof}
+  By property of normal, $h_i^\prime h_j = h_jh_i$ = $h_ih_j^\prime$,
+  then by Lemma \ref{lemma9.2}, $h_i = h_i^\prime$ $h_j = h_j^\prime$.
+  Thus $h_jh_i = h_ih_j^\prime = h_i h_j$
+\end{proof}
+
+\begin{lemma}[Center of $h \in H$]
+  Let $G$ be the internal direct product of subgroups $\join{H}{n - 1}$,
+  $\forall \ h \in H_i, \prod_{j = 0, i \neq j} H_j$ is a subgroup of $C(h)$.
+\end{lemma}
+\begin{proof}
+  Since for any normal subgroup $H$ of $G$, and any subgroup $K$ of $G$, $HK$ is a subgroup of $G$,
+  then $\prod_{j = 0, i \neq j} H_j$ is a subgroup of $G$.
+  Consider $k \in H_s$ for some $s$.
+  By property of normal subgroup $H_s$, $hk = k^\prime h$ for some $k^\prime$.
+  Also, for normal subgroup $H_i$, $hk = kh^\prime$ for some $h^\prime$.
+  Then $hk = k^\prime h = k h^\prime$, by Lemma \ref{lemma9.2},
+  $h = h^\prime$ and $k = k^\prime$.
+  So $hk = k^\prime h = kh$, $k \in C(h)$.
+  Now we consider any element $k$ in $\prod_{j = 0, i \neq j} H_j$,
+  it must be the product of elements $k_s$ in the corresponding $H_s$,
+  $h$ commutes with all the $k_s$, so does $k$.
+  Thus, $\forall \ k \in \prod_{j = 0, i \neq j} H_j, k \in C(h)$.
+\end{proof}
+
+\begin{theorem}[Internal Direct Product $\approx$ External Direct Product]
+  If $G$ is the internal direct product of subgroups $H_0, H_1 \cdots H_{n - 1}$,
+  then $H_0 \times H_1 \times \cdots \times H_{n - 1} \approx H_0 \oplus H_1 \oplus \cdots \oplus H_{n - 1}$.
+\end{theorem}
+\begin{proof}
+  We claim the following function:
+  \begin{center}
+    \boxed{\phi(h_0h_1 \cdots h_{n - 1}) = (h_0, h_1, \cdots, h_{n - 1})}
+  \end{center}
+  is an isomorphism, and 
+  by Lemma \ref{lemma9.2}, we know $\phi$ \textbf{is} a function.
+
+  \begin{itemize}
+    \item One-to-one: trivial.
+    \item Onto: trivial.
+    \item Structure-Preserve:
+      \begin{align*}
+         & \phi(h_0 h_1 \cdots h_{n - 1}) \phi(h_0^\prime h_1^\prime \cdots h_{n - 1}^\prime) \\
+        =& (h_0, h_1, \cdots h_{n - 1}) (h_0^\prime, h_1^\prime, \cdots h_{n - 1}^\prime) \\
+        =& (h_0h_0^\prime, h_1h_1^\prime, \cdots, h_{n - 1}h_{n - 1}^\prime) \\
+        =& \phi(h_0h_0^\prime h_1h_1^\prime \cdots h_{n - 1}h_{n - 1}^\prime) \\
+        =& \phi(h_0h_1h_1^\prime\cdots h_{n - 1} h_0^\prime h_{n - 1}^\prime) \\
+        =& \cdots \\
+        =& \phi(\join[]{h}{n - 1} \join[]{h^\prime}{n - 1}) \\
+      \end{align*}
+  \end{itemize}
+\end{proof}
+
+\end{document}
