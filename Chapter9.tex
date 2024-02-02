@@ -116,11 +116,11 @@
   $b$ and $c$ must in some coset, say, $b \in a^mZ(G)$ and $c \in a^nZ(G)$.
   \begin{align*}
     bc &= a^m g a^n g^\prime \\
-       &= a^m a^n g g^\prime \qquad \text{($g \in Z(G)$)} \\
-       &= a^n a^m g g^\prime \qquad \text{(By property of power)} \\
-       &= a^n a^m g^\prime g \qquad \text{($g \in Z(G)$)} \\
-       &= a^n g^\prime a^m g \qquad \text{($g \in Z(G)$)} \\
-       &= cb \qquad \text{(By definition)}
+       &= a^m a^n g g^\prime && \text{($g \in Z(G)$)} \\
+       &= a^n a^m g g^\prime && \text{(By property of power)} \\
+       &= a^n a^m g^\prime g && \text{($g \in Z(G)$)} \\
+       &= a^n g^\prime a^m g && \text{($g \in Z(G)$)} \\
+       &= cb                 && \text{(By definition)}
   \end{align*}
 
   Thus, $b$ and $c$ commute.
@@ -295,6 +295,114 @@
         =& \phi(\join[]{h}{n - 1} \join[]{h^\prime}{n - 1}) \\
       \end{align*}
   \end{itemize}
+\end{proof}
+
+\begin{lemma}[Normal Subgroup of External Direct Product]
+  For all $G = H_0 \oplus H_1$, $H_0 \oplus \{ e \}$ and $\{ e \} \oplus H_1$
+  are normal subgroups of $G$.
+\end{lemma}
+\begin{proof}
+  $\forall \ (a , b) \in H_0 \oplus H_1, (h , e) \in H_0 \oplus \{ e \}$,
+  $(a , b) (h , e) (\inv{a} , \inv{b}) = (a h \inv{a} , b \inv{b}) = (a h \inv{a} , e) \in H_0 \oplus \{ e \}$.
+  Similarly for $\{ e \} \oplus H_1$.
+\end{proof}
+
+\begin{lemma}[Isomorphism respect normal]
+  For any group $G \ \overline{G}$ and normal subgroup $H$ of $G$,
+  if $\phi : G \approx \overline{G}$, then $\phi(H)$ is normal.
+\end{lemma}
+\begin{proof}
+  We need to show $\forall \ g \in \overline{G}, g\phi(H)\inv{g} \in \phi(H)$.
+  Since $\inv{\phi}(g)H\inv{\phi}(\inv{g}) \in H$, by applying $\phi$,
+  we get $g\phi(H)\inv{g} \in \phi(H)$.
+\end{proof}
+
+\begin{lemma}[Isomorphism is congruent on Quotient]
+  For all group $G \ \overline{G}$ and normal subgroup $H$ of $G$. If $\phi : G \approx \overline{G}$,
+  then $G/H \approx \overline{G}/\phi(H)$.
+\end{lemma}
+\begin{proof}
+  We claim the following function is an isomorphism:
+
+  \begin{center}
+    \boxed{\psi(gH) = \phi(g)\phi(H)}
+  \end{center}
+
+  We need to show the function we claim \textbf{is} a function.
+  $\forall \ gH \ g^\prime H \in G/H$, $gH = g^\prime H$, shows that $\psi(gH) = \psi(g^\prime H)$.
+  Since $gH = g^\prime H$, $\inv{g}g^\prime \in H$, 
+  then $\phi(\inv{g}g^\prime) \in \phi(H) \rightarrow \phi(\inv{g})\phi(g^\prime) \in \phi(H) \rightarrow \phi(g)\phi(H) = \phi(g^\prime)\phi(H)$.
+
+  \begin{itemize}
+    \item One-to-one: $\psi(gH) = \psi(g^\prime H) \rightarrow \phi(g)\phi(H) = \phi(g^\prime)\phi(H)$, then
+      \begin{align*}
+         & \ \phi(\inv{g})\phi(g^\prime) \in \phi(H) \\
+        \rightarrow& \ \inv{\phi}(\phi(\inv{g})\phi(g^\prime)) \\
+        =& \ \inv{\phi}(\phi(\inv{g}))\inv{\phi}(\phi(g^\prime)) \\ 
+        =& \ \inv{g}g^\prime \in H
+      \end{align*}
+      which implies $gH = g^\prime H$.
+    \item Onto: $\forall \ g\phi(H) \in \overline{G}/\phi(H)$
+      \begin{align*}
+         & \psi(\inv{\phi}(g\phi(H))) \\
+        =& \psi(\inv{\phi}(g)\inv{\phi}(\phi(H))) \\
+        =& \psi(\inv{\phi}(g)H) \\
+        =& \phi(\inv{\phi}(g))\phi(H) \\
+        =& g\phi(H)
+      \end{align*}
+    \item Structure-Preserve:
+      \begin{align*}
+         & \psi(gH g^\prime H) \\
+        =& \psi(gg^\prime H) \\
+        =& \phi(gg^\prime) \phi(H) \\
+        =& \phi(g)\phi(g^\prime) \phi(H) \\
+        =& \phi(g)\phi(H) \phi(g^\prime)\phi(H) \\
+        =& \psi(gH) \psi(g^\prime H)
+      \end{align*}
+  \end{itemize}
+\end{proof}
+
+\begin{lemma}[Quotien Group of External Direct Product]
+  $(H_0 \oplus H_1) / (H_0 \oplus \{ e \}) \approx H_1$ and $(H_0 \oplus H_1) / (H_1 \oplus \{ e \}) \approx H_0$.
+\end{lemma}
+\begin{proof}
+  {
+    \newcommand{\coset}{(H_0 \oplus \{ e \})}
+
+    We claim the following function is an isomorphism:
+
+    \begin{center}
+      \boxed{\phi((e , h)\coset) = h}
+    \end{center}
+
+    But first, we need to show it \textbf{is} a function.
+    We need to show that for any $h\coset \in (H_0 \oplus H_1)/\coset$ where $h \in H_0 \oplus H_1$,
+    $\phi$ is defined at $h\coset$. Since $h = (h_0 , h_1) = (e , h_1) (h_0 , e)$,
+    $h\coset = (e , h_1) (h_0 , e) \coset$ where $(h_0 , e) \in \coset$.
+    Thus $h\coset = (e , h_1) \coset$. Then we need to show that
+    $(e , h_0)\coset = (e , h_1)\coset \implies \phi((e , h_0)\coset) = \phi((e, h_1)\coset)$.
+    It is clearly that any element in $(e , h_0)\coset$ has form $(a , h_0)$.
+    Similarly, in $(e , h_1)\coset$ it is $(a , h_1)$. Thus $h_0 = h_1$.
+
+    \begin{itemize}
+      \item One-to-one: Trivial.
+      \item Onto: Trivial.
+      \item Structure-Preserve:
+        \begin{align*}
+           & \phi((e , h_0)\coset (e , h_1)\coset) \\
+          =& \phi((e , h_0 h_1)\coset) \\
+          =& h_0 h_1 \\
+          =& \phi((e , h_0)\coset) \phi((e , h_1)\coset)
+        \end{align*}
+    \end{itemize}
+  }
+
+  For $\{ e \} \oplus H_1$, we observe that 
+  \begin{align*}
+     & (H_0 \oplus H_1) / (\{ e \} \oplus H_1) \\
+    \approx & (H_1 \oplus H_0) / (H_1 \oplus \{ e \}) \\
+    \approx & H_0
+  \end{align*}
 \end{proof}
 
 \end{document}
