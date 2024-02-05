@@ -1,0 +1,83 @@
+\documentclass[14pt]{extarticle}
+\usepackage[T1]{fontenc}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsthm,amsmath,amssymb}
+
+\newtheorem{exercise}{Exercise}[section]
+\setcounter{section}{9}
+
+\newcommand{\inv}[1]{#1^{-1}}
+\newcommand{\join}[3][,]{#2_0 #1 #2_1 #1 \cdots #1 #2_{#3}}
+\newcommand{\N}{\mathbb{N}}
+\DeclareMathOperator{\Abelian}{Abelian}
+
+\begin{document}
+
+\setcounter{exercise}{10}
+\begin{exercise}
+  Prove that a quotient group of a cyclic group is cyclic.
+\end{exercise}
+\begin{proof}
+  For any cyclic group $G$ and normal subgroup $H$,
+  let $G = \langle g \rangle$ and $H = \langle g^n \rangle$ for some minimum $n \in \N$.
+  We claim $G/H \approx Z_n$ or $G/H \approx G$ if $n = 0$ which is trivial.
+
+  We claim:
+  {
+    \newcommand{\gH}{\langle gH \rangle}
+    \newcommand{\GH}{G/H}
+
+    \begin{center}
+      \boxed{\gH = \GH}
+    \end{center}
+
+
+    Every element in $\gH$ is a coset of $H$, thus $\gH \subseteq \GH$.
+
+    Any element in $\GH$ has form $hH$ where $h \in G$, therefore $h = g^s$ for some $s$.
+    Then $hH = g^sH \in \langle gH \rangle$.
+
+    We claim $| gH | = n$.
+    $(gH)^n = g^nH$ where $g^n \in H$, so $g^nH = H$.
+    Suppose $0 < m < n, g^mH = H$. Then $g^m \in H$ and $g^{\gcd(m, n)} \in H$
+    where $\gcd(m, n) \le m$ and $\gcd(m, n)$ divides $n$.
+    But this contradict our assumption that $n$ is minimum such that $\langle g^n \rangle = H$,
+    because $\langle g^{\gcd(m, n)} \rangle = H$.
+
+    Thus, $\gH$ is cylic and order $n$, which is isomorphic to $Z_n$
+  }
+\end{proof}
+
+\begin{exercise}
+  Prove that a quotient group of an Abelian group is abelian.
+\end{exercise}
+\begin{proof}
+  For any Abelian group $G$ and normal subgroup $H$. For all $aH$ and $bH$ in $G/H$
+  where $a \ b \in G$.
+  $(aH)(bH) = abH = baH = (bH)(aH)$.
+\end{proof}
+
+\setcounter{exercise}{20}
+
+\begin{exercise}
+  For any Abelian group $G$ of order $\join[]{p}{n - 1}$ where $p_i$ are distinct primes.
+  Shows that $G$ is cyclic.
+\end{exercise}
+\begin{proof}
+  Since $|G| = \join[]{p}{n - 1}$, there are elements of each prime orders, say,
+  $|g_0| = p_0, |g_1| = p_1 \cdots$.
+  We claim $G = \langle g_0 \rangle \times \langle g_1 \rangle \times \cdots \times \langle g_{n - 1} \rangle$.
+  
+  They are all normal because $G$ is Abelian, so the first property satisfied.
+  Let $H = (\langle g_0 \rangle \langle g_1 \rangle \cdots \langle g_{i - 1} \rangle) \cap \langle g_i \rangle$
+  for some $i$.
+  $H$ must be the subgroup of both $\langle g_0 \rangle \langle g_1 \rangle \cdots \langle g_{i - 1} \rangle$ and $\langle g_i \rangle$,
+  therefore, $|H|$ divides $\join[]{p}{i - 1}$ and $p_i$. But all $p$'s are distinct prime, so $|H|$ must be $1$,
+  thus $H = \{ e \}$.
+
+  So $G$ is the internal direct product of $\langle g_0 \rangle \times \langle g_1 \rangle \times \cdots \times \langle g_{n - 1} \rangle$,
+  which is isomorphic to $G^\prime = \langle g_0 \rangle \oplus \langle g_1 \rangle \oplus \cdots \oplus \langle g_{n - 1} \rangle$.
+  And the order of $\langle g_i \rangle$ are relative primes, so $G^\prime$ is cyclic, so is $G$.
+\end{proof}
+
+\end{document}
