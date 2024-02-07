@@ -80,4 +80,19 @@
   And the order of $\langle g_i \rangle$ are relative primes, so $G^\prime$ is cyclic, so is $G$.
 \end{proof}
 
+\setcounter{exercise}{40}
+
+\begin{exercise}
+  Let $H$ be proper subgroup of $Q$, the group of rational numbers under addition.
+  Show that $H$ is infinite index.
+\end{exercise}
+\begin{proof}
+  Since $Q$ Abelian, we need to show $Q/H$ is infinite.
+  Suppose $|Q/H|$ is some finite $n$, let $aH \in Q/H$ and $aH \neq H$,
+  then $(aH)^n = (na)H = H$.
+  But we found that $(\frac{a}{n})H \in Q/H$ since it is a coset of $H$,
+  but $((\frac{a}{n})H)^n = aH$ which is not identity, contradict the fact that
+  $\forall aH \in G/H , (aH)^n = H$
+\end{proof}
+
 \end{document}
