@@ -94,6 +94,13 @@
   But we found that $(\frac{a}{n})H \in Q/H$ since it is a coset of $H$,
   but $((\frac{a}{n})H)^n = aH$ which is not identity, contradict the fact that
   $\forall aH \in G/H , (aH)^n = H$
+
+  Another solution: $\forall x \in Q$, we have $xH \in Q/H$, if $|Q/H| = n$,
+  then $(xH)^n = nxH = H \rightarrow nx \in H$. Consider $f(x) = nx : Q \rightarrow Q$,
+  it is surjection, thus $Q \subseteq H$.
+
+  In fact, these solutions are the same, proving $f$ is surjection is exactly finding $f(x/n) = x$,
+  which we done in the first proof.
 \end{proof}
 
 \setcounter{exercise}{46}
