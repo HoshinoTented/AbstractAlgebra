@@ -9,7 +9,9 @@
 \newcommand{\inv}[1]{#1^{-1}}
 \newcommand{\join}[3][,]{#2_0 #1 #2_1 #1 \cdots #1 #2_{#3}}
 \newcommand{\N}{\mathbb{N}}
+\newcommand{\normalin}{\triangleleft}
 \DeclareMathOperator{\Abelian}{Abelian}
+\DeclareMathOperator{\Inn}{Inn}
 
 \begin{document}
 
@@ -81,7 +83,6 @@
 \end{proof}
 
 \setcounter{exercise}{40}
-
 \begin{exercise}
   Let $H$ be proper subgroup of $Q$, the group of rational numbers under addition.
   Show that $H$ is infinite index.
@@ -93,6 +94,51 @@
   But we found that $(\frac{a}{n})H \in Q/H$ since it is a coset of $H$,
   but $((\frac{a}{n})H)^n = aH$ which is not identity, contradict the fact that
   $\forall aH \in G/H , (aH)^n = H$
+\end{proof}
+
+\setcounter{exercise}{46}
+\begin{exercise}
+  Show that $D_{13}$ is isomorphic to $\Inn(D_{123})$. Moreover,
+  show that any group $G$ where $Z(G) = \{ e \}$, is isomorphic to $\Inn(G)$
+\end{exercise}
+\begin{proof}
+  By Theorem 9.4, $G/Z(G) \approx \Inn(G)$.
+  Since $Z(G) = \{ e \}$, $G/Z(G) = G/\{ e \} \approx G$, thus $G \approx \Inn(G)$.
+\end{proof}
+
+\setcounter{exercise}{56}
+\begin{exercise}
+  Show that the intersection of two normal subgroups of $G$ is also a normal subgroup of $G$.
+\end{exercise}
+\begin{proof}
+  Let $H \normalin G$ and $K \normalin G$, we need to show $(H \cap K) \normalin G$,
+  or equivalently, $\forall g \in G, g(H \cap K)\inv{g} \subseteq (H \cap K)$.
+
+  For any $h \in H \cap K$, since $H$ is normal, there is a $h^\prime$ 
+  such that $gh\inv{g} = h^\prime g \inv{g}$. Similarly, there is a $h^{\prime\prime}$
+  such that $gh\inv{g} = h^{\prime\prime} g \inv{g}$. By cancellation, 
+  $h^\prime \in H = h^{\prime\prime} \in K$, thus $h^\prime = h^{\prime\prime} \in H \cap K$,
+  $gh\inv{g} = h^\prime g \inv{g} = h^\prime \in H \cap K$.
+
+  Moreover, we can proof that for $n$ normal subgroups of $G$, the intersection of
+  those subgroups is also a normal subgroup of $G$.
+
+  We induction on $n$:
+
+  \begin{itemize}
+    \item Base: The intersection of 1 normal subgroup is itself, and it is a normal subgroup of $G$.
+    \item Induction: We have the following induction hypothesis:
+      \begin{center}
+        \fbox{The intersection of $n - 1$ normal subgroups is a normal subgroup of $G$}
+      \end{center}
+      And we need to show:
+      \begin{center}
+        \fbox{The intersection of $n$ normal subgroups is a normal subgroup of $G$}
+      \end{center}
+
+      Let $H$ be the intersection of $n - 1$ normal subgroups, and we know it is normal in $G$.
+      Let $K$ be the $n$th normal subgroup, we already prove that $H \cap K$ is also a normal subgroup of $G$.
+  \end{itemize}
 \end{proof}
 
 \end{document}
