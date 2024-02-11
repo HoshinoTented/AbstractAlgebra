@@ -159,4 +159,45 @@
   Then $(g n^s \inv{g})^k = (n^t)^k = n^{tk} = (n^k)^t \in M$
 \end{proof}
 
+\setcounter{exercise}{60}
+\begin{exercise}
+  Let $H \normalin G$ and $G$ a finite group. Let $x \in G$ and $|x|$ is coprime to $|G/H|$.
+  Show that $x \in H$.
+\end{exercise}
+\begin{proof}
+  Let $xH \in G/H$, since $G$ finite, so is $G/H$. So we suppose the order of $|xH|$ is $n$.
+  If $n$ doesn't divide $|x|$, then $|x| = nq + r$.
+  We have $(xH)^{|x|} = (xH)^{nq + r} = (xH)^r = H$ where $r < n$, which contradict $|xH| = n$.
+  So $n$ has to divide $|x|$, but $n$ also divides $|G/H|$ and we know $|x|$ is coprime to $|G/H|$.
+  Thus $n$ has to be $1$, which implies $xH = H \rightarrow x \in H$.
+\end{proof}
+
+\begin{exercise}
+  Let $G$ be a group of order $pm$ where $p$ is prime, $p > m$.
+  If $H$ is a subgroup of $G$ of order p, prove that $H$ is normal.
+\end{exercise}
+\begin{proof}
+  We first show $H$ is the only subgroup of $G$ of order $p$.
+  Let $K$ be another subgroup of $G$ of order $p$.
+  Since $H \neq K$, we have $H \cap K = \{ e \}$.
+  Then $\displaystyle |HK| = \frac{|H||K|}{|H \cap K|} = p^2$ where $HK \subseteq G$.
+  But $p^2 > pm$ since $p > m$.
+
+  For any $x \in G$, $\phi_x$ sends $H$ to a subgroup of order $p$ in $G$,
+  but we already prove that $H$ is the only subgroup of $G$, thus,
+  for any $h \in H$, $\phi_x(h) = xh\inv{x} \in H$.
+\end{proof}
+
+\begin{exercise}
+  If a group of order $24$ has more than one subgroups of order 3. 
+  Show that none of them is normal.
+\end{exercise}
+\begin{proof}
+  Suppose $H \normalin G$, $K$ is a distinct subgroup of $G$, and $|H| = |K| = 3$.
+  By the example of Theorem 9.1, $HK$ is a subgroup of $G$.
+  But now $\displaystyle |HK| = \frac{|H||K|}{|H \cap K|}$,
+  since $H \neq K$ and $|H| = |K| = 3$, $|H \cap K| = 1$ and $|HK| = 3 * 3 = 9$.
+  Now, $|HK|$ must divides $|G| = 24$ which doesn't.
+\end{proof}
+
 \end{document}
