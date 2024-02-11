@@ -148,4 +148,15 @@
   \end{itemize}
 \end{proof}
 
+\setcounter{exercise}{58}
+\begin{exercise}
+  Let $N \normalin G$ and $N$ is cyclic. Show that any subgroup of $N$ is normal in $G$.
+\end{exercise}
+\begin{proof}
+  Suppose $M = \langle n^k \rangle$ is a subgroup of $N$, then $M$ is cyclic.
+  For any $g \in G$, $n^{ks} \in M$, $g n^{ks} \inv{g} = (g n^s \inv{g})^k$.
+  By $N$ is normal, $g n^s \inv{g} = n^t$ for some $n^t \in N$.
+  Then $(g n^s \inv{g})^k = (n^t)^k = n^{tk} = (n^k)^t \in M$
+\end{proof}
+
 \end{document}
