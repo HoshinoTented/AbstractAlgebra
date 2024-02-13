@@ -76,6 +76,9 @@
   $H$ must be the subgroup of both $\langle g_0 \rangle \langle g_1 \rangle \cdots \langle g_{i - 1} \rangle$ and $\langle g_i \rangle$,
   therefore, $|H|$ divides $\join[]{p}{i - 1}$ and $p_i$. But all $p$'s are distinct prime, so $|H|$ must be $1$,
   thus $H = \{ e \}$.
+  Then, since the product of two Abelian subgroups is also a subgroup, and the property we just proved,
+  it is easy to show $G = \langle g_0 \rangle \langle g_1 \rangle \cdots \langle g_{n - 1} \rangle$
+  by $\displaystyle \forall H \ K \leq G, |HK| = \frac{|H||K|}{|H \cap K|}$
 
   So $G$ is the internal direct product of $\langle g_0 \rangle \times \langle g_1 \rangle \times \cdots \times \langle g_{n - 1} \rangle$,
   which is isomorphic to $G^\prime = \langle g_0 \rangle \oplus \langle g_1 \rangle \oplus \cdots \oplus \langle g_{n - 1} \rangle$.
@@ -105,7 +108,7 @@
 
 \setcounter{exercise}{46}
 \begin{exercise}
-  Show that $D_{13}$ is isomorphic to $\Inn(D_{123})$. Moreover,
+  Show that $D_{13}$ is isomorphic to $\Inn(D_{13})$. Moreover,
   show that any group $G$ where $Z(G) = \{ e \}$, is isomorphic to $\Inn(G)$
 \end{exercise}
 \begin{proof}
