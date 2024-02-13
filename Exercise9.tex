@@ -223,4 +223,23 @@
   then $\forall g \in G, gh\inv{g} \in \phi_g(H) = H$ which implies normal.
 \end{proof}
 
+\begin{exercise}
+  If $G$ is non-Abelian, show that $Aut(G)$ is not cyclic.
+\end{exercise}
+\begin{proof}
+  We consider the converse of our goal:
+  \begin{center}
+    \fbox{If $Aut(G)$ is cyclic, show that $G$ is Abelian.}
+  \end{center}
+
+  For any $a \ b \in G$, consider the automorphisms $T_{ab}(g) = abg$.
+  $T_{ab}(g) = (ab)g = a(bg) = T_a(T_b(g))$. 
+  Since $Aut(G)$ is cyclic and $T_a$ , $T_b$ are automorphisms, 
+  we can write $T_a$ and $T_b$ in $\phi^i$ and $\phi^j$ for some $i$ and $j$
+  where $Aut(G) = \langle \phi \rangle$.
+  Then $T_{ab}(g) = T_a(T_b(g)) = \phi^i(\phi^j(g)) = \phi^{i + j}(g) = \phi^{j + i}(g) = \phi^j(\phi^i(g)) = T_b(T_a(g)) = T_{ba}(g)$.
+  We take $g = e$, $T_{ab}(e) = T_{ba}(e) \rightarrow ab = ba$.
+
+\end{proof}
+
 \end{document}
