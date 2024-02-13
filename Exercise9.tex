@@ -200,4 +200,27 @@
   Now, $|HK|$ must divides $|G| = 24$ which doesn't.
 \end{proof}
 
+\setcounter{exercise}{65}
+\begin{exercise}
+  Suppose $G$ has a subgroup of order $n$. 
+  Prove that the intersection of all subgroups of order $n$ of $G$
+  is normal in $G$.
+\end{exercise}
+\begin{proof}
+  We need to show: Let $\phi : G \rightarrow G$ an isomorphism,
+  $H$ be the intersection of all subgroups of $G$ of order $n$,
+  shows that $\phi(H) = \{ \ \phi(h) \ | \ h \in H \ \}$ 
+  is the intersection of all subgroups of $\overline{G}$ of order $n$ .
+
+  Let $H = \join[\cap]{H}{m}$,
+  then $\phi(H) = \phi(\join[\cap]{H}{m}) =\text{(since $\phi$ is injective) } \phi(H_0) \cap \phi(H_1) \cap \cdots \cap \phi(H_m)$.
+  Let $K$ be a subgroup of $\overline{G}$ of order $n$.
+  Since $\phi$ is an isomorphism, there is a $H_i$ such that $\phi(H_i) = K$.
+  Thus, $\phi(H)$ is the intersection of all subgroups of $\overline{G}$ of order $n$.
+
+  Now, taking automorphism $\phi_g(h) = gh\inv{g}$, 
+  we can prove $\phi_g(H) = H$,
+  then $\forall g \in G, gh\inv{g} \in \phi_g(H) = H$ which implies normal.
+\end{proof}
+
 \end{document}
