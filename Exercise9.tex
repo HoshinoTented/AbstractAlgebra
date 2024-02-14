@@ -15,6 +15,18 @@
 
 \begin{document}
 
+\setcounter{exercise}{8}
+\begin{exercise}
+  Let $H \leq G$, the index of $H$ is $2$. Show that $H$ is normal.
+\end{exercise}
+\begin{proof}
+  Since $|G:H| = 2$, $G = H \cup gH = H \cup Hg$ where $g \notin H$.
+  Also $H \cap gH = H \cap Hg = \emptyset$. Removing $H$ from $G$ we get
+  $gH = Hg$.
+
+  Informaly, $gH$ and $Hg$ are the another half part of $G$.
+\end{proof}
+
 \setcounter{exercise}{10}
 \begin{exercise}
   Prove that a quotient group of a cyclic group is cyclic.
@@ -242,7 +254,20 @@
   where $Aut(G) = \langle \phi \rangle$.
   Then $T_{ab}(g) = T_a(T_b(g)) = \phi^i(\phi^j(g)) = \phi^{i + j}(g) = \phi^{j + i}(g) = \phi^j(\phi^i(g)) = T_b(T_a(g)) = T_{ba}(g)$.
   We take $g = e$, $T_{ab}(e) = T_{ba}(e) \rightarrow ab = ba$.
+\end{proof}
 
+\begin{exercise}
+  Let $|G| = p^n m$ where $p$ is prime and $p$ is coprime to $m$.
+  Suppose $H$ is a normal subgroup of $G$ of order $p^n$,
+  if $K$ is a subgroup of $G$ of order $p^k$, show that $K \subseteq H$.
+\end{exercise}
+\begin{proof}
+  Since $H$ is normal, $\displaystyle |G/H| = \frac{|G|}{|H|} = m$.
+  For any $a \in K$, $(aH)^{p^k} = a^{p^k}H = eH = H$,
+  we know $|aH|$ divides $p^k$.
+  Also, since $aH \in G/H$, $|aH|$ divides $|G/H| = m$.
+  Thus $|aH|$ divides $p^k$ and $m$. By $p$ is coprime to $m$ and $p$ is prime,
+  we know $p^k$ is also coprime to $m$, so $|aH| = 1 \rightarrow a \in H$.
 \end{proof}
 
 \end{document}
