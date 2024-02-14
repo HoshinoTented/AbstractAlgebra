@@ -270,4 +270,36 @@
   we know $p^k$ is also coprime to $m$, so $|aH| = 1 \rightarrow a \in H$.
 \end{proof}
 
+\setcounter{exercise}{70}
+\begin{exercise}
+  If $|G| = 30$ and $|Z(G)| = 3$, which group is $G/Z(G)$ isomorphic to?
+  What about $|Z(G)| = 5$? 
+  What about $|G| = 2pq$ where $p$ and $q$ are distinct odd primes?
+\end{exercise}
+\begin{proof}
+  First, we know the group of order $2p$ where $p$ is prime is isomorphic to
+  $Z_{2p}$ or $D_p$.
+
+  For $|G/Z(G)| = 30/3 = 10$. 
+  Suppose $G/Z(G)$ is cyclic,
+  by Theorem 9.3, $G$ is Abelian, but then $|G = Z(G)| = 30$.
+  So $G/Z(G)$ can not be cyclic, thus $G/Z(G)$ is isomorphic to $D_3$
+  Similarly, $G/Z(G)$ is isomorphic to $D_5$ if $|Z(G)| = 5$.
+
+  Moreover, suppose $|G| = 2pq$ and $|Z(G)| = p$.
+  If $G/Z(G)$ is cyclic, then $|Z(G)| = 2pq$ which is not cool.
+  So $G/Z(G)$ is isomorphic to $D_q$.
+\end{proof}
+
+\begin{exercise}
+  If $H \normalin G$ and $|H| = 2$, prove that $H \subseteq Z(G)$.
+\end{exercise}
+\begin{proof}
+  Since $|H| = 2$, we suppose the only non-identity element in $H$ is $h$.
+  For any $g \in G$, $gh \in gH$, since $H$ is normal,
+  we know there is an $h^\prime$ such that $gh = h^\prime g$.
+  Suppose $h^\prime = e$, then $gh = g$ give us $h = e$ which contradicts our assumption.
+  So $h^\prime$ has to be $h$, then $gh = hg$, $h \in Z(G)$.
+\end{proof}
+
 \end{document}
