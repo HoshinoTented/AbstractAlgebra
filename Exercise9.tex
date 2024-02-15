@@ -335,7 +335,57 @@
   Another solution: Since $g^n \in \langle g \rangle$, $|g^n|$ divides $|g|$.
   Also, by $g^n \in H$, $|g^n|$ divides $|H|$. Then by $|g|$ is coprime to $|H|$,
   $|g^n| = 1 \rightarrow g^n = e$, Then $|g|$ divides $|n|$.
+\end{proof}
 
+\setcounter{exercise}{83}
+\begin{exercise}
+  For any $n \geq 3$, prove that 
+  $D_{2n}$ can be expressed as an internal direct product of
+  $D_n$ and a subgroup of order $2$
+  iff
+  $n$ is odd.
+\end{exercise}
+\begin{proof}
+  Suppose $D_{2n} = D_n \times H$ for some normal subgroup $H$ of order $2$.
+  Since $|H| = 2$, $H \subseteq Z(D_{2n})$,
+  we know $Z(D_{2n}) = \{ R_0 , R_{180} \}$,
+  thus $H = Z(D_{2n})$.
+  If $n$ is even, $R_{180} \in D_n$, and $R_{180} \in H$ since $H = Z(D_{2n})$.
+  $D_n \cap H \neq \{ e \}$ which contradicts the requirement of internal direct product.
+
+  If $n$ is odd, we claim $D_{2n} = D_n \times \{ R_0 , R_{180} \}$.
+  It is easy to show $\{ R_0 , R_{180} \}$ is normal, so we focus on $D_n$.
+  Let $a \in D_{2n}$ and $b \in D_n$, we need to show $ab\inv{a} \in D_n$.
+  \begin{itemize}
+    \item $a$ and $b$ are rotations, $ab\inv{a} = a\inv{a}b = b \in D_n$.
+    \item $a$ is reflection and $b$ is rotation, then $ab$ is reflection, \\
+      $(ab)\inv{a} = (\inv{b}\inv{a})\inv{a} = \inv{b} \in D_n$.
+    \item $a$ is rotation and $b$ is reflection, then $ab$ is reflection, \\
+      $(ab)\inv{a} = \inv{b}\inv{a}\inv{a}$, we need to show $a^{-2} \in D_n$.
+      Let $Z_{2n}$ the rotations of $D_{2n}$ and $Z_n$ the rotations of $D_n$,
+      since $Z_{2n}$ is Abelian (or the index of $Z_n$ is $2$), $Z_n \normalin Z_{2n}$, $\displaystyle |Z_{2n}/Z_n| = \frac{2n}{n} = 2$
+      Then $(\inv{a}Z_n)^2 = a^{-2}Z_n = Z_n$ which implies $a^{-2} \in Z_n$.
+
+      Thus, by $\inv{b} \in D_n$ and $\inv{a}\inv{a} \in D_n$, $\inv{b}\inv{a}\inv{a} \in D_n$.
+    \item $a$ and $b$ are reflections, let $H \in D_n$ and $H$ is reflection.
+      Then we can write $a$ and $b$ in $RH$ and $R^\prime H$ for some $R$ and $R^\prime$ which are rotations.
+      Then
+      \begin{align*}
+        ab\inv{a} &= RH R^\prime H \inv{(RH)} \\
+                  &= RH R^\prime H H \inv{R} && \text{($a$ is reflection)} \\
+                  &= RH R^\prime \inv{R} \\
+                  &= R (H R^\prime) \inv{R}
+      \end{align*}
+      where $H \in D_n$ and $R^\prime \in D_n$, this is the last case we just proved.
+  \end{itemize}
+  Then $\forall a \in D_{2n}, aD_na \subseteq D_n \rightarrow D_n \normalin D_{2n}$.
+
+  And, I just realized that the index of $D_n$ is $2$, then $D_n \normalin D_{2n}$.
+  LOL.
+
+  Since $n$ is odd, $R_{180} \notin D_n$, $D_n \cap \{ R_0 , R_{180} \} = \{ R_0 \}$. \\
+  $\displaystyle |D_n \{ R_0 , R_{180} \}| = \frac{|D_n| |\{ R_0 , R_{180} \}|}{|D_n \cap \{ R_0 , R_{180} \}|} = (2n) \times 2 = |D_{2n}|$,
+  thus $D_n \{ R_0 , R_{180} \} = D_{2n}$.
 \end{proof}
 
 \end{document}
