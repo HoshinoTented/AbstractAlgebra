@@ -302,4 +302,40 @@
   So $h^\prime$ has to be $h$, then $gh = hg$, $h \in Z(G)$.
 \end{proof}
 
+\setcounter{exercise}{73}
+\begin{exercise}
+  Let $H \normalin G$ and the index of $H = 2$.
+  Show that $H$ contains all the elements of odd order.
+\end{exercise}
+\begin{proof}
+  Suppose $g \in G$ is odd order. Then by $(gH)^|g| = H$ we know $|gH|$ divides $|g|$
+  where $|gH|$ might be $1$ or $2$.
+  Since $|g|$ is odd, so the only choice is $|gH| = 1 \rightarrow gH = H \rightarrow g \in H$.
+\end{proof}
+
+\setcounter{exercise}{76}
+\begin{exercise}
+  Show that $A_5$ has no normal subgroup of order $12$.
+\end{exercise}
+\begin{proof}
+  Suppose $H \normalin A_5$ and $|H| = 12$. Then $|A_5/H| = 5$.
+\end{proof}
+
+\setcounter{exercise}{80}
+\begin{exercise}
+  Let $g \in G$ and $H \normalin G$, if $|g| is coprime to |H|$, show that $|gH| = |g|$.
+\end{exercise}
+\begin{proof}
+  Suppose $|gH| = n$, then $g^n \in H$.
+  Let $|g^n| = m$ which divides $|H|$,
+  then $(g^n)^m = e$ and $|g|$ divides $nm$.
+  Since $|g|$ is coprime to $|H|$ and $m$ divides $H$,
+  $|g|$ is coprime to $|m|$, so $|g|$ divides $n$.
+
+  Another solution: Since $g^n \in \langle g \rangle$, $|g^n|$ divides $|g|$.
+  Also, by $g^n \in H$, $|g^n|$ divides $|H|$. Then by $|g|$ is coprime to $|H|$,
+  $|g^n| = 1 \rightarrow g^n = e$, Then $|g|$ divides $|n|$.
+
+\end{proof}
+
 \end{document}
