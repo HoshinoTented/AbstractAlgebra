@@ -10,8 +10,10 @@
 \newcommand{\join}[3][,]{#2_0 #1 #2_1 #1 \cdots #1 #2_{#3}}
 \newcommand{\N}{\mathbb{N}}
 \newcommand{\normalin}{\triangleleft}
+\newcommand{\1}{\{ e \}}
 \DeclareMathOperator{\Abelian}{Abelian}
 \DeclareMathOperator{\Inn}{Inn}
+\DeclareMathOperator{\Aut}{Aut}
 
 \begin{document}
 
@@ -20,11 +22,11 @@
   Let $H \leq G$, the index of $H$ is $2$. Show that $H$ is normal.
 \end{exercise}
 \begin{proof}
-  Since $|G:H| = 2$, $G = H \cup gH = H \cup Hg$ where $g \notin H$.
+  Since $[G:H] = 2$, $G = H \cup gH = H \cup Hg$ where $g \notin H$.
   Also $H \cap gH = H \cap Hg = \varnothing$. Removing $H$ from $G$ we get
   $gH = Hg$.
 
-  Informaly, $gH$ and $Hg$ are the another half part of $G$.
+  Informally, $gH$ and $Hg$ are the another half part of $G$.
 \end{proof}
 
 \setcounter{exercise}{10}
@@ -386,6 +388,100 @@
   Since $n$ is odd, $R_{180} \notin D_n$, $D_n \cap \{ R_0 , R_{180} \} = \{ R_0 \}$. \\
   $\displaystyle |D_n \{ R_0 , R_{180} \}| = \frac{|D_n| |\{ R_0 , R_{180} \}|}{|D_n \cap \{ R_0 , R_{180} \}|} = (2n) \times 2 = |D_{2n}|$,
   thus $D_n \{ R_0 , R_{180} \} = D_{2n}$.
+\end{proof}
+
+\begin{exercise}
+  Suppose $G$ is an Abelian group and $\join[,]{H}{k - 1}$ are
+  subgroups of $G$ such that for any $g \in G$ is uniquely expressible
+  in the form $\join[]{h}{k - 1}$ where $h_i \in H_i$.
+  Prove that $G = \join[\times]{H}{k - 1}$.
+\end{exercise}
+\begin{proof}
+  It is trivial that $H_i$ are normal and the product of them is exactly $G$.
+  We need to show $\forall i, (\join[]{H}{i}) \cap H_{i + 1} = \1$.
+  Suppose $g \in (\join[]{H}{i}) \cap H_{i + 1}$ and $g \neq e$.
+  Then $g$ can be expressed in form $\join[]{h}{i}$ and $h_{i + 1}$
+  which contradict the assumption.
+\end{proof}
+
+\begin{exercise}[Normalizer]
+  Let $G$ be a group and $H$ be a subgroup of $G$.
+  Define $N(H) = \{ x \in G \ | \ xH\inv{x} = H \}$.
+  Prove that $N(H)$ is a subgroup of $G$.
+\end{exercise}
+\begin{proof}
+  By two-steps:
+  \begin{itemize}
+    \item $e \in N(H)$ since $H = H$.
+    \item For any $a \ b \in N(H)$, $abH\inv{ab} = abH\inv{b}\inv{a} = aH\inv{a} = H$.
+    \item For any $a \in N(H)$, $H = \inv{a}aH\inv{a}a = \inv{a}Ha$.
+  \end{itemize}
+\end{proof}
+
+\setcounter{exercise}{88}
+\begin{exercise}
+  Let $G$ be a group of order $pm$ where $p$ is prime and $p$ is coprime to $m$.
+  Suppose $G$ has a normal subgroup of $p$, show that it is the only subgroup of order $p$.
+\end{exercise}
+\begin{proof}
+  Let $H \normalin G$ and $|H| = p$, if $K \leq G$, $|K| = p$ and $H \neq K$.
+  Then $HK$ is a subgroup of $G$ since $H$ is normal.
+  It is easy to show $H \cap K = \1$ since they are order $p$.
+  Thus $|HK| = |H||K| = p^2$, and since $HK$ is a subgroup of $G$, $|HK|$ divides $G$,
+  that is, $p^2$ divides $pm$, which implies $p$ divides $m$, but $p$ is coprime to $m$.
+\end{proof}
+
+\begin{exercise}
+  For any group $G$, show that $\Inn(G) \normalin \Aut(G)$.
+\end{exercise}
+\begin{proof}
+  Let $\phi \in \Aut(G)$ and $\phi_g \in \Inn(G)$ for some $g \in G$.
+  \begin{align*}
+     & (\phi \phi_g \inv{\phi})(x) \\
+    =& \phi(\phi_g(\inv{\phi}(x))) \\
+    =& \phi(g\inv{\phi}(x)\inv{g}) \\
+    =& \phi(g) \phi(\inv{\phi}(x)) \phi(\inv{g}) \\
+    =& \phi(g) x \inv{\phi(g)} \\
+    =& \phi_{\phi(g)} \in \Inn(G)
+  \end{align*}
+\end{proof}
+
+\begin{exercise}
+  Let $G$ be an Abelian group of order $2^n$ where $n$ is positive integer.
+  If $G$ has exactly one element of order $2$, show that $G$ is cyclic.
+\end{exercise}
+\begin{proof}
+  Induction on $n$. If $n = 1$, $|G| = 2$, it is obviously that $G$ is cyclic.
+  So we focus on induction step.
+
+  Let $g \in G$ be the element of order $2$, $H = \langle g \rangle$.
+  Since $G$ is Abelian, $G/H$ is also Abelian.
+  So there is an element $aH$ of order $2$ in $G/H$.
+  We will prove that it is the unique element of order 2.
+
+  Suppose $bH \in G/H$ and $|bH| = 2$.
+  Since $(aH)^2 = H$, we know $a^2 \in H$.
+  If $a^2 = e$, then $|a| = 1 \text{ or } 2$, both cases indicate that $a \in H \rightarrow |aH| = 1$,
+  so $a^2 = g$. Similarly, $b^2 = g$. Then $a = g\inv{a}$ and $b = g\inv{b}$. 
+  By $\inv{a}b = a\inv{g}g\inv{b} = a\inv{b}$,
+  we know $(\inv{a}b)^2 = \inv{a}ba\inv{b} = \inv{a}ab\inv{b} = e$, that is,
+  $|\inv{a}b| = 1 \text{ or } 2 \rightarrow \inv{a}b \in H \rightarrow aH = bH$.
+
+  Since $G$ is Abelian, so is $G/H$, and $|G/H| = 2^{n - 1}$ where $n - 1$ is positive since $n > 1$.
+  And we proved $G/H$ has exactly one element of order $2$, by induction hypothesis, $G/H$ is cyclic.
+
+  Consider $aH \in G/H$ that $|aH| = 2^{n - 1}$. Then $a^{2^{n - 1}} \in H$.
+  If $a^{2^{n - 1}} = e$, $(a^{2^{n - 2}})^2 = a^{2^{n - 2} \times 2} = a^{2^{n - 1}} = e$.
+  This implies $|a^{2^{n - 2}}| = 1 \text{ or } 2$, both cases indicate that $(aH)^{2^{n - 2}} = H$
+  which contradicts $|aH| = 2^{n - 1}$. 
+  Thus $a^{2^{n - 1}} = g$ 
+  and $a^{2^n} = a^{2^{n - 1} \times 2} = (a^{2^{n - 1}})^2 = g^2 = e$.
+  Since $|aH| = 2^{n - 1}$ implies $|a| \ge 2^{n - 1}$ and we proved that $|a| \neq 2^{n - 1}$,
+  $|a| = 2^n$, $G$ is cyclic.
+
+  We can generalize the induction step
+  and show that $G$ is cyclic 
+  if $G$ has exactly $\phi(p) = p - 1$ element of order $p$ where $p$ is prime.
 \end{proof}
 
 \end{document}
