@@ -484,4 +484,37 @@
   if $G$ has exactly $\phi(p) = p - 1$ element of order $p$ where $p$ is prime.
 \end{proof}
 
+\begin{exercise}
+  Let $G$ be finite Abelian group of order $mn$, where $m$ is coprime to $n$.
+  Define $G^d = \{ x \in G \ | \ x^d = e \}$, show that $G = G^m \times G^n$.
+\end{exercise}
+\begin{proof}
+  We first show $G^m$ and $G^n$ are subgroups.
+  By two-steps:
+  \begin{itemize}
+    \item $e \in G^m$
+    \item $\forall x \ y \in G^m$, $(xy)^m = x^my^m = e$
+    \item $\forall x \in G^m$, $(\inv{x})^m = x^{-m} = \inv{(x^m)} = e$
+  \end{itemize}
+  Same for $G^n$.
+
+  Then we show $G^m$ and $G^n$ are normal.
+  For any $g \in G$, $x \in G^m$.
+  $(gx\inv{g})^m = gx^m\inv{g} = ge\inv{g} = e \rightarrow gx\inv{g} \in G^m$, same for $G^n$.
+
+  Then we show $G^m \cap G^n = \{ e \}$.
+  Let $g \in G$ and $g^m = g^n = e$, then $|g|$ divides $m$ and $n$, 
+  since $m$ is coprime to $n$, $|g| = 1 \rightarrow g = e$.
+
+  Finally we show that $G = G^mG^n$.
+  For any $g \in G$, $|g| = d$. $d$ must divides $mn$.
+  Let $s = \gcd(m, d)$ and $t = \gcd(n, d)$. 
+  In other words, we separate $d$ into two parts:
+  the factors of $m$ and the factors of $n$.
+  Then $g^d = g^{st} = g^sg^t$ where 
+  $(g^s)^n = e$ since $t$ divides $n$,
+  and $(g^t)^m = e$ since $s$ divides $m$.
+  Then $g^sg^t = e \rightarrow g \in G^mG^n$. Thus $G \subseteq G^mG^n$.
+\end{proof}
+
 \end{document}

@@ -1,0 +1,250 @@
+\documentclass[14pt]{extarticle}
+\usepackage[T1]{fontenc}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsthm,amsmath}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}{Lemma}[section]
+\newtheorem*{example}{Example}
+\newtheorem{definition}{Definition}[section]
+\setcounter{section}{10}
+
+\DeclareMathOperator{\Ker}{Ker}
+
+\newcommand{\inv}[1]{#1^{-1}}
+\newcommand{\normalin}{\triangleleft}
+
+\begin{document}
+
+\begin{definition}[Homomorphism]
+  For any group $G$ and $\overline{G}$, a 
+  \textbf{homomorphism}
+  is a mapping from $G$ to $\overline{G}$ that preserves structure.
+  That is, $\forall a \ b \in G, \phi(ab) = \phi(a)\phi(b)$.
+\end{definition}
+
+\begin{definition}[Kernel of Homomorphism]
+  The \textbf{kernel} of a homomorphism $\phi : G \rightarrow \overline{G}$
+  is the set $\{ x \in G \ | \ \phi(x) = e \}$. 
+  The kernel of $\phi$ is denoted by $\Ker \phi$
+\end{definition}
+
+The following lemmas assumes $\phi : G \rightarrow \overline{G}$ is a homomorphism.
+
+\begin{lemma}[Homomorphism Preserves identity]
+  \label{lemma10.1}
+  $phi(e_G) = e_{\overline{G}}$.
+\end{lemma}
+\begin{proof}
+  $\phi(g) = \phi(eg) = \phi(e) \phi(g)$, by cancellation, $\phi(e) = e_{\overline{G}}$.
+\end{proof}
+
+\begin{lemma}[Homomorphism Preserves Inverse]
+  $\forall g \in G, \phi(\inv{g}) = \inv{\phi(g)}$.
+\end{lemma}
+\begin{proof}
+  $e_{\overline{G}} = \phi(e_G) = \phi(\inv{g}g) = \phi(\inv{g}) \phi(g)$, then $\inv{\phi(g)} = \phi(\inv{g})$.
+\end{proof}
+
+\begin{lemma}[Homomorphism Preserves Power]
+  $\forall g \in G, n \in Z, \phi(g^n) = \phi(g)^n$.
+\end{lemma}
+\begin{proof}
+  Induction on $n$.
+  \begin{itemize}
+    \item Base: $\phi(g^0) = \phi(g)^0$ by Lemma \ref{lemma10.1}.
+    \item Negative Direction: 
+      \begin{align*}
+         & \phi(g^{-(n + 1)}) \\
+        =& \phi(g^{-n - 1}) \\
+        =& \phi(g^{-n} \inv{g}) \\
+        =& \phi(g^{-n})\phi(\inv{g}) \\
+        =& \phi(g^{-n})\inv{\phi(g)} \\
+        =& \phi(g)^{-n}\inv{\phi(g)} && \text{(By induction hypothesis)} \\
+        =& \phi(g)^{-(n + 1)}
+      \end{align*}
+    \item Positive Direction: Similarly to the negative direction.
+  \end{itemize}
+\end{proof}
+
+\begin{lemma}[Image of Homomorphism is Subgroup]
+  $\phi(G) = \{ \phi(g) \ | \ g \in G \}$ is subgroup of $\overline{G}$.
+\end{lemma}
+\begin{proof}
+  By three-steps:
+  \begin{itemize}
+    \item $\phi(e) \in \phi(G)$
+    \item For any $\phi(a) \ \phi(b) \in \phi(G)$, $\phi(a)\phi(b) = \phi(ab) \in \phi(G)$.
+    \item For ang $\phi(a) \in \phi(G)$, $\inv{\phi(a)} = \phi(\inv{a}) \in \phi(G)$.
+  \end{itemize}
+\end{proof}
+
+\begin{lemma}[Homomorphism on Order]
+  For any $g \in G$, if $|g|$ is finite, $|\phi(g)|$ divides $|g|$;
+  If $|G|$ is finite, $|\phi(g)|$ divides $|g|$ and $|\phi(G)|$.
+\end{lemma}
+\begin{proof}
+  Let $|g| = n$, $\phi(g)^n = \phi(g^n) \rightarrow \phi(g)^n = e$, then $|\phi(g)|$ divides $n$.
+
+  Since $|G|$ is finite, so is $|g|$, and we proved $|\phi(g)|$ divides $|g|$.
+  Since $\phi(G)$ is a subgroup of $\overline{G}$ and $\phi(g) \in \phi(G)$, $|\phi(g)|$ divides $|\phi(G)|$.
+\end{proof}
+
+\begin{lemma}[Kernel is Subgroup]
+  $\Ker \phi$ is a subgroup of $G$.
+\end{lemma}
+\begin{proof}
+  By three-steps:
+
+  \begin{itemize}
+    \item $\phi(e) = e$ so $e \in \Ker \phi$.
+    \item For any $a \ b \in \Ker \phi$, $\phi(ab) = \phi(a)\phi(b) = e$ so $ab \in \Ker \phi$.
+    \item For any $a \in \Ker \phi$, $\phi(\inv{a}) = \inv{\phi(a)} = \inv{e} = e$ so $\inv{a} \in \Ker \phi$.
+  \end{itemize}
+\end{proof}
+
+\begin{lemma}
+  For any $a \ b \in G$, $\phi(a) = \phi(b) \iff a \Ker \phi = b \Ker \phi$.
+\end{lemma}
+\begin{proof}
+  $(\Longrightarrow)$ $\inv{\phi(a)}\phi(b) = \phi(\inv{a})\phi(b) = \phi(\inv{a}b) = e \rightarrow \inv{a}b \in \Ker \phi$ 
+  then $a \Ker \phi = b \Ker \phi$.
+
+  $(\Longleftarrow)$ $a \Ker \phi = b \Ker \phi$ 
+  imples $\inv{a}b \in \Ker \phi$ 
+  imples $\phi(\inv{a}b) = e$
+  imlpes $\phi(\inv{a}) \phi(b) = e$
+  imples $\inv{\phi({a})} \phi(b) = e$
+  imples $\phi(a) = \phi(b)$
+\end{proof}
+
+\begin{lemma}[Inverse Image of Homomorphism]
+  For any $g \in G$, if $\phi(g) = g^\prime$, 
+  then $\inv{\phi}(g^\prime) = \{ x \in G \ | \ \phi(x) = g^\prime \} = g \Ker \phi$.
+\end{lemma}
+\begin{proof}
+  Let $x \in \inv{\phi}(g^\prime)$, 
+  then $\phi(x) = g^\prime$, 
+  by $\phi(g) = g^\prime$
+  we have $\phi(x) = \phi(g)$
+  and $x \Ker \phi = g \Ker \phi$,
+  thus $x \in g \Ker \phi$.
+
+  Let $gx \in \Ker \phi$ where $\phi(x) = e$.
+  $\phi(gx) = \phi(g)\phi(x) = g^\prime e = g^\prime$,
+  thus $gx \in \inv{\phi}(g^\prime)$.
+\end{proof}
+
+\begin{theorem}[Properties of Homomorphism]
+  The propositions above are true.
+\end{theorem}
+\begin{proof}
+  Trivial.
+\end{proof}
+
+The following lemmas assume $H$ is a subgroup of $G$.
+
+\begin{lemma}[Homomorphism Preserves Subgroup]
+  $\phi(H)$ is a subgroup of $\phi(\overline{G})$.
+\end{lemma}
+\begin{proof}
+  By three-steps:
+
+  \begin{itemize}
+    \item $\phi(e) \in \phi(H)$.
+    \item For any $\phi(a) \ \phi(b) \in \phi(H)$, $\phi(a)\phi(b) = \phi(ab) \in \phi(H)$.
+    \item For any $\phi(a) \in \phi(H)$, $\inv{\phi(a)} = \phi(\inv{a}) \in \phi(H)$.
+  \end{itemize}
+\end{proof}
+
+\begin{lemma}[Homomorphism Preserves Cyclic]
+  If $H$ is cyclc, then $\phi(H)$ is cyclic.
+\end{lemma}
+\begin{proof}
+  Let $H = \langle h \rangle$. 
+  For any $\phi(h^n) \in \phi(H)$,
+  $\phi(h^n) = \phi(h)^n$, thus $\phi(H) = \langle \phi(h) \rangle$.
+\end{proof}
+
+\begin{lemma}[Homomorphism Preserves Abelian]
+  If $H$ is Abelian, then $\phi(H)$ is Abelian.
+\end{lemma}
+\begin{proof}
+  For any $\phi(a) \ \phi(b) \in \phi(H)$.
+  $\phi(a)\phi(b) = \phi(ab) = \phi(ba) = \phi(b)\phi(a)$.
+\end{proof}
+
+\begin{lemma}[Homomorphism Preserves Normality]
+  If $H \normalin G$, then $\phi(H) \normalin \phi(G)$.
+\end{lemma}
+\begin{proof}
+  For any $\phi(g) \in \phi(G)$ and $\phi(h) \in \phi(H)$.
+  \begin{align*}
+     & \phi(g)\phi(h)\inv{\phi(g)} \\
+    =& \phi(gh\inv{g}) \\
+    =& \phi(h^\prime) \in \phi(H) && \text{(By $H \normalin G$)} \\
+  \end{align*}
+\end{proof}
+
+\begin{lemma}
+  If $|\Ker \phi| = n$, then $\phi$ is an $n$-to-$1$ mapping from $G$ onto $\phi(G)$.
+\end{lemma}
+\begin{proof}
+  It is trivial that $\phi$ is $G$ onto $\phi(G)$.
+
+  Let $g \in G$, and for any $x \in \Ker \phi$, $\phi(xg) = \phi(x)\phi(g) = \phi(g)$.
+  In other words, $\phi(g \Ker \phi) = \{ \phi(g) \}$.
+\end{proof}
+
+\begin{lemma}
+  If $H$ is finite, then $|\phi(H)|$ divides $|H|$.
+\end{lemma}
+\begin{proof}
+  Let $K = H \cap \Ker \phi$, 
+  since both $H$ and $\Ker \phi$ are subgroups of $G$,
+  so is $K$.
+
+  We will show that $K$ is normal in $H$.
+  For any $h \in H$ and $k \in \Ker_H \phi$, 
+  since $h$, $\inv{h}$ and $k$ are in $H$, so is $hk\inv{h}$.
+  $\phi(hk\inv{h}) = \phi(h)\phi(k)\phi(\inv{h}) = \phi(h)e\phi(\inv{h}) = e$ so $hk\inv{h} \in \Ker \phi$.
+  So $hk\inv{h} \in K$.
+
+  Then we show $H / K \approx \phi(H)$.
+  We claim the following function is an isomorphism:
+
+  \begin{center}
+    \boxed{\psi(hK) = \phi(h)}
+  \end{center}
+
+  But first of all, we need to show it \textbf{is} a function.
+  For any $hK$ and $kK$ in $H/K$, and $hK = kK$.
+  We have $\inv{h}k \in K$ which implies $\inv{h}k \in \Ker \phi$
+  and then $h \Ker \phi = k \Ker \phi \rightarrow \psi(h) = \psi(k)$.
+
+  \begin{itemize}
+    \item One-to-one: If $\psi(hK) = \psi(kK)$, 
+      then $\phi(h) = \phi(k)$ and $h \Ker \phi = k \Ker \phi$.
+      Since $h$ and $k$ are in $H$, $hH = kH = H$. So:
+      
+      \begin{align*}
+        hK &= h(H \cap \Ker \phi) \\
+           &= hH \cap h \Ker \phi && \text{(Since $\lambda x. hx$ is injective)} \\
+           &= kH \cap k \Ker \phi \\
+           &= k (H \cap \Ker \phi) \\
+           &= kK
+      \end{align*}
+    \item Onto: For any $\phi(h) \in \phi(H)$ for some $h$, $\psi(hK) = \phi(h)$.
+    \item Structure-Preserve:
+      \begin{align*}
+        \psi(hKkK) &= \psi(hkK) \\
+          &= \phi(hk) \\
+          &= \phi(h)\phi(k) \\
+          &= \psi(hK)\psi(kK)
+      \end{align*}
+  \end{itemize}
+  
+  Thus, $\displaystyle |\phi(H)| = \frac{|H|}{|K|}$.
+\end{proof}
+
+\end{document}
