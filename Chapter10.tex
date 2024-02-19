@@ -2,6 +2,7 @@
 \usepackage[T1]{fontenc}
 \usepackage[margin=1in]{geometry}
 \usepackage{amsthm,amsmath}
+\usepackage{hyperref}
 
 \newtheorem{theorem}{Theorem}[section]
 \newtheorem{lemma}{Lemma}[section]
@@ -10,9 +11,11 @@
 \setcounter{section}{10}
 
 \DeclareMathOperator{\Ker}{Ker}
+\DeclareMathOperator{\Aut}{Aut}
 
 \newcommand{\inv}[1]{#1^{-1}}
 \newcommand{\normalin}{\triangleleft}
+\newcommand{\1}{\{e\}}
 
 \begin{document}
 
@@ -33,7 +36,7 @@ The following lemmas assumes $\phi : G \rightarrow \overline{G}$ is a homomorphi
 
 \begin{lemma}[Homomorphism Preserves identity]
   \label{lemma10.1}
-  $phi(e_G) = e_{\overline{G}}$.
+  $\phi(e_G) = e_{\overline{G}}$.
 \end{lemma}
 \begin{proof}
   $\phi(g) = \phi(eg) = \phi(e) \phi(g)$, by cancellation, $\phi(e) = e_{\overline{G}}$.
@@ -104,6 +107,7 @@ The following lemmas assumes $\phi : G \rightarrow \overline{G}$ is a homomorphi
 \end{proof}
 
 \begin{lemma}
+  \label{lemma:10.7}
   For any $a \ b \in G$, $\phi(a) = \phi(b) \iff a \Ker \phi = b \Ker \phi$.
 \end{lemma}
 \begin{proof}
@@ -144,6 +148,10 @@ The following lemmas assumes $\phi : G \rightarrow \overline{G}$ is a homomorphi
 
 The following lemmas assume $H$ is a subgroup of $G$.
 
+\begin{theorem}[Properties of Subgroups Under Homomorphisms]
+  The following propositions are true.
+\end{theorem}
+
 \begin{lemma}[Homomorphism Preserves Subgroup]
   $\phi(H)$ is a subgroup of $\phi(\overline{G})$.
 \end{lemma}
@@ -158,7 +166,7 @@ The following lemmas assume $H$ is a subgroup of $G$.
 \end{proof}
 
 \begin{lemma}[Homomorphism Preserves Cyclic]
-  If $H$ is cyclc, then $\phi(H)$ is cyclic.
+  If $H$ is cyclic, then $\phi(H)$ is cyclic.
 \end{lemma}
 \begin{proof}
   Let $H = \langle h \rangle$. 
@@ -220,7 +228,7 @@ The following lemmas assume $H$ is a subgroup of $G$.
   But first of all, we need to show it \textbf{is} a function.
   For any $hK$ and $kK$ in $H/K$, and $hK = kK$.
   We have $\inv{h}k \in K$ which implies $\inv{h}k \in \Ker \phi$
-  and then $h \Ker \phi = k \Ker \phi \rightarrow \psi(h) = \psi(k)$.
+  and then $h \Ker \phi = k \Ker \phi \rightarrow \phi(h) = \phi(k)$.
 
   \begin{itemize}
     \item One-to-one: If $\psi(hK) = \psi(kK)$, 
@@ -247,4 +255,151 @@ The following lemmas assume $H$ is a subgroup of $G$.
   Thus, $\displaystyle |\phi(H)| = \frac{|H|}{|K|}$.
 \end{proof}
 
+\begin{lemma}[Kernel is Normal]
+  $\Ker \phi$ is normal in $G$
+\end{lemma}
+\begin{proof}
+  We need to show: $\forall g \in G, g (\Ker\phi) \inv{g} \subseteq \Ker\phi$.
+  For any $g \in G$ and $k \in \Ker\phi$, 
+  $\phi(gk\inv{g}) = \phi(g)\phi(k)\phi(\inv{g}) = \phi(g)e\phi(\inv{g}) = e$.
+  So $gk\inv{g} \in \Ker\phi$.
+\end{proof}
+
+\begin{lemma}
+  $\phi(Z(G))$ is a subgroup of $Z(\phi(G))$.
+\end{lemma}
+\begin{proof}
+  For any $\phi(g) \in \phi(Z(G))$ for some $g \in Z(G)$. 
+  For any $\phi(a) \in \phi(G)$,
+  $\phi(a)\phi(g) = \phi(ag) = \phi(ga) = \phi(g)\phi(a)$, so $\phi(g) \in Z(\phi(G))$.
+  Thus $\phi(Z(G)) \subseteq Z(\phi(G))$.
+
+  Then by three-steps:
+
+  \begin{itemize}
+    \item $\phi(e) \in \phi(Z(G))$.
+    \item For any $\phi(a) \ \phi(b) \in \phi(Z(G))$ where $a \ b \in Z(G)$, $\phi(a)\phi(b) = \phi(ab) \in \phi(Z(G))$.
+    \item For any $\phi(a) \in \phi(Z(G))$ where $a \in Z(G)$, $\inv{\phi(a)} = \phi(\inv{a}) \in \phi(Z(G))$.
+  \end{itemize}
+\end{proof}
+
+\begin{lemma}[Inverse Image of Subgroup is Subgroup]
+  If $\overline{K}$ is a subgroup of $\overline{G}$, 
+  then $\inv{\phi}(\overline{K}) = \{ k \in G \ | \ \phi(k) \in \overline{K} \}$
+  is a subgroup of $G$.
+\end{lemma}
+\begin{proof}
+  It is clearly a subset of $G$.
+
+  We will prove it is a subgroup by three-steps:
+  \begin{itemize}
+    \item $\phi(e) \in \overline{K}$
+    \item For any $a \ b \in \inv{\phi}(\overline{K})$,
+      $\phi(ab) = \phi(a)\phi(b)$ where $\phi(a) \ \phi(b) \in \overline{K}$,
+      so is $\phi(ab)$.
+    \item For any $a \in \inv{\phi}(\overline{K})$,
+      $\phi(\inv{a}) = \inv{\phi(a)}$ where $\phi(a) \in \overline{K}$,
+      so is $\inv{\phi(a)}$.
+  \end{itemize}
+\end{proof}
+
+{
+\newcommand{\K}{\inv{\phi}(\overline{K})}
+
+\begin{lemma}[Inverse Image of Normal is Normal]
+  If $\overline{K}$ is a normal subgroup of $G$, 
+  then $\K = \{ k \in G \ | \ \phi(k) \in \overline{K} \}$ is a normal subgroup of $G$.
+\end{lemma}
+\begin{proof}
+  We proved that $\K$ is a subgroup of $G$.
+
+  For any $g \in G$ and $k \in \K$,
+  $\phi(gk\inv{g}) = \phi(g) \phi(k) \inv{\phi(g)} = \overline{k}^\prime \in \overline{K}$ 
+  since $\overline{K}$ is normal, thus $gk\inv{g} \in \K$.
+\end{proof}
+}
+
+\begin{lemma}
+  If $\phi : G \rightarrow \overline{G}$ is onto 
+  and $\Ker \phi = \1$, then $\phi$ is an isomorphism
+  from $G$ to $\overline{G}$
+\end{lemma}
+\begin{proof}
+  We need to show $\phi$ is one-to-one.
+
+  For any $\phi(a)$ and $\phi(b)$ such that $\phi(a) = \phi(b)$.
+  We know $a \Ker \phi = b \Ker \phi$, but $\Ker \phi = \1$.
+  So $\{ a \} = \{ b \}$ implies $a = b$.
+\end{proof}
+
+\begin{theorem}[First Isomorphism Theorem]
+  \label{thm:10.3}
+  Let $\phi : G \approx \overline{G}$, 
+  then the mapping from $G / \Ker \phi$ to $\phi(G)$, 
+  given by $g \Ker \phi \mapsto \phi(g)$
+  is an isomorphism.
+\end{theorem}
+\begin{proof}
+  We denote that isomorphism as $\psi$.
+  First, we need to show $\psi$ \textbf{is} a function.
+  That is, for any $g \Ker \phi$ and $h \Ker \phi$,
+  if $g \Ker \phi = h \Ker \phi$,
+  then $\psi(g \Ker \phi) = \psi(h \Ker \phi)$.
+
+  If $g \Ker \phi = h \ker \phi$, by Lemma \ref{lemma:10.7},
+  we know $\phi(g) = \phi(h)$ and then $\psi(g \Ker \phi) = \psi(h \Ker \phi)$.
+
+  Then we need to show it is an isomorphism:
+  \begin{itemize}
+    \item One-to-one: If $\psi(g \Ker \phi) = \psi(h \Ker \psi)$,
+      $\phi(g) = \phi(h)$ gives $g \Ker \phi = h \Ker \phi$.
+    \item  Onto: For any $\phi(g) \in \phi(G)$ for some $g \in G$,
+      we have $\psi(g \Ker \phi) = \phi(g)$.
+    \item Structure-Preserve: For any $g \Ker \phi$ and $h \Ker \phi$:
+      \begin{align*}
+         & \psi(g\Ker\phi h\Ker\phi) \\
+        =& \psi(gh\Ker\phi) \\
+        =& \phi(gh) \\
+        =& \phi(g) \phi(h) \\
+        =& \psi(g\Ker\phi) \psi(h\Ker\phi)
+      \end{align*}
+  \end{itemize}
+\end{proof}
+
+\begin{lemma}[N/C Theorem]
+  Suppose $H$ is a subgroup of $G$,
+  the normalizer $N(H) = \{ x \in G \ | \ xH\inv{x} = H \}$,
+  and the centerlizer $C(H) = \{ x \in G \ | \ \forall h \in H, xh = hx \}$
+  (or equivalently, $\{ C(H) = \{ x \in G \ | \ \forall h \in H, xh\inv{x} = h\} \}$).
+  Consider the homomorphism $\psi(g) = \phi_g : N(H) \rightarrow \Aut(H)$.
+  $N(H)/C(H)$ is isomorphic to some subgroup of $\Aut(H)$.
+\end{lemma}
+\begin{proof}
+  It is easy to show that $C(H) = \Ker \psi$.
+  Since for any $g \in N(H)$, $\psi(g) = \phi_e \rightarrow \phi_g = \phi_e$,
+  that is, $g$ is commutes in $H$, thus $g \in C(H)$. 
+  And for any $g \in C(H)$, $\psi(g) = \phi_g$, 
+  since $g$ commutes in $H$, for any $x \in H$, we have $\phi_g(x) = gx\inv{g} = xg\inv{g} = x$.
+  This tell us that $\psi(g) = \phi_g = \phi_e$, thus $\psi(h) \in \Ker \psi$.
+
+  Thus $N(H)/C(H) = N(H)/\Ker \psi$, by Theorem \ref{thm:10.3}, 
+  $N(H)/C(H) \approx \psi(H)$ which is a subgroup of $\Aut(H)$.
+\end{proof}
+
+\begin{theorem}[Normal Subgroups are Kernels]
+  Let $H \normalin G$, 
+  $H$ is a kernel of some homomorphism of $G$.
+  In particular, $H$ is a kernel of the mapping $\gamma(g) = gH$ from $G$ to $G/H$.
+\end{theorem}
+\begin{proof}
+  First, we need to show $\gamma$ is a homomorphism.
+  For any $a \ b \in G, \gamma(ab) = abH = aHbH = \gamma(a)\gamma(b)$.
+
+  For any $h \in H$, $\gamma(h) = hH = H$ because $h \in H$,
+  since $H$ is the identity of $G/H$, $H \subseteq \Ker \gamma$.
+
+  For any $x \in \Ker \gamma$, we know $\gamma(x) = xH = H$,
+  this implies $x \in H$, thus $\Ker \gamma \subseteq H$.
+\end{proof}
+  
 \end{document}
