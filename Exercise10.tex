@@ -155,24 +155,31 @@
 \end{proof}
 
 \begin{exercise}
+  \label{exc:10.12}
   Suppose $k$ is a divisor of $n$. Prove that $Z_n / \langle k \rangle \approx Z_k$.
 \end{exercise}
 \begin{proof}
-  Consider the function $\phi(x) = x \ \modu \ k$ from $Z_n$ to $Z_k$.
+  Since $k$ divides $n$, we write $n = kq$.
+  Consider the function $\phi(x) = qx : Z_n \rightarrow Z_n$.
   For any $a \ b \in Z_n$:
+
   \begin{align*}
-    \phi(a +_{Z_n} b) &= (a + b \ \modu \ n) \ \modu \ k \\
-    &= (a + b) \ \modu \ k && \quad \text{(since $k$ divides $n$)} \\
-    &= (a \ \modu \ k + b \ \modu \ k) \ \modu \ k \\
-    &= \phi(a) +_{Z_k} \phi(b)
+    \phi(a + b) &= q(a + b) \\
+    &= qa + qb \\
+    &= \phi(a) \phi(b)
   \end{align*}
 
-  Then for any $x \in Z_n$, $x = \langle k \rangle \rightarrow \phi(x) = 0$.
-  And if any $x \in Z_n$ such that $\phi(x) = 0$, then $x \ \modu \ k = 0 \rightarrow x \in \langle k \rangle$.
+  We next show that $\langle k \rangle$ is the kernel of $\phi$.
+  For any $kd \in Z_n$, $\phi(kd) = qkd = nd = 0$.
+  And for any $x \in Z_n$, if $\phi(x) = 0$, $qx = 0$, 
+  then $n = kq$ divides $qx$, say $qx = kqq^\prime$, 
+  then by cancellation, $x = kq^\prime \in \langle k \rangle$.
 
-  So the kernel of $\phi$ is $\langle k \rangle$.
-  And $\phi(Z_n) = Z_k$ since $k \leq n$.
-  Thus $Z_n/\langle k \rangle \approx Z_k$.
+  Since $n = kq$, $|\langle k \rangle| = |\langle \frac{n}{q} \rangle| = q$.
+  Then by $\displaystyle \frac{|Z_n|}{|\langle k \rangle|} = |\phi(Z_n)|$
+  we know $|\phi(Z_n)| = \frac{n}{q} = k$.
+  And $\phi(Z_n)$ is cyclic since $Z_n$ is cyclic.
+  Thus $\phi(Z_n) \approx Z_k$.
 \end{proof}
 
 \begin{exercise}
@@ -183,6 +190,34 @@
   It is trivial that $\phi$ is homomorphism.
   $A \oplus \1 = \Ker \phi$ and
   $\phi(A \oplus B) = B$.
+\end{proof}
+
+\setcounter{exercise}{21}
+\begin{exercise}
+  Let $\phi : G \rightarrow \overline{G}$ is a homomorphism and $\phi$ is onto,
+  where $G$ is a finite group.
+  For any element $g \in \overline{G}$, prove that $G$ has an element of order $|g|$.
+\end{exercise}
+\begin{proof}
+  Since $\phi$ is onto, $\phi(G) = \overline{G}$,
+  then $G / \Ker \phi \approx \overline{G}$.
+  For any element of $g \in \overline{G}$,
+  there is an element of order $|g|$ in $G / \Ker \phi$.
+  Then by Lemma 9.1, $G$ also has an element of order $|g|$.
+\end{proof}
+
+\setcounter{exercise}{28}
+\begin{exercise}
+  Suppose that $\phi$ is a homomorphism from finite $G$ onto $Z_{10}$.
+  Prove that $G$ has normal subgroups of index $2$ and $5$.
+\end{exercise}
+\begin{proof}
+  By Exercise \ref{exc:10.12}, there is a homomorphism 
+  $f$ from $Z_{10}$ onto $Z_2$ and
+  $g$ from $Z_{10}$ onto $Z_5$.
+  It is trivial that $f \phi$ and $g \phi$ are also homomorphisms.
+  Thus, $\Ker f \phi$ is a normal subgroup of $G$ of index $2$
+  and $\Ker g \phi$ is a normal subgroup of $G$ of index $5$.
 \end{proof}
 
 \end{document}
