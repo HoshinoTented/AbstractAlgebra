@@ -1,0 +1,188 @@
+\documentclass[14pt]{extarticle}
+\usepackage[T1]{fontenc}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsthm,amsmath,amssymb}
+\usepackage{hyperref}
+
+\newtheorem{exercise}{Exercise}[section]
+\setcounter{section}{10}
+
+\newcommand{\inv}[1]{#1^{-1}}
+\newcommand{\join}[3][,]{#2_0 #1 #2_1 #1 \cdots #1 #2_{#3}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\normalin}{\triangleleft}
+\newcommand{\1}{\{ e \}}
+\DeclareMathOperator{\Abelian}{Abelian}
+\DeclareMathOperator{\Inn}{Inn}
+\DeclareMathOperator{\Aut}{Aut}
+\DeclareMathOperator{\Ker}{Ker}
+\DeclareMathOperator{\modu}{mod}
+
+\begin{document}
+
+\setcounter{exercise}{6}
+\begin{exercise}
+  Let $\phi : G \rightarrow H$ and $\sigma : H \rightarrow K$ are homomorphisms.
+  Show that $\sigma \phi : G \rightarrow K$ is homomorphism.
+  What relationship between $\Ker \phi$ and $\Ker \sigma \phi$?
+  If $\phi$ and $\sigma$ are onto and $G$ is finite, 
+  describe $[ \Ker \sigma \phi : \Ker \phi ]$ in terms of $|H|$ and $|K|$.
+\end{exercise}
+\begin{proof}
+  For any $a \ b \in G$, we have $\sigma\phi(ab) = \sigma(\phi(ab)) = \sigma(\phi(a)\phi(b)) = \sigma(\phi(a)) \sigma(\phi(b)) = \sigma\phi(a) \sigma\phi(b)$.
+
+  $\Ker \phi \subseteq \Ker \sigma \phi$. 
+  For any $x \in \Ker \phi$, $\sigma\phi(x) = \sigma(e) = e$.
+
+  Since $\phi$ and $\sigma$ are onto, so is $\sigma\phi$.
+  Thus $\phi(G) = H$ and $\sigma\phi(G) = K$.
+  Then 
+  by $\displaystyle \frac{|G|}{|\Ker \phi|} = |\phi(G)| = |H|$ 
+  and $\displaystyle \frac{|G|}{|\Ker \sigma \phi|} = |\sigma \phi(G)| = |K|$
+  we know $\displaystyle |\Ker \phi| = \frac{|G|}{|H|}$
+  and $\displaystyle |\Ker \sigma \phi| = \frac{|G|}{|K|}$.
+  Then 
+  $\displaystyle [ \Ker \sigma \phi : \Ker \phi ] = \frac{|\Ker \sigma \phi|}{|\Ker \phi|} = \frac{|G|}{|K|} \frac{|H|}{|G|} = \frac{|H|}{|K|}$.
+\end{proof}
+
+{
+\newcommand{\sgn}{\mathrm{sgn}}
+  
+\begin{exercise}
+  \label{exc:10.8}
+  Let $G$ be a group of permutations. For each $\sigma \in G$, define:
+  \[
+    \sgn(\sigma) = \begin{cases}
+      +1 & \quad \text{if } \sigma \text{ is even permutation} \\
+      -1 & \quad \text{if } \sigma \text{ is odd permutation}
+    \end{cases}
+  \]
+  Prove that $\sgn$ is a homomorphism from $G$ to $\{ +1 , -1 \}$ under multiplication.
+  What is the kernel of $\sgn$?
+  And why this conclude that $A_n$ is a normal subgroup of $S_n$ of index $2$ for $n > 1$?
+\end{exercise}
+\begin{proof}
+  For any $\alpha \ \beta \in G$, if they are all even permutations or odd permutations,
+  then $\sgn(\alpha \beta) = \sgn(\alpha) \sgn(\beta) = +1$.
+  If one of them is even permutation and another one is odd permutation,
+  $\sgn(\alpha \beta) = \sgn(\alpha) \sgn(\beta) = -1$.
+
+  Note that the identity of $\{ +1 , -1 \}$ under multiplication is $+1$,
+  so the kernel of $\sgn$ is the set of even permutations in $G$.
+  Take $G = S_n$, it is easy to show that $\Ker \sgn = A_n$.
+  Thus $A_n$ is a normal subgroup.
+  Then by $S_n/A_n \approx \sgn(S_n)$ 
+  we get $\displaystyle \frac{|S_n|}{|A_n|} = |\sgn(S_n)|$.
+  It is easy to show $|\sgn(S_n)| = 2$ when $n > 1$.
+  Thus the index of $A_n$ is $2$.
+\end{proof}
+
+\setcounter{section}{5}
+\setcounter{exercise}{26}
+
+\begin{exercise}
+  Using \textnormal{Exercise \ref{exc:10.8}} to show the following theorem:
+  Let $H$ be a subgroup of $S_n$ where $n > 1$, 
+  either every element of $H$ is an even permutation or
+  exactly half of the elements of $H$ are even permutations.
+\end{exercise}
+\begin{proof}
+  If there is no odd permutation in $H$, $H$ consists of even permutations.
+  So we suppose $\alpha \in H$ such that $\alpha$ is odd permutation.
+  Using Exercise \ref{exc:10.8}, we take $G = H$. 
+  $\Ker \sgn$ is the set of all even permutations in $H$ 
+  where the index of $\Ker \sgn$ is $2$. Thus, half of $H$ are even permutations.
+\end{proof}
+
+\setcounter{section}{10}
+\setcounter{exercise}{8}
+}
+
+\begin{exercise}
+  Prove that the mapping from $G \oplus H$ to $G$ 
+  given by $(g , h) \mapsto g$ is a homomorphism.
+  What is the kernel?
+\end{exercise}
+\begin{proof}
+  It is trivial that it is a homomorphism.
+  The kernel is $\{ e \} \oplus H$.
+\end{proof}
+
+\begin{exercise}
+  Let $G$ be a subgroup of $D_n$. Define:
+  \[
+    \phi(x) = \begin{cases}
+      +1 & \quad \textnormal{if } x \textnormal{ is a rotation} \\
+      -1 & \quad \textnormal{if } x \textnormal{ is a reflection}
+    \end{cases}
+  \]
+  Prove that $\phi$ is a homomorphism from $G$ to $\{ +1 , -1 \}$ under multiplication.
+  What is the kernel? And use this to show that either 
+  every element of $G$ is rotation, or
+  exactly half element of $G$ is rotation.
+\end{exercise}
+\begin{proof}
+  It is easy to show that $\phi$ is a homomorphism.
+  Note that the identity of codomain is $+1$, 
+  so $\Ker \phi$ is the set of rotations of $G$.
+
+  If there is no reflection in $G$, then $G$ consists of rotations.
+  So we suppose $F \in G$ is a reflection.
+  By $G/\Ker\phi \approx \phi(G)$
+  we know $\displaystyle \frac{|G|}{|\Ker \phi|} = |\phi(G)|$.
+  It is easy to show $|\phi(G)| = 2$.
+  Thus the order of $\Ker \phi$, the number of rotations of $G$ is exactly $\displaystyle \frac{|G|}{2}$.
+\end{proof}
+
+\begin{exercise}
+  Prove that $(Z \oplus Z)/(\langle a \rangle \oplus \langle b \rangle)$
+  is isomorphic to $Z_a \oplus Z_b$.
+\end{exercise}
+\begin{proof}
+  We claim the following function is a homomorphism:
+  \begin{center}
+    \boxed{\phi((x , y)) = (x \ \modu \ a , y \ \modu \ b) : Z \oplus Z \rightarrow Z_a \oplus Z_b}
+  \end{center}
+  It is trivial that $\phi$ is a homomorphism.
+  Then for any $(x , y) \in Z \oplus Z$, $\phi((x , y)) = (0 , 0)$
+  says $x \in \langle a \rangle$ and $y \in \langle b \rangle$.
+  Thus $(x , y) \in \langle a \rangle \oplus \langle b \rangle$.
+  So $\Ker \phi = \langle a \rangle \oplus \langle b \rangle$.
+  And obviously, $\phi(Z \oplus Z) = Z_a \oplus Z_b$, 
+  by First Isomorphism Theorem,
+  $(Z \oplus Z)/(\langle a \rangle \oplus \langle b \rangle) \approx Z_a \oplus Z_b$.
+\end{proof}
+
+\begin{exercise}
+  Suppose $k$ is a divisor of $n$. Prove that $Z_n / \langle k \rangle \approx Z_k$.
+\end{exercise}
+\begin{proof}
+  Consider the function $\phi(x) = x \ \modu \ k$ from $Z_n$ to $Z_k$.
+  For any $a \ b \in Z_n$:
+  \begin{align*}
+    \phi(a +_{Z_n} b) &= (a + b \ \modu \ n) \ \modu \ k \\
+    &= (a + b) \ \modu \ k && \quad \text{(since $k$ divides $n$)} \\
+    &= (a \ \modu \ k + b \ \modu \ k) \ \modu \ k \\
+    &= \phi(a) +_{Z_k} \phi(b)
+  \end{align*}
+
+  Then for any $x \in Z_n$, $x = \langle k \rangle \rightarrow \phi(x) = 0$.
+  And if any $x \in Z_n$ such that $\phi(x) = 0$, then $x \ \modu \ k = 0 \rightarrow x \in \langle k \rangle$.
+
+  So the kernel of $\phi$ is $\langle k \rangle$.
+  And $\phi(Z_n) = Z_k$ since $k \leq n$.
+  Thus $Z_n/\langle k \rangle \approx Z_k$.
+\end{proof}
+
+\begin{exercise}
+  Prove that $(A \oplus B)/(A \oplus \1) \approx B$.
+\end{exercise}
+\begin{proof}
+  Consider the function $\phi((a , b)) = b$ from $A \oplus B$ to $B$.
+  It is trivial that $\phi$ is homomorphism.
+  $A \oplus \1 = \Ker \phi$ and
+  $\phi(A \oplus B) = B$.
+\end{proof}
+
+\end{document}
