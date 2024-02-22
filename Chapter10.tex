@@ -402,4 +402,18 @@ The following lemmas assume $H$ is a subgroup of $G$.
   this implies $x \in H$, thus $\Ker \gamma \subseteq H$.
 \end{proof}
   
+\begin{lemma}[Composition of Homomorphism]
+  Let $\phi : G \rightarrow H$ and $\psi : H \rightarrow K$ are homomorphisms.
+  $\psi \circ \phi : G \rightarrow K$  is also homomorphism.
+\end{lemma}
+\begin{proof}
+  For any $a \ b \in G$:
+  \begin{align*}
+    (\psi \circ \phi)(ab) &= \psi(\phi(ab)) \\
+    &= \psi(\phi(a) \phi(b)) && \text{(By $\phi$ is homomorphism)} \\
+    &= \psi(\phi(a)) \psi(\phi(b)) && \text{(By $\psi$ is homomorphism)} \\
+    &= (\psi \circ \phi)(a) (\psi \circ \phi)(b)
+  \end{align*}
+\end{proof}
+
 \end{document}
