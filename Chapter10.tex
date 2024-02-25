@@ -416,4 +416,17 @@ The following lemmas assume $H$ is a subgroup of $G$.
   \end{align*}
 \end{proof}
 
+\begin{lemma}[Restricted Homomorphism]
+  Let $\phi : G \rightarrow \overline{G}$ and $H$ a subgroup of $G$.
+  If $\Ker \phi \subseteq H$, prove that $\psi : H \rightarrow \overline{G}$
+  given by $\psi(h) = \phi(h)$ is also a homomorphism with kernel $\Ker \phi$.
+\end{lemma}
+\begin{proof}
+  $\psi$ preserve structure by directly calls $\phi$.
+  For any $k \in \Ker \phi$, since $\Ker \phi \subseteq H$,
+  $\psi(k) = \phi(k) = e$.
+  And for any $h \in H$ such that $\psi(h) = = e$, $h \in \Ker \phi$
+  since $\psi(h) = \phi(h) = e$.
+\end{proof}
+
 \end{document}

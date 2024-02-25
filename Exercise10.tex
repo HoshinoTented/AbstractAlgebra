@@ -287,4 +287,78 @@
   And by First Isomorphism Theorem, $(G/N) / \Ker \phi = (G/N)/(M/N) \approx \phi(G/N) = G/M$.
 \end{proof}
 
+\setcounter{exercise}{58}
+\begin{exercise}
+  Using \textnormal{Lemma 10.17} to answer the following question:
+  Let $N$ be a normal subgroup of $G$, 
+  show that every subgroup of $G/N$ 
+  has form (is isomorphic to)
+  $H/N$, where $H \leq G$.
+\end{exercise}
+\begin{proof}
+  We have natural mapping $\gamma(g) = gN$.
+  Let $\overline{H}$ a subgroup of $G/N$,
+  and let $H = \inv{\gamma}(\overline{H})$.
+  By Lemma 10.17, $H$ is a subgroup of $G$.
+  Since $\inv{\gamma}(e) = \Ker \gamma$
+  and $e \in \overline{H}$,
+  then $\Ker \gamma = N \subseteq \inv{\gamma}(\overline{H}) = H$.
+
+  Now let $\psi(h) = \gamma(h)$ a homomorphism from $H$ to $G/N$.
+  Since $H/N \approx \psi(H) = \gamma(H) = \gamma(\inv{\gamma}(\overline{H})) = \overline{H}$.
+  We conclude that every subgroup $\overline{H}$ has form $H/N$.
+\end{proof}
+
+\begin{exercise}
+  Let $S = \cyc{a}$, $\phi$ and $\psi$ are homomorphism
+  from $S$ to some group, show that if $\phi(a) = \psi(a)$,
+  $\phi = \psi$.
+\end{exercise}
+\begin{proof}
+  For any $a^k \in S$,
+  $\phi(a^k) = \phi(a)^k = \psi(a)^k = \psi(a^k)$.
+\end{proof}
+
+\begin{exercise}
+  Using First Isomorphism Theorem to prove the theorem in Chapter 9:
+  For any group $G$, $G/Z(G) \approx \Inn(G)$
+\end{exercise}
+\begin{proof}
+  Let $\phi(g) = \phi_g$ a mapping from $G$ to $\Inn(G)$,
+  where $\phi_g(x) = gx\inv{g}$ is inner isomorphism.
+
+  For any $a \ b \in G$, $\phi(ab) = \phi_{ab} = \phi_a \circ \phi_b = \phi(a) \circ \phi(b)$.
+  Thus $\phi$ is a homomorphism.
+
+  For any $g \in Z(G)$, $\forall x \in G, \phi(g)(x) = \phi_g(x) = gx\inv{g} = xg\inv{g} = x$
+  tells us $\phi(g) = \phi_g = \phi_e$.
+  And for any $g \in G$ where $\phi(g) = \phi_g = \phi(e) = \phi_e$,
+  then $\forall x \in G, \phi_g(x) = \phi_e(x) \rightarrow gx\inv{g} = x$
+  therefore $gx = xg$, this tells us $g \in Z(G)$.
+  Thus the kernel of $\phi$ is $Z(G)$.
+
+  For any $\phi_g \in \Inn(G)$ for some $g$, $\phi(g) = \phi_g$,
+  thus $\phi$ is onto.
+
+  And by First Isomorphism Theorem, $G / \Ker \phi = G / Z(G) \approx \phi(G) = \Inn(G)$.
+\end{proof}
+
+\setcounter{exercise}{65}
+\begin{exercise}
+  If $H$ and $K$ are normal subgroups of $G$ and $H \cap K = \1$.
+  Prove that $G$ is isomorphic to some subgroup of $G/H \oplus G/K$.
+\end{exercise}
+\begin{proof}
+  Consider the mapping $\phi(g) = (gH, gK)$ from $G$ to $G/H \oplus G/K$.
+  It is obviously a homomorphism by $\forall a \ b \in G, abH = aHbH$.
+
+  For any $g \in \Ker \phi$, $\phi(g) = (H, K)$ implies $g \in H$ and $g \in K$,
+  thus $g \in H \cap K$, but the only element in $H \cap K$ is $e$, 
+  thus $g = e$. Then $\Ker \phi \subseteq \1$, 
+  and $\1 \subseteq \Ker \phi$ since $\Ker \phi$ is a subgroup.
+
+  Thus $G / \Ker \phi = G / \1 \approx G \approx \phi(G)$
+  where $\phi(G)$ is a subgroup of $G/H \oplus G/K$.
+\end{proof}
+
 \end{document}
