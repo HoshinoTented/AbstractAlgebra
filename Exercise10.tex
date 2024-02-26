@@ -21,6 +21,7 @@
 \DeclareMathOperator{\Aut}{Aut}
 \DeclareMathOperator{\Ker}{Ker}
 \DeclareMathOperator{\modu}{mod}
+\DeclareMathOperator{\id}{id}
 
 \begin{document}
 
@@ -359,6 +360,66 @@
 
   Thus $G / \Ker \phi = G / \1 \approx G \approx \phi(G)$
   where $\phi(G)$ is a subgroup of $G/H \oplus G/K$.
+\end{proof}
+
+\stepcounter{exercise}{69}
+\begin{exercise}
+  If $G$ is a non-Abelian group of order $55$. 
+  Prove that $G$ has exactly $11$ subgroups of order $5$,
+  and they have form $a^iKa^{-1}$ for $i = 0, 1, \dots, 10$
+  for some element $a$ in $G$ and some subgroup $K$ of $G$.
+\end{exercise}
+\begin{proof}
+  If $G$ has no element of order $11$, 
+  then $G$ has to have $54$ non-identity elements of order $5$.
+  But $|\phi(5)| = 4$ doesn't divides $54$ ($\phi$ is Eular's totient function),
+  thus $G$ has at least one element of order $11$.
+  Suppose $H$ and $K$ are subgroups of $G$ of order $11$,
+  then $\displaystyle |HK| = \frac{|H||K|}{|H \cap K|} = \frac{11 \times 11}{1} = 121$.
+  But $HK \subseteq G$ where $|G| = 55$.
+  Thus $G$ has only one subgroup of order $11$, 
+  and $G$ has at least one element of order $5$.
+
+  We denote the subgroup of $G$ of order $11$ as $H$,
+  and a subgroup of $G$ of order $5$ as $K$.
+
+  Let $\phi(k) = ak\inv{a}$ (and forget the last $\phi$ we use) from $K$ to $G$, where $a \in H$.
+  It is obviously a homomorphism.
+
+  We will show that $\phi \neq \id$. Suppose $\forall k \in K, \phi(k) = ak\inv{a} = k$.
+  Then $a \in C(k)$.
+  Obviously, $K \subseteq C(k)$ since $K$ is Abelian.
+  If $a \in C(k)$, then $H \subseteq C(k)$ 
+  since $a$ is the generator of $H$.
+  Then $HK \subseteq C(k)$ 
+  where $\displaystyle |HK| = \frac{|H||K|}{|H \cap K|} = \frac{11 \times 5}{1} = 55$.
+  Thus $C(k) = G$, therefore $k \in Z(G)$, and $\cyc{k} = K \subseteq Z(G)$.
+  But now the index of $K$ is prime, which indicates $G$ is Abelian.
+  So $\phi \neq id$.
+  Then by $\phi^{11}(k) = a^{11}ka^{-11} = eke = k$, $|\phi| = 11$.
+
+  For any $i \ j \in Z_{11}$, $s \ t \in K$, and suppose $i \neq j$, $s$ and $t$ are non-identity and $\phi^i(s) = \phi^j(t)$.
+  Then $\phi^{i - j}(s) = t$, therefore $\phi^{i - j}(K) = K$ since $s$ and $t$ are generators of $K$,
+  which means $a^{i - j} \in N(K)$, therefore $H \subseteq N(K)$ 
+  since $a^{i - j}$ generates $H$.
+  Obviously, $K \subseteq N(K)$, thus $N(K) = G$ since $HK \subseteq N(K)$ and $|HK| = 55$.
+  And by $|\phi| = 11$, $H \nsubseteq C(K)$ unless $|\phi| = 1$.
+  By $K \subseteq C(K)$ (since $K$ is Abelian), $|C(K)|$ divides $55$
+  and $H \nsubseteq C(K)$, we know $|C(K)| = 5$ therefore $C(K) = K$.
+  Then by N/C Theorem, $N(K)/C(K) \approx \textnormal{a subgroup of } \Aut(K)$,
+  where the order of left hand side is $\frac{|G|}{|K|} = 11$
+  and the order of right hand side is $|\Aut(K)| = |\Aut(Z_5)| = |U(5)| = 4$.
+  $11$ doesn't divides $4$, thus $N(K)/C(K)$ can not isomorphic to a subgroup of $\Aut(K)$.
+  If $s$ is identity, then $\phi^i(s) = e$, therefore $t$ has to be $e$,
+  since the kernel of $\phi^j = \1$.
+  So the intersection of the image of $\phi^i$ and $\phi^j$ is $\1$.
+
+  Finally, the image of each $\phi^i$ corresponds a subgroup of $G$,
+  and they are distinct. Also, they have form $a^iKa^{-i}$ for $i \in Z_{11}$.
+
+  Then $G$ has at least $11 \times 4$ elements of order $5$,
+  $10$ elements of order $11$, $1$ element of order $1$,
+  where $44 + 10 + 1 = 55$. Thus $G$ has exactly $11$ subgroups of order $5$.
 \end{proof}
 
 \end{document}
