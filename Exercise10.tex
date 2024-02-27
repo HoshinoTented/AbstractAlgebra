@@ -5,6 +5,7 @@
 \usepackage{hyperref}
 
 \newtheorem{exercise}{Exercise}[section]
+\newtheorem*{lemma}{Lemma}
 \setcounter{section}{10}
 
 \newcommand{\inv}[1]{#1^{-1}}
@@ -420,6 +421,83 @@
   Then $G$ has at least $11 \times 4$ elements of order $5$,
   $10$ elements of order $11$, $1$ element of order $1$,
   where $44 + 10 + 1 = 55$. Thus $G$ has exactly $11$ subgroups of order $5$.
+\end{proof}
+
+\setcounter{exercise}{73}
+\begin{exercise}
+  If $m$ and $n$ are positive integers, prove that the mapping
+  $\phi(x) = x \modu n$ from $Z_m$ to $Z_n$ is a homomorphism
+  if and only if $n$ divides $m$.
+\end{exercise}
+\begin{proof}
+  Suppose $\phi$ is a homomorphism, then
+  divide $m$ by $n$, we get $m = nq + r$ where $0 \le r < n$.
+  If $n$ doesn't divide $m$, that is, $r \neq 0$,
+  then $\phi(m) = \phi(nq + r) = q\phi(n) + \phi(r) = \phi(r) = r \modu n$.
+  Since $r < n$, therefore $r \modu n = r$. But $r \neq 0$ and $\phi(m) = \phi(0) = 0$.
+  Thus $n$ has to divide $m$.
+
+  Suppose $n$ divides $m$, then $m = nq$.
+  For any $x \ y \in Z_m$,
+  $\phi(x + y) = (x + y \modu m) \modu n = (x + y \modu nq) \modu n$.
+  Divide $x + y$ by $nq$, we get $x + y = (nq)p + s$,
+  then divide $s$ by $n$, we get $s = nr + t$,
+  then $x + y = nqp + nr + t$. Therefore:
+  \begin{align*}
+     & (x + y \modu nq) \modu n \\
+    =& (nqp + nr + t \modu nq) \modu n \\
+    =& nr + t \modu n \\
+    =& t
+  \end{align*}
+  where
+  \begin{align*}
+     & x + y \modu n \\
+    =& nqp + nr + t \modu n \\
+    =& t
+  \end{align*}
+  Then $\phi(x + y) = x + y \modu n = ((x \modu n) + (y \modu n)) \modu n = \phi(x) + \phi(y)$.
+\end{proof}
+
+\begin{lemma}
+  Let $H$ a normal subgroup of $G$, and let $\overline{G}$ be any group.
+  the number of isomorphisms between $G/H$ and $\overline{G}$
+  is equal to
+  the number of homomorphism from $G$ onto $\overline{G}$ where the kernel is $H$.
+\end{lemma}
+\begin{proof}
+  The mapping $f$ given by $\phi \mapsto (gH \mapsto \phi(g))$
+  from ($\Sigma [ \phi \in G \rightarrow \overline{G} ] \Ker \phi = H $) 
+  to $G/H \approx \overline{G}$ ($gH \mapsto \phi(g)$ is a isomorphism by First Isomorphism Theorem) 
+  is bijective:
+  \begin{itemize}
+    \item One-to-one: For any $\phi \ \psi : G \rightarrow \overline{G}$, 
+      if $f(\phi) = f(\psi)$, then for any $g \in G$:
+      \begin{align*}
+        f(\phi)(gH) &= f(\psi)(gH) \\
+        \phi(g) &= \psi(g)
+      \end{align*}
+      which implies $\phi = \psi$
+    \item Onto: For any $g : G/H \approx \overline{G}$, consider the homomorphism 
+      $\phi(a) = g(aH)$, for any $aH \in G/H$,
+      $f(\phi)(aH) = \phi(a) = g(aH)$, thus $f(\phi) = g$.
+  \end{itemize}
+\end{proof}
+
+\setcounter{exercise}{75}
+\begin{exercise}
+  Let $p$ be a prime. Determine the number of homomorphisms from $Z_p \oplus Z_p$ to $Z_p$.
+\end{exercise}
+\begin{proof}
+  For any homomorphism that maps to $Z_p$, the image of it can be $\1$ or $Z_p$,
+  we focus on the later one.
+
+  For each subgroup $H$ of $Z_p \oplus Z_p$ of order $p$,
+  we have $|(Z_p \oplus Z_p) / H \approx Z_p| = |Z_p \approx Z_p| = |Aut(Z_p)| = |U(p)| = \phi(p) = p - 1$
+  homomorphisms from $Z_p \oplus Z_p$ onto $Z_p$ where the kernel is $H$.
+
+  And $Z_p \oplus Z_p$ has $\displaystyle \frac{p^2 - 1}{p - 1} = (p + 1)$
+  subgroups of order $p$.
+  Thus there are $(p + 1)(p - 1) + 1 = p^2 - 1 + 1 = p^2$ homomorphisms from $Z_p \oplus Z_p$ to $Z_p$.
 \end{proof}
 
 \end{document}
