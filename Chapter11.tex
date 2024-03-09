@@ -1,0 +1,86 @@
+\documentclass[14pt]{extarticle}
+\usepackage[T1]{fontenc}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsthm,amsmath}
+\usepackage{hyperref}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}{Lemma}[section]
+\newtheorem*{example}{Example}
+\newtheorem{definition}{Definition}[section]
+\setcounter{section}{11}
+
+\newcommand{\inv}[1]{#1^{-1}}
+\newcommand{\normalin}{\triangleleft}
+\newcommand{\1}{\{e\}}
+\newcommand{\set}[2]{\{ \ #1 \ | \ #2 \ \}}
+\newcommand{\cyc}[1]{\langle #1 \rangle}
+
+\DeclareMathOperator{\Abelian}{Abelian}
+\DeclareMathOperator{\Inn}{Inn}
+\DeclareMathOperator{\Aut}{Aut}
+\DeclareMathOperator{\Ker}{Ker}
+\DeclareMathOperator{\modu}{mod}
+\DeclareMathOperator{\id}{id}
+
+\begin{document}
+
+\begin{lemma}
+  Let $G$ be a finite Abelian group of order $p^nm$ where $p$ is a prime 
+  and $p$ doesn't divide $m$. Then $G = H \times K$ where
+  $H = \{ x \in G \ | \ x^{p^n} = e \}$ and
+  $K = \{ x \in G \ | \ x^m = e \}$.
+  Moreover, $|H| = p^n$.
+\end{lemma}
+\begin{proof}
+  We need to show $H$ and $K$ are subgroups of $G$. Obviously,
+  $H$ and $K$ are non-empty. By two-steps:
+  \begin{enumerate}
+    \item For any $a \ b \in H$, $(ab)^{p^n} = a^{p^n}b^{p^n} = ee = e$
+    \item For any $a \in H$, $(\inv{a})^{p^n} = \inv{(a^{p^n})} = \inv{e} = e$
+  \end{enumerate}
+  Thus $H$ is a subgroup of $G$, similarly, $K$ is a subgroup of $G$.
+  Since $G$ is Abelian, $H$ and $K$ are normal in $G$.
+
+  Then we need to show $H \cap K = \1$. Suppose $g \in G$ such that $g^{p^n} = g^m = e$.
+  Then $|g|$ divides both $p^n$ and $m$. Since $p$ doesn't divide $m$, $\gcd(p^n, m) = 1$,
+  so $g$ has to be $e$.
+
+  Finally, we need to show $G = HK$. It is obviously that $HK \subseteq G$,
+  we focus on $G \subseteq HK$.
+  By $\gcd(p^n, m) = 1$, we know $p^ns + mt = 1$. For any $g \in G$,
+  let $k = g^{p^ns}$ and $h = g\inv{k}$.
+  $k^m = (g^{p^ns})^m = g^{p^nms} = (g^{p^nm})^s = e^s = e$, thus $k \in K$.
+  \begin{align*}
+    h^{p^n} &= (g\inv{k})^{p^n} \\
+    &= g^{p^n}(g^{-p^ns})^{p^n} \\
+    &= g^{p^n - p^nsp^n} \\
+    &= g^{p^n(1 - p^ns)} \\
+    &= g^{p^n mt} \\
+    &= (g^{p^nm})^t \\
+    &= e^t \\
+    &= e
+  \end{align*}
+  Thus $h \in H$, and $hk = g\inv{k}k = g$, $g \in HK$.
+
+  How do I find out $g^{p^ns}$? Well, 
+  we want to prove that $g = hk$ for some $h$ and $k$,
+  and we can use $g^{p^n}$ to remove $h$, but know it is $g^{p^n} = k^{p^n}$,
+  which may not be $k$. We know
+  $\langle k^{p^n} \rangle = \langle k \rangle$ by $\gcd(p^n, |k|) = 1$,
+  so there is a $i$ such that $(k^{p^n})^i = k$. Now look at $p^ns + mt = 1$,
+  we find $p^ns \modu m = 1$, which is what we want, so $(k^{p^n})^s = k$.
+  
+  Since $K$ is a subgroup of $G$, $|K|$ divides $|G| = p^nm$.
+  But $p$ can not divides $|K|$, if it does, there is a element $g$ of order $p$ in $K$
+  since $K$ is Abelian, then $g^m = e$ which implies $p$ divides $m$, 
+  which is unacceptable.
+  Similarly, $|H|$ divides $|G| = p^nm$, let $q$ a prime that divides $m$, $q$ can not divides $|H|$,
+  if it does, there is a element $g$ of order $q$ in $H$ since $K$ is Abelian,
+  then $g^p = e$ which implies $q$ divides $p$,
+  which is unacceptable.
+  So $|K|$ divides $m$ and $|H|$ divides $p^n$,
+  then $|K| \leq m$ and $|H| \leq p^n$, also $|G| = |H||K|$, so $|H| = p^n$ and $|K| = m$.
+\end{proof}
+
+\end{document}

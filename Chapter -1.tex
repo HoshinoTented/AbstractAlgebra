@@ -1,0 +1,117 @@
+\documentclass[14pt]{extarticle}
+\usepackage[T1]{fontenc}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsthm,amsmath}
+\usepackage{hyperref}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}{Lemma}[section]
+\newtheorem{exercise}{Exercise}[section]
+\newtheorem*{example}{Example}
+\newtheorem{definition}{Definition}[section]
+\setcounter{section}{-1}
+
+\DeclareMathOperator{\Ker}{Ker}
+\DeclareMathOperator{\Aut}{Aut}
+\DeclareMathOperator{\orb}{orb}
+\DeclareMathOperator{\stab}{stab}
+
+\newcommand{\inv}[1]{#1^{-1}}
+\newcommand{\normalin}{\triangleleft}
+\newcommand{\1}{\{e\}}
+
+\begin{document}
+This chapter involves group action, but the knowleage is from untrusted sources
+\footnote[0]{\url{https://zhuanlan.zhihu.com/p/165163924}}
+\footnote[1]{\url{https://www.bananaspace.org/wiki/\%E7\%BE\%A4\%E4\%BD\%9C\%E7\%94\%A8}}.
+
+\begin{definition}[Group Action]
+  For any group $G$ and any set $X$.
+  A \textbf{group action} of $G$ on $X$ is a mapping $-\cdot- : G \times X \rightarrow X$
+  such that:
+  \begin{itemize}
+    \item Preserve Identity: $\forall x \in X, e \cdot x = x$
+    \item Associativity: $\forall g \ h \in G, x \in X, (gh) \cdot x = g \cdot (h \cdot x)$
+  \end{itemize}
+
+  We say $G$ is left action on $X$, and the set $X$ is called $G$-set.
+\end{definition}
+
+\begin{definition}[Orbit]
+  For any group $G$, and a set $X$ where $X$ is a $G$-set.
+  For any $x \in X$, the orbit of $x$:
+  \[
+    \orb(x) = \{ g \cdot x \ | \ g \in G \}
+  \]
+
+  In other words, the orbit of $x$ is all the possible 'positions' that $x$ can be sent to.
+\end{definition}
+
+\setcounter{section}{7}
+\setcounter{exercise}{66}
+\begin{exercise}[Orbit is Partition]
+  Show that the intersection of distinct orbits is empty set.
+\end{exercise}
+\begin{proof}
+  Suppose $G$ a group and $X$ a $G$-set, $x \ y \in X$.
+  If there is a $a \in X$ such that $a \in \orb(x) \cap \orb(y)$,
+  then exists $g \in G$ such that $g \cdot x = a$
+  and exists $g^\prime \in G$ such that $g^\prime \cdot y = a$.
+  Then $(\inv{(g^\prime)} g) \cdot x = y$, therefore $\orb(y) \subseteq \orb(x)$.
+  Similarly $\orb(x) \subseteq \orb(y)$.
+\end{proof}
+\setcounter{section}{-1}
+
+\begin{definition}[Stablizer]
+  For any group $G$, and $X$ a $G$-set.
+  For any $x \in X$, the stablizer of $x$:
+  \[
+    \stab(x) = \{ g \in G \ | \ g \cdot x = x \}
+  \]
+\end{definition}
+
+\begin{lemma}[Stablizer is Subgroup]
+  For any group $G$, and $X$ a $G$-set. For any $x \in X$, $\stab(x)$ is a subgroup of $G$.
+\end{lemma}
+\begin{proof}
+  By two-steps:
+  \begin{enumerate}
+    \setcounter{enumi}{-1}
+    \item $\stab(x)$ is not empty since $e \cdot x = x$
+    \item For any $g \ h \in \stab(x)$, $(gh) \cdot x = g \cdot (h \cdot x) = g \cdot x = x$.
+    \item For any $g \in \stab(x)$, 
+      \begin{align*}
+        g \cdot x &= x \\
+        \inv{g} \cdot (g \cdot x) &= \inv{g} \cdot x \\
+        (\inv{g} g) \cdot x &= \inv{g} \cdot x \\
+        x &= \inv{g} \cdot x
+      \end{align*}
+  \end{enumerate}
+  Thus $\stab(x)$ is a subgroup of $G$.
+\end{proof}
+
+\begin{lemma}
+  For any group $G$, and $X$ a $G$-set. For any $x \in X$, $|G| = |\orb(x)||\stab(x)|$
+  (or equivalently, $|\orb(x)| = [ G : \stab(x) ]$).
+\end{lemma}
+\begin{proof}
+  Consider the function $\phi(g\stab(x)) = g \cdot x$ 
+  from the cosets of $\stab(x)$
+  to $\orb(x)$, we will show that it is bijective,
+  but first, we need to show that it \textbf{is} a function.
+  For any $g\stab(x)$ and $h\stab(x)$, if $g\stab(x) = h\stab(x)$,
+  then $g \in h\stab(x)$, which means $g = hs$ where $s \in \stab(x)$.
+  Then $\phi(g\stab(x)) = g \cdot x = (hs) \cdot x = h \cdot (s \cdot x) = h \cdot x = \phi(h\stab(x))$.
+
+  \begin{itemize}
+    \item One-to-one: For any $g \ h \in G$, $\phi(g\stab(x)) = \phi(h\stab(x))$,
+      then $g \cdot x = h \cdot x$, therefore $\inv{g} \cdot (h \cdot x) = x$,
+      which implies $(\inv{g}h) \cdot x = x$ and $\inv{g}h \in \stab(x)$.
+      Then $g\stab(x) = h\stab(x)$.
+    \item Onto: For any $a \in \orb(x)$, then there is $g \in G$ such that $g \cdot x = a$.
+          Then $\phi(g\stab(x)) = g \cdot x = a$.
+  \end{itemize}
+  Thus $\phi$ is bijective and then $|\orb(x)| = [ G : \stab(x) ]$
+\end{proof}
+
+\end{document}
