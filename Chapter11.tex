@@ -11,6 +11,9 @@
 \setcounter{section}{11}
 
 \newcommand{\inv}[1]{#1^{-1}}
+\newcommand{\join}[3][,]{#2_0 #1 #2_1 #1 \cdots #1 #2_{#3}}
+\newcommand{\Times}[2]{\join[\times]{#1}{#2}}
+\newcommand{\Oplus}[2]{\join[\oplus]{#1}{#2}}
 \newcommand{\normalin}{\triangleleft}
 \newcommand{\1}{\{e\}}
 \newcommand{\set}[2]{\{ \ #1 \ | \ #2 \ \}}
@@ -22,6 +25,7 @@
 \DeclareMathOperator{\Ker}{Ker}
 \DeclareMathOperator{\modu}{mod}
 \DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\lcm}{lcm}
 
 \begin{document}
 
@@ -81,6 +85,60 @@
   which is unacceptable.
   So $|K|$ divides $m$ and $|H|$ divides $p^n$,
   then $|K| \leq m$ and $|H| \leq p^n$, also $|G| = |H||K|$, so $|H| = p^n$ and $|K| = m$.
+\end{proof}
+
+\begin{lemma}
+  Let $G$ be an Abelian group of order $p^n$, where $p$ is prime and $n$ is non-negative.
+  Let $a \in G$ such that $|a|$ is maximum in $G$. Then $G = \cyc{a} \times K$ for some $K$.
+\end{lemma}
+\begin{proof}
+  TODO.
+\end{proof}
+
+\begin{lemma}
+  
+\end{lemma}
+
+\begin{theorem}[Homomorphism respect Internal Direct Product]
+  Let $G = H \times K$, and $\phi : G \rightarrow \overline{G}$ a homomorphism.
+  Prove that $\phi(G) = \phi(H) \times \phi(K)$.
+\end{theorem}
+\begin{proof}
+  Since $H$ and $K$ are normal, so are $\phi(H)$ and $\phi(K)$.
+  Also, $H \cap K = \1$, therefore $\phi(H) \cap \phi(K) = \1$.
+  For any $\phi(g) \in \phi(G)$ for some $g \in G$, we know $g = hk$ for some $h \in H$ and $k \in K$.
+  Then $\phi(g) = \phi(hk) = \phi(h)\phi(k)$, $\phi(G) \subseteq \phi(H)\phi(K)$.
+  Since $\phi(H)$ and $\phi(K)$ are subgroups of $\phi(G)$, therefore $\phi(H)\phi(K) \subseteq \phi(G)$.
+  Thus $\phi(G) = \phi(H)\phi(K)$.
+\end{proof}
+
+\begin{lemma}
+  Let $G$ be a finite Abelian group of order power of $p$.
+  $G = \join[\times]{H}{m - 1} = \join[\times]{K}{n - 1}$
+  where $H$ and $K$ are non-trivial cyclic subgroups.
+  $|H_i| \geq |H_j|$ if $i < j$, same for $K$.
+  Prove that $m = n$ and $|H_i| = |K_i|$ for all $i$.
+\end{lemma}
+This proof is based on the textbook one.
+\begin{proof}
+  We induction on $|G|$. If $|G| = 1$, then it is trivial.
+  Suppose $|G| = p^a$, and we consider the following function: $\phi(x) = x^p$.
+  We observe that $\phi(xy) = (xy)^p = x^p y^p = \phi(x) \phi(y)$,
+  thus $\phi$ is a homomorphism. Then $\phi(G) = \phi(\join[\times]{H}{n - 1}) = \phi(H_0) \times \phi(H_1) \times \cdots \times \phi(H_{n - 1})$,
+  same for $K$. If we restrict $\phi$ to some $H_i$, 
+  then the kernel of $\phi$ is the elements that $g^p = e$, 
+  which is exactly the only subgroup of order $p$ of $H_i$.
+  So each $\phi(H_i)$ are proper subgroups of $H_i$, and $|H_i| = p|\phi(H_i)|$.
+  We may get some trivial result by $\phi$, so let $m^\prime$ be the maximum number such that
+  $|H_{n^\prime}| > p$, and $\phi(G) = \phi(\join[\times]{H}{H_{n^\prime}})$, same for $K$ with $n^\prime$.
+  By induction hypothesis (since $\phi(G)$ get smaller), we know $m^\prime = n^\prime$ and $|\phi(H_i)| = |\phi(K_i)|$ for all $i$.
+  Therefore $|H_i| = p|\phi(H_i)| = p |\phi(K_i)| = |K_i|$ for all $i \in [ 0 , m^\prime ]$.
+  Then we need to show $H$ and $K$ has the same amount of subgroups of order $p$,
+  we know $H$ has $m - m^\prime$ subgroups of order $p$ (the subgroups that produce trivial result by $\phi$),
+  similarly, $K$ has $n - n^\prime$ subgroups of order $p$.
+  Since $|H_0||H_1|\cdots|H_{m^\prime}|\cdots|H_{m - 1}| = |H_0||H_1|\cdots|H_{m^\prime}|p^{m - m^\prime} = |G|$,
+  same for $K$, and we know $|H_i| = |K_i|$ for all $i \in [0 , m^\prime]$, so $p^{m - m^\prime} = p^{n - n^\prime}$,
+  therefore $m - m^\prime = n - n^\prime$ and then $m = n$.
 \end{proof}
 
 \end{document}
