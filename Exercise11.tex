@@ -1,0 +1,69 @@
+\documentclass[14pt]{extarticle}
+\usepackage[T1]{fontenc}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsthm,amsmath}
+\usepackage{hyperref}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}{Lemma}[section]
+\newtheorem{definition}{Definition}[section]
+\newtheorem*{example}{Example}
+\newtheorem{exercise}{Exercise}[section]
+\setcounter{section}{11}
+
+\newcommand{\inv}[1]{#1^{-1}}
+\newcommand{\join}[3][,]{#2_0 #1 #2_1 #1 \cdots #1 #2_{#3}}
+\newcommand{\Times}[2]{\join[\times]{#1}{#2}}
+\newcommand{\Oplus}[2]{\join[\oplus]{#1}{#2}}
+\newcommand{\normalin}{\triangleleft}
+\newcommand{\1}{\{e\}}
+\newcommand{\set}[2]{\{ \ #1 \ | \ #2 \ \}}
+\newcommand{\cyc}[1]{\langle #1 \rangle}
+
+\DeclareMathOperator{\Abelian}{Abelian}
+\DeclareMathOperator{\Inn}{Inn}
+\DeclareMathOperator{\Aut}{Aut}
+\DeclareMathOperator{\Ker}{Ker}
+\DeclareMathOperator{\modu}{mod}
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\lcm}{lcm}
+
+\begin{document}
+
+\setcounter{exercise}{10}
+\begin{exercise}
+  Prove that any finite Abelian group $G$ can be expressed as the external direct product 
+  of cyclic group of order $\join{n}{t - 1}$,
+  where $n_{i - 1}$ divides $n_i$ for all $i \in [ 1 , t - 1 ]$.
+\end{exercise}
+\begin{proof}
+  induction on $t$.
+  \begin{itemize}
+    \item Base: $t = 0$, trivial.
+    \item Induction: Since $G$ can be (uniquely, up to isomorphism) expressed as the external direct product of
+      cyclic groups of prime powered. Let $S$ be the set of those cyclic groups, $P$ and $Q$ are empty sets.
+      First, take $H \in S$ which is isomorphic to $Z_{p^n}$ for some prime $p$ and postive $n$.
+      % 将最大的，order 为 p 的幂的群加入 R.
+      Then put the group which is isomorphic to $Z_{p^m}$ where $m$ is maximum to $P$,
+      and move other groups which has form $Z_{p^i}$ from $S$ to $Q$.
+      Repeat this procedure untile $S$ is empty.
+      
+      For any distinct $H \ K \in P$, $|H|$ is relative prime to $|K|$, since they 
+      have form $Z_{p^i}$ with different $p$.
+      Therefore, the product of elements in $P$ form a large cyclic group $R$.
+      And the product of $Q$ form a finite Abelian group, by induction hypothesis,
+      it can be expressed as $\join[\oplus]{K}{m}$, and they satisfy the property we want to prove.
+
+      The last thing is proving $|K_0|$ divides $|R|$.
+      We now consider the worse situation, $K_0$ is the product of $Q$,
+      then elements of $Q$ are relative prime to each other, thus, for any prime $p$,
+      $Q$ has at most one element of order power of $p$.
+      For any $H \in Q$,
+      $H$ has form $p^i$ and $H \in S$, then $|H|$ divides $|R|$ due to the
+      way we construct $R$. So $|K_0|$ divides $|R|$.
+      If $K_0$ is not the product of $Q$, then $|K_0|$ divides the order of the product of $Q$,
+      therefore $|K_0|$ divides $|R|$.
+  \end{itemize}
+\end{proof}
+
+\end{document}
