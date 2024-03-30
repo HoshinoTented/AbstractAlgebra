@@ -1,7 +1,7 @@
 \documentclass[14pt]{extarticle}
 \usepackage[T1]{fontenc}
 \usepackage[margin=1in]{geometry}
-\usepackage{amsthm,amsmath}
+\usepackage{amsthm,amsmath,amssymb}
 \usepackage{hyperref}
 
 \newtheorem{theorem}{Theorem}[section]
@@ -65,5 +65,23 @@
       therefore $|K_0|$ divides $|R|$.
   \end{itemize}
 \end{proof}
+
+{
+\newcommand{\Z}[1]{Z_{2^{i_0}} \oplus Z_{2^{i_1}} \oplus \cdots \oplus Z_{2^{i_#1}}}
+
+\begin{exercise}
+  Prove that an Abelian group of order $2^n \ (n \geq 1)$ 
+  must have an odd number of elements of order $2$.
+\end{exercise}
+\begin{proof}
+  Let $G$ be such group, and $G$ can be expressed as 
+  $\Z{n} \ (\text{where } n \in \mathbb{N})$.
+  For any element in $\Z{n}$, each component of it is either
+  an element of order $2$ in corresponding cyclic group or identity (we can do this because $2$ is prime),
+  therefore we can express it as an binary string, and the number of strings is $2^n$.
+  But we counted string that is all $0$ (all identity) which is order $1$, so
+  the number of elements of order $2$ in $\Z{n}$ is $2^n - 1$, which is odd.
+\end{proof}
+}
 
 \end{document}
