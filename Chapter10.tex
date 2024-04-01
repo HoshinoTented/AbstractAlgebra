@@ -429,4 +429,18 @@ The following lemmas assume $H$ is a subgroup of $G$.
   since $\psi(h) = \phi(h) = e$.
 \end{proof}
 
+\begin{lemma}[Homomorphism on Internal Direct Product is False]
+  The following proposition is False:
+  Let $\phi$ a homomorphism from $G$ to some group and $G = H \times K$.
+  Show that $\phi(H \times K) = \phi(H) \times \phi(K)$.
+\end{lemma}
+\begin{proof}
+  Consider $G = Z_2 \oplus Z_2$ and homomorphism $\phi((a , b)) = a + b$.
+  Obviously $\langle (1 , 1) \rangle$ is the kernel, and
+  $Z_2 \oplus Z_2 = (Z_2 \oplus \1) \times (\1 \oplus Z_2)$.
+  If the hypothesis is true, then 
+  the intersection of $\phi(Z_2 \oplus \1) = Z_2$ and $\phi(\1 \oplus Z_2) = Z_2$
+  should be $\1$ but it is not.
+\end{proof}
+
 \end{document}
