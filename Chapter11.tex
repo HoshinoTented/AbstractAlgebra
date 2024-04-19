@@ -122,9 +122,10 @@
 This proof is based on the textbook one.
 \begin{proof}
   TODO: fix gap
-  % We induction on $|G|$. If $|G| = 1$, then it is trivial.
-  % Suppose $|G| = p^a$, and we consider the following function: $\phi(x) = x^p$.
+  We induction on $|G|$. If $|G| = 1$, then it is trivial.
+  Suppose $|G| = p^a$, and we consider the following function: $\phi(x) = x^p$.
   % We observe that $\phi(xy) = (xy)^p = x^p y^p = \phi(x) \phi(y)$,
+  % TODO: this is false because \phi doesn't respect \oplus
   % thus $\phi$ is a homomorphism. Then $\phi(G) = \phi(\join[\times]{H}{n - 1}) = \phi(H_0) \times \phi(H_1) \times \cdots \times \phi(H_{n - 1})$,
   % same for $K$. If we restrict $\phi$ to some $H_i$, 
   % then the kernel of $\phi$ is the elements that $g^p = e$, 
@@ -140,6 +141,25 @@ This proof is based on the textbook one.
   % Since $|H_0||H_1|\cdots|H_{m^\prime}|\cdots|H_{m - 1}| = |H_0||H_1|\cdots|H_{m^\prime}|p^{m - m^\prime} = |G|$,
   % same for $K$, and we know $|H_i| = |K_i|$ for all $i \in [0 , m^\prime]$, so $p^{m - m^\prime} = p^{n - n^\prime}$,
   % therefore $m - m^\prime = n - n^\prime$ and then $m = n$.
+\end{proof}
+
+\begin{lemma}[Existence of Subgroups of Abelian Groups]
+  Let $G$ be a finite Abelian group of order $n$, and $m$ be a divisor of $n$.
+  Then there is a subgroup of $G$ of order $m$.
+\end{lemma}
+\begin{proof}
+  This proof is come from textbook.
+  Induction on $n$.
+  \begin{itemize}
+    \item Base: $n = 1$ is trivial.
+    \item Induction: Let $k$ be a prime divisor of $m$, we know there is subgroup
+      $K$ of order $k$ in $G$.
+      Use the induction hypothesis on $G/K$, it is possible because $|G/K| < |G|$.
+      Then we know there is a subgroup $H/K$ of $G/K$ of order $m/k$
+      (by Exercise 10.59), since $m/k$ is
+      a divisor of $|G/K| = n/k$. Since $|H/K| = |H|/|K| = m/k$ and $|K| = k$,
+      it is easy to show $|H| = m$.
+  \end{itemize}
 \end{proof}
 
 \end{document}

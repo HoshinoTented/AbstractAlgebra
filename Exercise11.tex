@@ -84,4 +84,67 @@
 \end{proof}
 }
 
+\begin{exercise}
+  Suppose $G$ is a finite Abelian group. Prove that
+  $G$ has order $p^n$ where $p$ is prime iff 
+  the order of every element of $G$ is power of $p$.
+\end{exercise}
+\begin{proof}
+  $(\Rightarrow)$ $G$ can be expressed as the external direct product
+  of cyclic groups of order power of $p$, then for any element $g \in G$,
+  $g$ can be expressed as $(\join{g}{n})$, and $|g| = \lcm(\join{g}{n})$.
+  Since $g_i$ is in a group of order power of $p$, so does $g_i$, therefore
+  $\lcm(\join{g}{n}) = \max(\join{g}{n})$, which is power of $p$.
+
+  $(\Leftarrow)$ Since $G$ is finite Abelian group, it can be expressed as
+  a external direct product of cyclic groups, say $\join[\oplus]{G}{n}$.
+  Since every element of $G$ is power of $p$, so are the generators of $G_i$,
+  therefore $|G_i|$ is power of $p$, then $|G|$ is power of $p$.
+\end{proof}
+
+\setcounter{exercise}{41}
+\begin{exercise}
+  For any Abelian group $G$ of order $p^n$, where $p$ is prime.
+  Prove that $G$ is cyclic iff $G$ has exactly $\phi(p)$ elements of order $p$.
+\end{exercise}
+\begin{proof}
+  The $\Rightarrow$ direction is obviously, we focus on the $\Leftarrow$.
+  Suppose $G$ is \textbf{NOT} cyclic, then $G$ can be expressed as 
+  the direct product of more than
+  one cyclic groups of order power of $p$. Now $G$ has more than $\phi(p)$ elements
+  of order $p$, which contradict our hypothesis.
+\end{proof}
+
+\setcounter{exercise}{44}
+\begin{exercise}
+  The exponent of a finite group $G$ is the smallest integer $n$
+  such that $x^n = e$ for all $x \in G$.
+  Prove that if $G$ is finite and Abelian, then the exponent of $G$
+  is the largest order of any element in $G$.
+\end{exercise}
+\begin{proof}
+  We know $G$ can be write as a direct product of cyclic groups,
+  say $G = \Oplus{G}{n}$. Induction on $n$.
+  \begin{itemize}
+    \item Base: Obviously, the largest order of any element in $G = G_0$ 
+      is the exponent of $G$, which is $|G_0|$ (recall that $G_0$ is cyclic).
+    \item Induction: Suppose the exponent of $\Oplus{G}{n - 1}$ is 
+      the largest order of any element in $G$, 
+      denote one such element by $(\join{g}{n - 1})$,
+      and let $g_n$ be the element of largest order in $G_n$.
+      We claim $|g| = |(\join{g}{n})|$ is
+      the exponent of $\Oplus{G}{n}$.
+
+      For any element in $\Oplus{G}{n}$, it can be wrote in $(\join{h}{n})$.
+      Then $(h_i)^{|g|} = e$ for any $i < n$, since $|(\join{g}{n - 1})|$ divides $|g|$
+      and $|(\join{g}{n - 1})|$ is the exponent of $\Oplus{G}{n - 1}$.
+      Also $(h_n)^{|g|} = e$ since $h_n$ divides $g_n$ and $g_n$ divides $|g|$.
+      Therefore $h^{|g|} = e$.
+
+      It is easy to show $|g|$ is largest in $G$, 
+      let $n$ the largest order of elements in $G$,
+      then $|g| \leq n$, by $h^{|g|} = e$ we know $|g| \geq n$.
+  \end{itemize}
+\end{proof}
+
 \end{document}
