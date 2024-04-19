@@ -147,4 +147,21 @@
   \end{itemize}
 \end{proof}
 
+\begin{exercise}
+  If $H$ is a subgroup of a finite Abelian group of even order,
+  and $H$ contains all elements in $G$ of even order, prove that $H = G$.
+\end{exercise}
+\begin{proof}
+  Consider the internal direct product form of $G$,
+  since $|H|$ is even, so is $|G|$.
+  So there is at least one cyclic subgroup of even order in the direct product form $G$,
+  we denote the generator of it by $h$.
+  For any cyclic subgroup of even order in the direct product form of $G$,
+  the order of their generators are even, therefore they are all in $H$.
+  Now we consider the cyclic subgroups of odd order, denote the generator by $k$.
+  Then $|hk|$ is even, $hk \in H$, and cancel $h$ from $hk$, we know $k \in H$.
+  Therefore, all cyclic subgroups in the internal direct product are subgroups of $H$,
+  $H = G$.
+\end{proof}
+
 \end{document}
