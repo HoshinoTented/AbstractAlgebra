@@ -1,0 +1,100 @@
+\documentclass[14pt]{extarticle}
+
+\usepackage[T1]{fontenc}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsthm,amsmath,amssymb}
+
+\usepackage{subfiles}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}{Lemma}[section]
+\newtheorem{definition}{Definition}[section]
+\newtheorem{exercise}{Exercise}[section]
+\newtheorem*{example}{Example}
+
+\newcommand{\inv}[1]{#1^{-1}}
+\newcommand{\join}[3][,]{#2_0 #1 #2_1 #1 \cdots #1 #2_{#3}}
+\newcommand{\Times}[2]{\join[\times]{#1}{#2}}
+\newcommand{\Oplus}[2]{\join[\oplus]{#1}{#2}}
+\newcommand{\normalin}{\triangleleft}
+\newcommand{\1}{\{e\}}
+\newcommand{\set}[2]{\{ \ #1 \ | \ #2 \ \}}
+\newcommand{\cyc}[1]{\langle #1 \rangle}
+
+\DeclareMathOperator{\Abelian}{Abelian}
+\DeclareMathOperator{\Inn}{Inn}
+\DeclareMathOperator{\Aut}{Aut}
+\DeclareMathOperator{\Ker}{Ker}
+\DeclareMathOperator{\modu}{mod}
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\lcm}{lcm}
+
+\setcounter{section}{12}
+
+\begin{document}
+
+\begin{definition}[Ring]
+  A ring $R$ is a set with two binary operations:
+  addition (denote by $a + b$) and
+  multiplication (denote by $ab$), such that
+  for any $a \ b \ c \in R$:
+  \begin{enumerate}
+    \item $a + b = b + a$
+    \item $(a + b) + c = a + (b + c)$
+    \item An identity of addinition $0$, that is, $a + 0 = a$.
+    \item An inverse of $a$, denote by $-a$, such that $a + (- a) = 0$
+    \item $(ab)c = a(bc)$
+    \item $a(b + c) = ab + ac$ and $(a + b)c = ac + bc$
+  \end{enumerate}
+\end{definition}
+
+We can observe that ring is a group under addition and some
+rules about multiplication 
+(i.e. multiplication is associative and is left/right distributive over addition).
+
+We use $n \cdot a$ to indicate the "sum" of $n$ $a$
+rather than $na$, since $na$ is used by multiplication.
+
+From the definition, we can get some faimilar properties.
+
+\begin{theorem}
+  Let $a \ b \ c \in R$ where $R$ is ring, then
+  \begin{enumerate}
+    \item $a0 = 0a = 0$
+    \item $a(-b) = (-a)b = -(ab)$
+    \item $(-a)(-b) = ab$
+    \item $a(b - c) = ab - ac$ and $(a - b)c = ac - bc$
+    \item If $R$ has a unity element $1$, then $(-1)a = -a$
+    \item If $R$ has a unity element $1$, then $(-1)(-1) = 1$
+  \end{enumerate}
+\end{theorem}
+\begin{proof}
+  Newline please!
+  \begin{enumerate}
+    \item Let $b \in R$, $a(b + 0) = ab + a0$ and $a(b + 0) = a(b)$.
+          Therefore $ab + a0 = ab$, then $a0 = 0$, same for $0a$.
+    \item $a(b + (-b)) = ab + a(-b)$ and $a(b + (-b)) = a0 = 0$.
+          Therefore $0 = ab + a(-b)$, then $a(-b) = -(ab)$,
+          same for $(-a)b$.
+    \item $(-a)(-b) = -((-a)b) = -(-(ab)) = ab$
+    \item $a(b - c) = a(b + (-c)) = ab + a(-c) = ab + -(ac) = ab - ac$,
+          same for $(a - b)c$.
+    \item $(-1)a = -(1a) = -a$
+    \item $(-1)(-1) = -(-1) = 1$
+  \end{enumerate}
+\end{proof}
+
+\begin{theorem}
+  If a ring has a unity, then it is unique. 
+  If a ring element has a multiplicative inverse, then it is unique.
+\end{theorem}
+\begin{proof}
+  Suppose $1$ and $m$ are the unity of some ring,
+  then $1m = 1$ and $1m = m$, since they are unity.
+
+  For any ring element $r$, and $a \ b$ are the inverse of $r$,
+  then $(ar)b = b$ and $a(rb) = a$, therefore $a = b$.
+\end{proof}
+
+
+\end{document}
