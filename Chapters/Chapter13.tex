@@ -1,0 +1,163 @@
+\documentclass[14pt]{extarticle}
+
+\usepackage[T1]{fontenc}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsthm,amsmath,amssymb}
+
+\usepackage{subfiles}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{corollary}{Corollary}[section]
+\newtheorem{lemma}{Lemma}[section]
+\newtheorem{definition}{Definition}[section]
+\newtheorem{exercise}{Exercise}[section]
+\newtheorem*{example}{Example}
+
+\newcommand{\inv}[1]{#1^{-1}}
+\newcommand{\join}[3][,]{#2_0 #1 #2_1 #1 \cdots #1 #2_{#3}}
+\newcommand{\Times}[2]{\join[\times]{#1}{#2}}
+\newcommand{\Oplus}[2]{\join[\oplus]{#1}{#2}}
+\newcommand{\normalin}{\triangleleft}
+\newcommand{\1}{\{e\}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\set}[2]{\{ \ #1 \ | \ #2 \ \}}
+\newcommand{\cyc}[1]{\langle #1 \rangle}
+
+\DeclareMathOperator{\Abelian}{Abelian}
+\DeclareMathOperator{\Inn}{Inn}
+\DeclareMathOperator{\Aut}{Aut}
+\DeclareMathOperator{\Ker}{Ker}
+\DeclareMathOperator{\modu}{mod}
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\lcm}{lcm}
+\DeclareMathOperator{\chara}{char}
+
+\setcounter{section}{13}
+
+\begin{document}
+
+\begin{definition}[Zero Divisor]
+  Let $R$ a commutative ring, a non-zero element $a \in R$ is a zero-divisor,
+  if there is a non-zero element $b \in R$ such that $ab = 0$.
+\end{definition}
+
+\begin{definition}[Integral Domain]
+  Let $R$ a commutative ring with unity, $R$ is integral domain if there is no zero-divisor.
+\end{definition}
+
+It is equivalent to define integral domain by $ab = 0$ implies $a = 0$ or $b = 0$
+instead of zero-divisor.
+
+\begin{lemma}
+  Let $R$ a integral domain, then for any $a \ b \in R$, $ab = 0$ implies $a = 0$ or $b = 0$.
+\end{lemma}
+\begin{proof}
+  Newline please!!
+  \begin{itemize}
+    \item If $a = 0$, then trivial.
+    \item If $a \neq 0$ and $b = 0$, then trivial.
+    \item If $a \neq 0$ and $b \neq 0$, then $a$ is a zero-divisor, 
+      which contradict the definition of integral domain.
+  \end{itemize}
+\end{proof}
+
+\begin{theorem}[Cancellation]
+  \label{theorem:13.1}
+  Let $R$ a integral domain, for any $a \ b \ c \in R$, 
+  if $a \neq 0$ and $ab = ac$, then $b = c$.
+\end{theorem}
+\begin{proof}
+  $ab = ac \rightarrow ab - ac = 0 \rightarrow a(b - c) = 0$,
+  since $a \neq 0$, we know $b - c = 0$ and then $b = c$.
+\end{proof}
+
+\begin{definition}[Field]
+  Let $R$ a commutative ring with unity, 
+  $R$ is field if every non-zero element in $R$ are unit.
+\end{definition}
+
+\begin{lemma}[Fields are Integral domains]
+  Let $R$ a field, then $R$ is also a integral domain.
+\end{lemma}
+\begin{proof}
+  Let $a \in R$ and $a \neq 0$, then for any $b \in R$,
+  $ab = 0 \rightarrow \inv{a}ab = \inv{a}0 \rightarrow b = 0$.
+\end{proof}
+
+\begin{theorem}[Finite Integral domains are Fields]
+  \label{theorem:13.2}
+  Let $R$ a finite integral domain, then $R$ is field.
+\end{theorem}
+\begin{proof}
+  For any non-zero element $a \in R$, the mapping $f(b) = ab : R \rightarrow R$
+  is one-to-one by Theorem \ref{theorem:13.1}.
+  Since $R$ is finite, then $f$ is also onto, therefore $aR = R$.
+  By Exercise 12.60, we know $R$ has a unity and every non-zero element are unit.
+  Therefore $R$ is a field.
+
+  The following solution comes from textbook. \par
+  For any non-zero element $a \in R$, consider the sequence $a^1 \ a^2 \ a^2 \ \dots$, 
+  since $R$ is finite, there must be $a^i = a^j$ where $i = j + k$ where $k > 0$.
+  Then $a^i = a^{j + k} = a^ja^k = a^j 1$ implies $a^k = 1$ by cancellation,
+  therefore $a^{k - 1}a = a^k = 1$ and $a^{k - 1}$ is the inverse of $a$.
+\end{proof}
+
+\begin{corollary}
+  $Z_p$ is field.
+\end{corollary}
+\begin{proof}
+  For any non-zero element $a \in Z_p$, and $b \in Z_p$,
+  if $ab = 0$, then
+  \begin{itemize}
+    \item If $b = 0$, everything is good.
+    \item If $b \neq 0$, then $a \ b \in U(p)$, however, $0 \notin U(p)$, so $ab \neq 0$.
+  \end{itemize}
+  Therefore, $Z_p$ has no zero-divisor, then $Z_p$ is integral domain.
+  By Theorem \ref{theorem:13.2}, $Z_p$ is field.
+\end{proof}
+
+\begin{definition}[Characteristic]
+  The \textbf{characteristic} of a ring $R$ is the least positive integer $n$
+  such that $n \cdot x = 0$ for all $x \in R$. If no such $n$ exists, 
+  we say $R$ has characteristic $0$. The characteristic of $R$ is denoted by $\chara R$
+\end{definition}
+
+\begin{theorem}
+  Let $R$ be a ring with unity. 
+  If the order under addition of $1$ is infinite,
+  then $\chara R = 0$.
+  If the order under addition of $1$ is $n$,
+  then $\chara R = n$.
+\end{theorem}
+\begin{proof}
+  If $|1| = \infty$, so there is no positive integer $n$ such that $n \cdot 1 = 0$, so $\chara R = 0$.
+  If $|1| = n$, then for any $a \in R$, $n \cdot 1 = 0 \rightarrow (n \cdot 1)a = 0a \rightarrow n \cdot (1a) = 0 \rightarrow n \cdot a = 0$.
+  Therefore $\chara R = n$.
+\end{proof}
+
+\begin{theorem}[Characteristic of Integral domain]
+  The characteristic of a integral domain is $0$ or prime.
+\end{theorem}
+\begin{proof}
+  Let $R$ a integral domain, if $|i| = \infty$ or $|i| = n$ and $n$ is prime, then trivial.
+  We focus on $|i| = n$ but $n$ is not prime.
+  Note that $n \neq 1$ which implies $1 = 0$.
+
+  Since $n$ is not prime, then $n = ij$ where $i$ and $j$ are positive integers but not $1$.
+  $(ij) \cdot 1 = 0 \rightarrow (ij) \cdot 1 1 = 0 \rightarrow (i \cdot 1) (j \cdot 1) = 0$
+  where $i \cdot 1$ and $j \cdot 1$ are not $0$, since $|1| = ij$ and $i < |1|$ and $j < |1|$.
+  This contradict the definition of integral domain.
+
+  The following solution comes from textbook, I think it is better than mine.\par
+  We need to show if $|1| = n$ then $n$ is prime. Let $s$ be a divisor of $n$,
+  then $n = st$ where $1 \leq s , t \leq n$.
+  Then $n \cdot 1 = (st) \cdot 1 = (s \cdot 1)(t \cdot 1) = 0$, which
+  implies $s \cdot 1 = 0$ or $t \cdot 1 = 0$. 
+  But $n$ is the least integer such that $n \cdot 1 = 0$,
+  therefore $s = n$ or $t = n$ (then $s = 1$).
+  From this, we conclude that any divisor of $n$ is either $1$ or $n$, 
+  therefore $n$ is prime.
+\end{proof}
+
+\end{document}

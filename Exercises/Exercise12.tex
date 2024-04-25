@@ -1,0 +1,215 @@
+\documentclass[14pt]{extarticle}
+
+\usepackage[T1]{fontenc}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsthm,amsmath,amssymb}
+
+\usepackage{subfiles}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}{Lemma}[section]
+\newtheorem{definition}{Definition}[section]
+\newtheorem{exercise}{Exercise}[section]
+\newtheorem*{example}{Example}
+
+\newcommand{\inv}[1]{#1^{-1}}
+\newcommand{\join}[3][,]{#2_0 #1 #2_1 #1 \cdots #1 #2_{#3}}
+\newcommand{\Times}[2]{\join[\times]{#1}{#2}}
+\newcommand{\Oplus}[2]{\join[\oplus]{#1}{#2}}
+\newcommand{\normalin}{\triangleleft}
+\newcommand{\1}{\{e\}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\set}[2]{\{ \ #1 \ | \ #2 \ \}}
+\newcommand{\cyc}[1]{\langle #1 \rangle}
+
+\DeclareMathOperator{\Abelian}{Abelian}
+\DeclareMathOperator{\Inn}{Inn}
+\DeclareMathOperator{\Aut}{Aut}
+\DeclareMathOperator{\Ker}{Ker}
+\DeclareMathOperator{\modu}{mod}
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\lcm}{lcm}
+
+\setcounter{section}{12}
+
+\begin{document}
+
+\begin{lemma}
+  \label{lemma:12.1}
+  Let $a \ b \in R$, then $(-a) + (-b) = -(a + b)$.
+\end{lemma}
+\begin{proof}
+  \begin{align*}
+     & (-a) + (-b) + (a + b) \\
+    =& (-a) + (-b) + a + b \\
+    =& (-a) + a + (-b) + b \\
+    =& e \\
+    =& - (a + b) + (a + b)
+  \end{align*}
+  Then by cancellation, $(-a) + (-b) = - (a + b)$.
+\end{proof}
+
+\setcounter{exercise}{13}
+\begin{exercise}
+  \label{exercise:12.14}
+  Let $a \ b \in R$ and $m \in \Z$. Prove that $m \cdot (ab) = (m \cdot a)b = a (m \cdot b)$.
+\end{exercise}
+\begin{proof}
+  Induction on $m$, and using multiplication left/right distributive over addition.
+\end{proof}
+
+\begin{exercise}
+  Let $a \ b \in R$ and $m \ n \in \Z$. Prove that $(m \cdot a)(n \cdot b) = (m \times n) \cdot (ab)$.
+\end{exercise}
+\begin{proof}
+  Induction on $m$, and using Exercise \ref{exercise:12.14} on $n$.
+\end{proof}
+
+\begin{exercise}
+  Let $a \in R$ and $n \in \Z$. Prove that $n \cdot (-a) = - (n \cdot a)$.
+\end{exercise}
+\begin{proof}
+  Induction on $n$.
+  \begin{itemize}
+    \item Base: $0 \cdot (-a) = 0 = -0 = - (0 \cdot a)$.
+    \item Induction (Positive Direction): We have the following induction hypothesis:
+      \begin{center}
+        \boxed{(n - 1) \cdot (-a) = - ((n - 1) \cdot a)}.
+      \end{center}
+
+      Then 
+      \begin{align*}
+        n \cdot (-a) &= ((n - 1) \cdot (-a)) + (-a) \\
+        &= - ((n - 1) \cdot a) + (-a) \\
+        &= - ((n - 1) \cdot a + a) \quad \text{(by Lemma \ref{lemma:12.1})} \\
+        &= - (n \cdot a)
+      \end{align*}
+
+      Same for negative direction.
+  \end{itemize}
+\end{proof}
+
+\begin{exercise}
+  For any ring $R$ where the group $(R, +)$ is cyclic, show that $R$ is commutative.
+\end{exercise}
+\begin{proof}
+  Suppose the generator of $(R, +)$ is $r$, then for any $a \ b$ in $R$, 
+  they have form $a = i \cdot r$ and $b = j \cdot r$ where $i \ j \in \N^+$.
+  Then $ab = (i \cdot r)(j \cdot r) = (i \times j) \cdot rr = (j \times i) \cdot rr = (j \cdot r) (i \cdot r) = ba$.
+\end{proof}
+
+\begin{exercise}
+  Let $r \in R$, and $S = \set{x \in R}{rx = 0}$. Show that $S$ is a subring of $R$.
+\end{exercise}
+\begin{proof}
+  By two-steps test:
+  \begin{enumerate}
+    \setcounter{enumi}{-1}
+    \item $S$ is not empty since $r0 = 0$.
+    \item For any $a \ b \in S$, $r(a - b) = ra - rb = 0 - 0 = 0$.
+    \item For any $a \ b \in S$, $rab = 0b = 0$.
+  \end{enumerate}
+\end{proof}
+
+\begin{exercise}[Center of Ring]
+  Let $R$ be a ring, the center of $R$ is the set $\set{x \in R}{\forall a \in R, ax = xa}$.
+  Prove that the center of $R$ is a subgring of $R$.
+\end{exercise}
+\begin{proof}
+  By two-steps test: 
+  \begin{enumerate}
+    \setcounter{enumi}{-1}
+    \item $S$ is non-empty since $x0 = 0x = 0$.
+    \item For any $a \ b \in S$, $x(a - b) = xa - xb = ax - bx = (a - b)x$.
+    \item For any $a \ b \in S$, $x(ab) = axb = abx = (ab)x$.
+  \end{enumerate}
+\end{proof}
+
+\begin{definition}[Nilpotent]
+  Let $R$ a ring, and $a \in R$, if there is a positive integer $n$
+  such that $a^n = 0$, then $a$ is nilpotent.
+\end{definition}
+
+\setcounter{exercise}{30}
+\begin{exercise}
+  Shows that the nilpotent elements of a commutative ring form a subring.
+\end{exercise}
+\begin{proof}
+  We denote such set by $S$.
+  By two-sptes test:
+  \begin{enumerate}
+    \setcounter{enumi}{-1}
+    \item $S$ is non-empty since $0^1 = 0$.
+    \item For any $a \ b \in S$, there are $m \ n \in \N^+$ such that $a^m = b^n = 0$.
+          Let $k = \max(m, n)$. We claim $(a + b)^{2k} = 0$.
+          We know each term in $(a + b)^k$ has form $c a^i b^j$ 
+          where $c$ is the coefficient which is not important,
+          and $i \ j \in \N$, $i + j = 2k$. In the worst situation, $i = j = k$,
+          at this moment, $a^ib^j = a^kb^k = 0 \times 0$.
+    \item For any $a \ b \in S$, there are $m \ n \in \N^+$ such that $a^m = b^n = 0$.
+          Let $k = \max(m, n)$, then $(ab)^k = a^kb^k = 0$ (by commutative of ring).
+  \end{enumerate}
+\end{proof}
+
+\begin{exercise}
+  Let $R$ a ring, suppose there is an integer $n > 1$ such that for any $x \in R$,
+  $x^n = x$. If $a^m = 0$ for some positive integer $m$ and $a \in R$. 
+  Prove that $a = 0$.
+\end{exercise}
+\begin{proof}
+  Since $a^m = 0$, there is an smallest integer $k$ such that $a^k = 0$.
+  If $k \leq n$, then $n = k + r$, $a = a^n = a^{k + r} = a^ka^r = 0a^r = 0$.
+  If $k > n$, then $k = n + r$, $0 = a^k = a^{n + r} = a^na^r = aa^r = a^{r + 1}$.
+  Since $n > 1$, we know $r + 1 < r + n$, therefore $r + 1 < k$ and $a^{r + 1} = 0$,
+  which contradict our assumption of $k$.
+\end{proof}
+
+\setcounter{exercise}{49}
+\begin{exercise}
+  Suppose that there is a positive even integer $n$ such that $a^n = a$ for all $a \in R$.
+  Show that $a = - a$ for all $a \in R$.
+\end{exercise}
+\begin{proof}
+  $a = a^n = (-a)^n = -a$, $a^n = (-a)^n$ is valid, since $n$ is even.
+\end{proof}
+
+\setcounter{exercise}{54}
+\begin{exercise}
+  \label{exercise:12.55}
+  Let $R$ be a ring, prove that $a^2 - b^2 = (a + b)(a - b) \iff R$ is commutative.
+\end{exercise}
+\begin{proof}
+  Trivial.
+\end{proof}
+
+\begin{exercise}[Boolean ring]
+  A Boolean ring is a ring $R$ such that $a^2 = a$ for any $a \in R$, show that
+  Boolean ring is commutative.
+\end{exercise}
+\begin{proof}
+  For any $a \in R$, $(2 \cdot a) + (2 \cdot a) = 2^2 \cdot a = 2^2 \cdot a^2 = (2 \cdot a)^2 = 2 \cdot a$,
+  then $2 \cdot a = 0$ and $a = -a$. 
+  % I don't use Exercise 12.49 because I didn't prove it yet when I writing this.
+  Then we know $(a + b)(a - b) = (a + b)(a + b) = a + b = a^2 + b^2 = a^2 - b^2$,
+  by Exercise \ref{exercise:12.55}, $R$ is commutative.
+  % I afraid that I can't prove this without knowing Exercise 12.55
+\end{proof}
+
+\setcounter{exercise}{60}
+\begin{exercise}
+  Let $R$ be a commutative ring with more than one element, if
+  for any non-zero element $a$, $aR = R$, then $R$ has a unity 
+  and every non-zero element are unit.
+\end{exercise}
+\begin{proof}
+  For any non-zero element $a$, the mapping $f(b) = ab : R \rightarrow R$
+  is onto since $f(R) = aR = R$.
+  There is an element $1 \in R$ such that $f(1) = a1 = a$ since $f$ is onto,
+  then for any element $c \in R$, there is $b \in R$ such that $f(b) = ab = c$,
+  then $c1 = ab1 = a1b = ab = c$, therefore $1$ is unity.
+  There is an element $\inv{a} \in R$ such that $f(\inv{a}) = a\inv{a} = 1$
+  since $f$ is onto, therefore $a$ is unit.
+\end{proof}
+
+\end{document}
