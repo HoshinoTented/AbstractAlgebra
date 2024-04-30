@@ -1,0 +1,183 @@
+\documentclass[14pt]{extarticle}
+
+\usepackage[T1]{fontenc}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsthm,amsmath,amssymb}
+\usepackage{hyperref}
+
+\usepackage{subfiles}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{corollary}{Corollary}[section]
+\newtheorem{lemma}{Lemma}[section]
+\newtheorem{definition}{Definition}[section]
+\newtheorem{exercise}{Exercise}[section]
+\newtheorem*{example}{Example}
+
+\newcommand{\inv}[1]{#1^{-1}}
+\newcommand{\join}[3][,]{#2_0 #1 #2_1 #1 \cdots #1 #2_{#3}}
+\newcommand{\Times}[2]{\join[\times]{#1}{#2}}
+\newcommand{\Oplus}[2]{\join[\oplus]{#1}{#2}}
+\newcommand{\normalin}{\triangleleft}
+\newcommand{\1}{\{e\}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\set}[2]{\{ \ #1 \ | \ #2 \ \}}
+\newcommand{\cyc}[1]{\langle #1 \rangle}
+
+\DeclareMathOperator{\Abelian}{Abelian}
+\DeclareMathOperator{\Inn}{Inn}
+\DeclareMathOperator{\Aut}{Aut}
+\DeclareMathOperator{\Ker}{Ker}
+\DeclareMathOperator{\modu}{mod}
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\lcm}{lcm}
+\DeclareMathOperator{\chara}{char}
+
+\setcounter{section}{13}
+
+\begin{document}
+
+\setcounter{exercise}{2}
+\begin{exercise}
+  Show that a commutative ring with cancellation has no zero-divisors.
+\end{exercise}
+\begin{proof}
+  Let $R$ a commutative ring with cancellation.
+  For any element $a \ b \in R$ such that $ab = 0$,
+  if both $a$ and $b$ are zero, then trivial.
+  Suppose $a \neq 0$, then $ab = a0$ implies $b = 0$.
+\end{proof}
+
+\setcounter{exercise}{4}
+\begin{exercise}
+  Show that every non-zero element in $Z_n$ is either zero-divisor or unit.
+\end{exercise}
+\begin{proof}
+  For any non-zero element $k \in Z_n$, let $d = \gcd(k, n)$.
+  \begin{itemize}
+    \item If $d \neq 1$, then there is $q$ such that $kq = \lcm(k, n)$, 
+          therefore $k$ is a zero-divisor.
+    \item If $d = 1$, then $k \in U(n)$, therefore $k$ is a unit.
+  \end{itemize}
+\end{proof}
+
+\setcounter{exercise}{6}
+\begin{exercise}
+  Let $R$ be a \textbf{finite} commutative ring with unity. Prove that
+  every non-zero element in $R$ is either a zero-divisor or a unit.
+\end{exercise}
+\begin{proof}
+  For any non-zero element $a \in R$, consider the mapping $f(b) = ab : R \rightarrow R$.
+  If $f$ is onto, then there is $\inv{a} \in R$ such that $f(\inv{a}) = a\inv{a} = 1$.
+  If $f$ is not onto, then $f$ is not one-to-one (since $R$ is finite),
+  therefore there are distinct $b$ and $c$ such that $f(b) = ab = ac = f(c)$.
+  Then $a(b - c) = 0$ where $b - c \neq 0$, therefore $a$ is a zero-divisor.
+  % The following proof not works well, consider 2 \in Z_10, the sequence of 2^i has no 0.
+  % Proof:
+  % For any non-zero element $a \in R$, consider the sequence $a^1, a^2, a^3, \dots$.
+  % If there is $0$ in the sequence, then $a^i = 0$ where $i$ is the smallest integer such that $a^i = 0$,
+  % and $a a^{i - 1} = 0$ where $a^{i - 1} \neq 0$.
+\end{proof}
+
+\setcounter{exercise}{19}
+\begin{exercise}
+  Show that $Z_n$ has a non-zero nilpotent element iff $n$ is divisible by
+  square of some prime.
+\end{exercise}
+\begin{proof}
+  Newline please!!
+  \begin{itemize}
+    \item $(\Rightarrow)$ Let $a$ be non-zero nilpotent element, therefore $a^2 = 0$.
+      We know $n$ divides $a^2$ (since $a^2 \cdot 1 = 0$), that is, $nz = a^2$. Let $d = \gcd(a, n)$, then $dx = a$ and $dy = n$ 
+      for some $x \ y \in \N$.
+      Then $dyz = d^2x^2 \rightarrow yz = dx^2$, 
+      note that $x$ is coprime to $y$ since they are come from $\gcd$ and $z$ is integer,
+      we know $y$ divides $d$, that is, $d = yk$.
+      Therefore $dy = y^2k = n$, for any prime factor $p$ of $y$, $p^2$ divides $n$.
+    \item $(\Leftarrow)$ Since $n$ is divisible by square of some prime,
+      then $n = p^2q$ where $p$ is prime. Then $(pq)^2 = p^2q^2 = nq$.
+  \end{itemize}
+\end{proof}
+
+\setcounter{exercise}{33}
+\begin{exercise}
+  Let $R$ be a finite integral domain, then $|R| = p^k$ where $p$ is prime.
+\end{exercise}
+\begin{proof}
+  If $p$ and $q$ divide $|R|$ where $p$ and $q$ are distinct prime,
+  then there are $a \ b \in R$ such that $|a| = p$ and $|b| = q$.
+  Now, $(q \cdot a)(p \cdot b) = (pq) \cdot (ab) = (p \cdot a) (q \cdot b) = 0$.
+  Note that $q \cdot a$ and $p \cdot b$ are non-zero, since $p$ and $q$ are distinct prime,
+  therefore $a$ is a zero divisor and $R$ is no longer a integral domain.
+  % Let $|R| = p_0^{k_0} p_1^{k_1} \cdots p_n^{k_n}$, then there are
+  % $a_0 \ a_1 \cdots a_n \in R$ such that $|a_i| = p_i$.
+  % Then 
+  % \begin{align*}
+  %    & (p_1^{k_1} \cdot a_0) (p_2^{k_2} \cdot a_1) \cdots (p_0^{k_0} \cdot a_n) \\
+  %   =& (p_0^{k_0} p_1^{k_1} \cdots p_n^{k_n}) \cdot (\join[]{a}{n}) \\
+  %   =& 0 \quad (\text{since } |R| = p_0^{k_0} p_1^{k_1} \cdots p_n^{k_n})
+  % \end{align*}
+  % Observe that $p_1^{k_1} \cdot a_0$ is not zero, 
+  % since $p_0$ does not divides $p_1^{k_1}$ (so are the others),
+  % therefore, there are zero-divisors in $R$, so $R$ can not be integral domain if $n > 0$.
+\end{proof}
+
+\begin{exercise}
+  Let $F$ be a field of order $p^n$ where $p$ is prime. Prove that $\chara F = p$.
+\end{exercise}
+\begin{proof}
+  Since $F$ is an Abelian group under addition, then there is $a \in F$ such that
+  $|a| = p$, that is, $p \cdot a = 0$. 
+  Then $(p \cdot a) \inv{a} = p \cdot (a \inv{a}) = p \cdot 1 = 0$.
+  For any $1 < q < p$, $q \cdot 1 \neq 0$, cause it implies that $q$ divides $p$,
+  which is unacceptible. Therefore $|1| = p$, and then $\chara F = p$.
+\end{proof}
+
+\setcounter{exercise}{46}
+\begin{exercise}
+  \label{exercise:13.47}
+  Let $R$ be a commutative ring without zero-divisors.
+  Show that all the non-zero elements of $R$ have the same order under addition.
+\end{exercise}
+\begin{proof}
+  If $R$ has no non-zero element of finite order, then trivial.
+  Now, let $a \in R$ a non-zero element of minimum order, say, $|a| = n$.
+  Then for any non-zero element $b \in R$,
+  we have $(n \cdot a) b = a (n \cdot b) = 0b = 0$.
+  Since $a$ is non-zero, therefore $n \cdot b = 0$,
+  and $n$ is the minimum, so $|b| = n$.
+\end{proof}
+
+\begin{exercise}
+  Suppose that $R$ is a commutative ring without zero-divisors.
+  Show that $\chara R$ is $0$ or some prime.
+\end{exercise}
+\begin{proof}
+  Newline please!!
+  \begin{itemize}
+    \item If $R = 0$, TODO!
+    \item Let $a \in R$ a non-zero element, by Exercise \ref{exercise:13.47},
+          if $|a| = \infty$, then $\chara R = 0$. So we suppose $|a| = n$,
+          then all non-zero element of $R$ have order $n$. If $n$ is not prime
+          and is divisible
+          by some prime $p$, then $n = pq$, 
+          and $(p \cdot a) (q \cdot a) = (pq) \cdot a^2 = n \cdot a^2 = 0$.
+          Note that $p \cdot a$ and $q \cdot a$ are non-zero
+          since $p < |a|$ and $q < |a|$.
+          Therefore, $\chara R$ has to be some prime.
+  \end{itemize}
+\end{proof}
+
+\setcounter{exercise}{63}
+\begin{exercise}
+  Let $F$ a finite field with $n$ element. Prove that $x^{n - 1} = 1$
+  for all non-zero $x \in F$.
+\end{exercise}
+\begin{proof}
+  Since $F$ is a field, all elements except $0$ forms a group under multiplication, 
+  say, $F^*$, then $|F^*| = n - 1$.
+  Therefore for any non-zero element in $F$ (which is also in $F^*$), $x^{n - 1} = 1$.
+\end{proof}
+
+\end{document}

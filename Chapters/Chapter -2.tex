@@ -1,0 +1,59 @@
+\documentclass[14pt]{extarticle}
+\usepackage[T1]{fontenc}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsthm,amsmath}
+\usepackage{hyperref}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}{Lemma}[section]
+\newtheorem{definition}{Definition}[section]
+\newtheorem{exercise}{Exercise}[section]
+\newtheorem*{example}{Example}
+\setcounter{section}{-2}
+
+\newcommand{\inv}[1]{#1^{-1}}
+\newcommand{\join}[3][,]{#2_0 #1 #2_1 #1 \cdots #1 #2_{#3}}
+\newcommand{\Times}[2]{\join[\times]{#1}{#2}}
+\newcommand{\Oplus}[2]{\join[\oplus]{#1}{#2}}
+\newcommand{\normalin}{\triangleleft}
+\newcommand{\1}{\{e\}}
+\newcommand{\set}[2]{\{ \ #1 \ | \ #2 \ \}}
+\newcommand{\cyc}[1]{\langle #1 \rangle}
+
+\DeclareMathOperator{\Abelian}{Abelian}
+\DeclareMathOperator{\Inn}{Inn}
+\DeclareMathOperator{\Aut}{Aut}
+\DeclareMathOperator{\Ker}{Ker}
+\DeclareMathOperator{\modu}{mod}
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\lcm}{lcm}
+
+\begin{document}
+
+This chapter established the set theory of hoshino version.
+
+\begin{definition}[Minimum]
+  Let $S$ a set and $n \in S$, $n$ is minimum if
+  for any $m \in S$, $n \leq m$.
+\end{definition}
+
+\begin{theorem}
+  Let $S$ be a non-empty set which consists of natural number,
+  show that there is $n \in S$ such that $n$ is minimum.
+\end{theorem}
+\begin{proof}
+  Suppose there no such $n \in S$ where $n$ is minimum, then
+  for any $n \in S$, $n$ is not minimum,
+  then for any $n \in S$, there is $m \in S$ such that $n > m$.
+  Therefore, for any $n \in S$, we can obtain a smaller element $m$.
+
+  Let $n \in S$, then we can get a smaller element $m$,
+  and do the same thing on $m$. We will finally reach $0 \in S$,
+  nut here is no any natural number that smaller than $0$,
+  but we can still obtain a $m$ such that $m < 0$,
+  this is unacceptible.
+
+  So $S$ has a smallest element.
+\end{proof}
+
+\end{document}
