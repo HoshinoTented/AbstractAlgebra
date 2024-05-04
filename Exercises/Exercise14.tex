@@ -1,0 +1,69 @@
+\documentclass[../main.tex]{subfiles}
+
+\setcounter{section}{14}
+
+\begin{document}
+
+\setcounter{exercise}{6}
+\begin{exercise}
+  Let $n$ an integer and $p$ a divides $n$ and $p \neq n$.
+  Prove that $\cyc{p}$ is a maximal ideal in $Z_n$ if and only if $p$ is prime.
+\end{exercise}
+\begin{proof}
+  ~
+  \begin{itemize}
+    \item $(\Rightarrow)$ Suppose $\cyc{p}$ is a maximal ideal in $Z_n$, if $p$
+      is not prime, then $q$ divides $p$ and $q \neq 1$ and $q \neq p$.
+      We have $\cyc{q}$ is a ideal that properly contains $p$ but is not $Z_n$
+      since $1 \notin \cyc{q}$.
+    \item $(\Leftarrow)$ Suppose $p$ is a prime, and let $R$ a ideal of $Z_n$.
+      If $R$ properly contains $\cyc{p}$, let $q \in R$ but $q \notin \cyc{p}$,
+      then $\gcd(p, q) = 1$ since $p$ is prime, then $1 \in Z_n \rightarrow R = Z_n$.
+  \end{itemize}
+\end{proof}
+
+\setcounter{exercise}{8}
+\begin{exercise}
+  Suppose that $R$ is a commutative ring and $a \in R$.
+  If $\0$ is a maximal ideal of $R$, then $aR = \set{ar}{r \in R} = \0$ or $a \in aR$.
+\end{exercise}
+\begin{proof}
+  We need to show that $aR$ is an ideal, it is trivial that $aR$ is a subring.
+  For any $ar \in aR$ and $b \in R$, $(ar)b = a(rb) \in aR$, therefore $aR$ is an ideal.
+  If $aR$ property contains $\0$, then $aR = R$ since $\0$ is maximal.
+\end{proof}
+
+\setcounter{exercise}{21}
+\begin{exercise}
+  If $R$ is a finite commutative ring with unity, prove that every prime ideal of
+  $R$ is also a maximal ideal.
+\end{exercise}
+\begin{proof}
+  For any prime ideal $I$ of $R$, we know $R/I$ is an integral ideal,
+  since $R$ is finite, so is $R/I$, then we know $R/I$ is a field.
+  Therefore $I$ is a maximal ideal.
+\end{proof}
+
+\setcounter{exercise}{38}
+\begin{exercise}
+  Prove that the only ideals of a field $F$ are $\0$ and $F$.
+\end{exercise}
+\begin{proof}
+  Suppose $I$ is an ideal of $F$ that contains non-zero elements,
+  otherwise, $I = \0$.
+  Let $a \in I$ where $a$ is non-zero, then $a\inv{a} = 1 \in I$
+  since $I$ is an ideal, then $I = F$ since $1 \in I$.
+\end{proof}
+
+\begin{exercise}
+  Let $R$ a commutative ring with unity, if the only ideals of $R$
+  are $\0$ and $R$, show that $R$ is a field.
+\end{exercise}
+\begin{proof}
+  Since the only ideals of $R$ are $\0$ and $R$, we know $\0$
+  is the maximal ideal of $R$, then $R/\0$ is a field, so is $R$.
+
+  But unfortunately, we can't use ring isomorphism for now.
+\end{proof}
+
+\end{document}

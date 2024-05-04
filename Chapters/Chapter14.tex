@@ -1,0 +1,122 @@
+\documentclass[../main.tex]{subfiles}
+
+\setcounter{section}{14}
+
+\begin{document}
+
+\begin{definition}[Ideal]
+  A subring $A$ of a ring $R$ is called a (two-sided) ideal of $R$ if
+  for every $r \in R$, and every $a \in A$, both $ra$ and $ar$ are in $A$.
+\end{definition}
+
+\begin{theorem}[Ideal Test]
+  A non-empty subset $A$ of a ring $R$ is an ideal of $R$, if:
+  \begin{itemize}
+    \item $a - b \in A$ for all $a \ b \in A$.
+    \item $ar \in A$ and $ra \in A$ for all $a \in A$ and $r \in R$.
+  \end{itemize}
+\end{theorem}
+\begin{proof}
+  Since $A \subseteq R$, we know $ab \in A$ for all $a \ b \in A$ from the second property.
+  Therefore, $A$ is a subring of $R$, and then it is an ideal of $R$ by the second property.
+\end{proof}
+
+\begin{example}[Trivial Ideal]
+  For any ring $R$, $\0$ is an ideal of $R$, which is called the \textit{trivial} ideal.
+\end{example}
+
+\begin{theorem}[Factor Ring]
+  Let $R$ a ring and $A$ a subring of $R$. The set of coset
+  $\set{r + A}{r \in R}$ is a ring under:
+  \begin{itemize}
+    \item addition: $(s + A) + (t + A) = (s + t) + A$
+    \item multiplication: $(s + A)(t + A) = (st) + A$
+  \end{itemize}
+  iff $A$ is an ideal of $R$.
+\end{theorem}
+\begin{proof}
+  Newline please!!
+  \begin{itemize}
+    \item $(\Rightarrow)$ For any $r \in R$ and $a \in A$,
+      \begin{align*}
+         & 0 + A \\
+        =& (r + A) (0 + A) \\
+        =& (r + A) (a + A) \quad (\text{since } a \in A)\\
+        =& ra + A \\
+      \end{align*}
+      Then $0 + A = ra + A$, and then $ra \in A$ (Recall that $a + A$ means a coset of $A$).
+      Similarly, $ar \in A$.
+    \item $(\Leftarrow)$ For any $s \ t \in R$,
+      \begin{itemize}
+        \item Addition: $(s + A) + (t + A) = s + t + A + A = (s + t) + A$ by $(R, +)$ is Abelian group.
+        \item Multiplication:
+          \begin{align*}
+             & (s + A) (t + A) \\
+            =& (s + A)t + (s + A)A \\
+            =& st + At + sA + AA \\ 
+            =& st + A + A + A^\prime \quad \text{(since $A$ is an ideal)} \quad \text{where $A^\prime \subseteq A$} \\
+            =& st + A \quad \text{(since $A$ is a group under addition)}
+          \end{align*}
+        \item Assosiative and Distributive: Trivial by $R$ is a ring.
+      \end{itemize}
+  \end{itemize}
+\end{proof}
+
+\begin{theorem}
+  Let $R$ a commutative ring with unity and $A$ an ideal of $R$. Prove that
+  $R/A$ is an integral domain iff $A$ is a prime ideal.
+\end{theorem}
+\begin{proof}
+  ~
+  \begin{itemize}
+    \item $(\Rightarrow)$ For any $a \ b \in R$ and $ab \in A$,
+      we have $ab + A = 0 + A$ and $(a + A)(b + A) = ab + A$,
+      since $R/A$ is integral domain, we know either $a + A$ or $b + A$ is
+      zero, in the other word, $a \in A$ or $b \in A$.
+    \item $(\Leftarrow)$ For any $a \ b \in A$, if $(a + A)(b + A) = 0 + A$,
+      then $ab + A = 0 + A$ which means $ab \in A$.
+      We know $a = 0$ or $b = 0$ by $A$ is a prime ideal,
+      therefore $a + A = 0 + A$ or $b + A = 0 + A$, and $R/A$ is an integral domain.
+  \end{itemize}
+\end{proof}
+
+\begin{theorem}
+  Let $R$ a commutative ring with unity and $A$ an ideal of $R$. Prove that
+  $R/A$ is a field iff $A$ is a maximum ideal.
+\end{theorem}
+\begin{proof}
+  ~
+  \begin{itemize}
+    \item $(\Rightarrow)$ Let $B$ an ideal of $R$ and $A \subseteq B \subseteq R$.
+      Let $b \in B$ but $b \notin A$, if we can't found such element, then $B = A$.
+      Note that $b \neq 0$, so that $\inv{(b + A)}$ exists.
+      For any $r \in R$, we have:
+      \begin{align*}
+         & r + A \\
+        =& (r + A)(b + A)\inv{(b + A)} \\
+        =& (rb + A)(b^\prime + A) \quad \text{($b^\prime$ is not necessary in B)} \\
+        =& (rbb^\prime + A)
+      \end{align*}
+      where $rbb^\prime \in B$, since $B$ is an ideal.
+      Therefore $(- rbb^\prime) + r \in B$ since $A \subseteq B$
+      and $r \in B$ since addition is closed.
+      Now, $B \subseteq R$ and $R \subseteq B$, then $B = R$.
+    \item $(\Leftarrow)$ The following proof come from textbook. \par
+      Let $b \in R$ but $b \notin A$, consider the set $B = \set{br + a}{r \in R, a \in A}$.
+      It is eazy to show that $B$ is an ideal of $R$. Since $B$ properly contains $A$,
+      $B$ must be $R$, so $1 \in B$. Then $1 = br + a$ and
+      $1 + A = (br + a) + A = br + A = (b + A)(r + A)$,
+      so $r + A$ is the inverse of $b + A$, now every non-zero element in $R/A$ has an inverse.
+      We must show that $R/A$ is integral domain.
+      For any $a + A$ and $b + A$, if $ab \in A$, and $a \notin A$,
+      then $0 + A = \inv{(a + A)}(ab + A) = \inv{(a + A)}(a + A)(b + A) = b + A$,
+      we know $b \in A$, and $R/A$ is an integral domain.
+  \end{itemize}
+\end{proof}
+  
+\begin{corollary}
+  Let $R$ a commutative ring with unity and $A$ a maximal ideal of $R$,
+  then $A$ is also a prime ideal.
+\end{corollary}
+
+\end{document}
