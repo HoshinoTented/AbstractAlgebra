@@ -66,4 +66,39 @@
   But unfortunately, we can't use ring isomorphism for now.
 \end{proof}
 
+\begin{exercise}
+  Prove that every idempontent ($a^2 = a$) in a commutative ring with
+  unity other than $0$ and $1$ is a zero divisor.
+\end{exercise}
+\begin{proof}
+  For any idempontent $a$, 
+  $a + (1 - a) = 1 \rightarrow a^2 + (1 - a)a = a \rightarrow a + (1 - a)a = a \rightarrow (1 - a)a = 0$.
+  Therefore, $a$ is a zero divisor with $(1 - a)$.
+\end{proof}
+
+\begin{exercise}
+  Show that $\textbf{R}[x]/\cyc{x^2 + 1}$ is a field.
+\end{exercise}
+\begin{proof}
+  We need to show $\cyc{x^2 + 1}$ is maximal in $\textbf{R}[x]$.
+  We denote $\cyc{x^2 + 1}$ by $I$,
+  observe that in $\textbf{R}[x]/I$, 
+  $x^2$ is treated as $-1$ since $x^2 + 1 + I = 0 + I$,
+  therefore any element in $\textbf{R}[x]/I$ has form
+  $ax + b + I$.
+  Let $J$ an ideal that properly contains $I$ and
+  $ax + b$ a non-zero element in $J$,
+  then
+  \begin{align*}
+     & 0 + J \\
+    =& (ax + b)(ax - b) + J \\
+    =& (a^2x^2 - b^2) + J \\
+    =& - a^2 - b^2 + J \quad \text{(since $I \subset J$)} \\
+    =& (- a^2 - b^2)\Bigl( \frac{1}{- a^2 - b^2} \Bigr) + J \\
+    =& 1 + J
+  \end{align*}
+  Therefore $1 \in J$ and $J = \textbf{R}[x]$, which proves that
+  $I = \cyc{x^2 + 1}$ is maximal.
+\end{proof}
+
 \end{document}
