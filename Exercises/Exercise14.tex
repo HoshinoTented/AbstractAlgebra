@@ -101,4 +101,81 @@
   $I = \cyc{x^2 + 1}$ is maximal.
 \end{proof}
 
+\setcounter{exercise}{44}
+\begin{exercise}
+  Let $R$ be the ring of continuous functions from $\textbf{R}$ to $\textbf{R}$.
+  Show that $I = \set{f \in R}{f(0) = 0}$ is maximal ideal of $R$.
+\end{exercise}
+\begin{proof}
+  It is trivial that $I$ is an ideal.
+  Let $J$ an ideal that properly contains $I$, then there is
+  $f \in J$ where $f(0) \neq 0$.
+  Let $g(x) = f(0) - f(x)$, then $g(0) = f(0) - f(0) = 0$ and $g \in J$.
+  Let $h(x) = f(x) + g(x) = f(x) + f(0) - f(x) = f(0)$,
+  then $h(x)$ is a constant function.
+  It is easy to find $\displaystyle \inv{h}(x) = \frac{1}{f(0)}$
+  and show that $\inv{h}(x)h(x) = 1 \in J$.
+  The continuity of $g$ is trivial.
+\end{proof}
+
+\setcounter{exercise}{49}
+\begin{exercise}
+  Let $R$ be a ring and $I$ an ideal of $R$.
+  Prove that $R/I$ is commutative iff $rs - sr \in I$ for all $r \ s \in R$.
+\end{exercise}
+\begin{proof}
+  ~
+  \begin{itemize}
+    \item $(\Rightarrow)$ For any $r \ s \in R$,
+      $rs + I = (r + I)(s + I) = (s + I)(r + I) = sr + I$,
+      therefore $rs - sr \in I$.
+    \item $(\Leftarrow)$ For any $r \ s \in R$,
+      $(r + I)(s + I) = rs + I = sr + I = (s + I)(r + I)$,
+      since $rs - sr \in I$ implies $rs + I = sr + I$.
+  \end{itemize}
+\end{proof}
+
+\setcounter{exercise}{56}
+\begin{exercise}
+  An integral domain $D$ is called a principal ideal domain, 
+  if every ideal of $D$ has form $\cyc{a} = \set{ar}{r \in D}$ for some $a \in D$.
+  Show that $Z$ is a principal ideal domain.
+\end{exercise}
+\begin{proof}
+  Admit.
+\end{proof}
+
+\setcounter{exercise}{59}
+\begin{exercise}
+  Let $R$ a principal ideal domain, show that every non-trivial prime ideal
+  is maximal.
+\end{exercise}
+\begin{proof}
+  Let $\cyc{p}$ a non-trivial prime ideal, note that $p \neq 0$ since $\cyc{p}$ is non-trivial.
+  Then for any ideal $\cyc{r}$ that properly contains $\cyc{p}$,
+  we can show $r \notin \cyc{p}$, if so, then $\cyc{r}$ is the smallest ideal that contains $r$,
+  but $\cyc{p}$ is smaller and $r \in \cyc{p}$.
+
+  Since $p \in \cyc{r}$, we know there is $k$ such that $rk = p$, note that $k \neq 0$,
+  since $p \neq 0$. Now by $\cyc{p}$ is prime and $r \notin \cyc{p}$, we know $k \in \cyc{p}$
+  and there is $q \in R$ such that $pq = k$, similarly, $q \neq 0$.
+  Then $rkq = pq = k$, by cancellation we know $rq = 1$ and $1 \in \cyc{r}$,
+  therefore $\cyc{r} = R$ and $\cyc{p}$ is maximal.
+\end{proof}
+
+\begin{exercise}
+  Let $R$ a commutative ring and $A \subseteq R$.
+  Show that the annihilator of $A$, $\Ann(A) = \set{r \in R}{ra = 0 \ \forall a \in A}$
+  is an ideal.
+\end{exercise}
+\begin{proof}
+  ~
+  \begin{enumerate}
+    \setcounter{enumi}{-1}
+    \item $\Ann(A)$ is non-empty, since $0a = 0$.
+    \item For any $s \ t \in \Ann(A)$ and $a \in A$, $(s - t)a = sa - ta = 0 - 0 = 0$.
+    \item For any $s \in \Ann(A)$, $t \in R$ and $a \in A$, $sta = tsa = t0 = 0$.
+  \end{enumerate}
+\end{proof}
+
 \end{document}
