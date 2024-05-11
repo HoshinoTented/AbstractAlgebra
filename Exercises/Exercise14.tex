@@ -33,6 +33,41 @@
   If $aR$ property contains $\0$, then $aR = R$ since $\0$ is maximal.
 \end{proof}
 
+\setcounter{exercise}{13}
+\begin{exercise}
+  If $A$ and $B$ are ideals of a ring $R$, show that the sum of $A$ and $B$,
+  $A + B = \set{a + b}{a \in A, b \in B}$ is also an ideal.
+\end{exercise}
+\begin{proof}
+  ~
+  By ideal-test:
+  \begin{enumerate}
+    \setcounter{enumi}{-1}
+    \item $A + B$ is non-empty, since $A$ and $B$ are non-empty.
+    \item For any $x \ y \in A + B$, $x - y = a_0 + b_0 - a_1 - b_1 = (a_0 - a_1) + (b_0 - b_1) \in A + B$.
+    \item For any $x \in A + B$, $r \in R$, $xr = (a + b)r = ar + br \in A + B$
+  \end{enumerate}
+\end{proof}
+
+\setcounter{exercise}{15}
+\begin{exercise}
+  If $A$ and $B$ are ideals of a ring $R$, show that the product of
+  $A$ and $B$, $AB = \set{a_0b_0 + a_1b_1 + \cdots + a_nb_n}{a_i \in A, b_i \in B, n \text{ is positive integer}}$,
+  is an ideal. (Note that $a_i = a_j$ where $i \neq j$ is possible, same for $b_i$)
+\end{exercise}
+\begin{proof}
+  Trivial, similar to Exercise 14.14.
+\end{proof}
+
+\setcounter{exercise}{17}
+\begin{exercise}
+  Let $A$ and $B$ be ideals of a ring, show that $AB \subseteq A \cap B$.
+\end{exercise}
+\begin{proof}
+  It is trivial, every element in $AB$ is also in $A$, since $A$ ideal,
+  similarly, is also in $B$, since $B$ ideal.
+\end{proof}
+
 \setcounter{exercise}{21}
 \begin{exercise}
   If $R$ is a finite commutative ring with unity, prove that every prime ideal of
@@ -176,6 +211,18 @@
     \item For any $s \ t \in \Ann(A)$ and $a \in A$, $(s - t)a = sa - ta = 0 - 0 = 0$.
     \item For any $s \in \Ann(A)$, $t \in R$ and $a \in A$, $sta = tsa = t0 = 0$.
   \end{enumerate}
+\end{proof}
+
+\setcounter{exercise}{80}
+\begin{exercise}
+  Let $R$ a commutative ring with unity and for any $a \in R$, $a^2 = a$.
+  Let $I$ be a prime ideal of $R$, show that $|R/I| = 2$.
+\end{exercise}
+\begin{proof}
+  We know $R/I$ is an integral ideal since $I$ is prime, then
+  for any $a \in R$ but $a \notin I$, $a + I$ is non-zero element of $R/I$,
+  then by $a^2 + I = a + I$, we know $a + I = 1 + I$,
+  therefore $|R/I| = |\{ 0 + I, 1 + I \}| = 2$.
 \end{proof}
 
 \end{document}
