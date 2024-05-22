@@ -1,0 +1,174 @@
+\documentclass[../main.tex]{subfiles}
+
+\setcounter{section}{15}
+
+\begin{document}
+
+\begin{definition}[Ring Homo/Isomorphism]
+  A mapping $\phi$ from ring $R$ to $S$ is a ring homomorphism, if it preserve 
+  the operations, that is:
+  \[
+    \phi(a + b) = \phi(a) + \phi(b) \quad \phi(ab) = \phi(a)\phi(b0)
+  \]
+  If the mapping is one-to-one and onto, then it is also a ring isomorphism.
+\end{definition}
+
+\begin{theorem}[Properties of Ring Homomorphism]
+  Let $\phi$ a homomorphism from ring $R$ to ring $S$.
+  \begin{enumerate}
+    \item For any $r \in R$ and any positive integer $n$, 
+          $\phi(nr) = n\phi(r)$ and $\phi(r^n) = (\phi(r))^n$
+    \item Let $A$ a subring of $R$, then $\phi(A) = \set{\phi(a)}{a \in A}$
+          is a subring of $S$.
+    \item If $A$ is an ideal and $\phi$ is onto, then $\phi(A)$ is an ideal of $S$.
+    \item Let $B$ a ideal of $S$, then $\inv{\phi}(B) = \set{a \in R}{\phi(a) \in B}$
+          is an ideal of $R$.
+    \item If $R$ is commutative, then $\phi(R)$ is commutative.
+    \item If $R$ has a unity, $S \neq \0$, and $\phi$ is onto, 
+          then $\phi(1)$ is the unity of $S$, and for any $r \in R$ 
+          where $r$ is a unit, then $\phi(r)$ is also a unit.
+    \item $\phi$ is a isomorphism iff $\phi$ is onto and $\Ker \phi = \set{a \in R}{\phi(a) = 0} = \0$.
+    \item If $\phi$ is a isomorphism, then $\inv{\phi}$ is a isomorphism.
+  \end{enumerate}
+\end{theorem}
+\begin{proof}
+  ~
+  \begin{itemize}
+    \item Trivial, since homomorphism preserve operations.
+    \item Trivial.
+    \item For any $s \in S$, there is $r \in R$ such that $\phi(r) = s$ since $\phi$ onto,
+          then for any $\phi(a) \in \phi(A)$, $\phi(a)s = \phi(a)\phi(r) = \phi(ar) \in \phi(A)$,
+          same for $s\phi(a)$.
+    \item For any $r \in R$, $\phi(r\inv{\phi}(B)) = \phi(r) B \subseteq B$, therefore
+          $r\inv{\phi}(B) \subseteq \inv{\phi}(B)$.
+    \item Trivial.
+    \item For any $s \in S$, $s = \phi(1 \inv{\phi}(s)) = \phi(1)s$, therefore $\phi(1)$ is the unity.
+    \item For any $a b \in R$, $\phi(a) = \phi(b) \rightarrow \phi(a) - \phi(b) = 0 \rightarrow \phi(a - b) = 0$,
+          therefore $a - b = 0$ since $\Ker \phi = \0$, and $a = b$. Then $\phi$ is one-to-one.
+    \item $\dots$
+  \end{itemize}
+\end{proof}
+
+\begin{theorem}[Kernals are Ideals]
+  Let $\phi$ a ring homomorphism from $R$ to $S$, then $\Ker \phi$ is an ideal of $R$.
+\end{theorem}
+\begin{proof}
+  By ideal-test:
+  \begin{enumerate}
+    \setcounter{enumi}{-1}
+    \item $\Ker \phi$ is non-empty, since $0 \in \Ker \phi$.
+    \item For any $a \ b \in \Ker \phi$, $\phi(a - b) = \phi(a) - \phi(b) = 0 - 0 = 0$.
+    \item For any $a \in \Ker \phi$ and $b \in R$, $\phi(ab) = \phi(a)\phi(b) = 0\phi(b) = 0$.
+  \end{enumerate}
+\end{proof}
+
+\begin{theorem}[First Isomorphism Theorem for Rings]
+  Let $\phi$ a ring homomorphism from $R$ to $S$, then the mapping
+  from $R/\Ker \phi$ to $\phi(R)$, given by $\psi(r + \Ker \phi) = \phi(r)$
+  is a isomorphism, that is, $R / \Ker \phi \approx \phi(R)$.
+\end{theorem}
+\begin{proof}
+  We know First Isomorphism Theorem works on (additive) groups, so we need to check that
+  $\phi$ preserve multiplication.
+  For any $s + \Ker \phi$ and $t + \Ker \phi$:
+  \begin{align*}
+     & \psi((s + \Ker \phi)(t + \Ker \phi)) \\
+    =& \psi(st + \Ker \phi) \\
+    =& \phi(st) \\
+    =& \phi(s)\phi(t) \\
+    =& \psi(s + \Ker \phi)\psi(t + \Ker \phi)
+  \end{align*}
+\end{proof}
+
+\begin{theorem}[Ideals are Kernals]
+  For any ideal $I$ of some ring $R$, $I$ is the kernal of homomorphism:
+  $\phi(r \in R) = r + I$.
+\end{theorem}
+
+\begin{theorem}[Homomorphism from $Z$ to a Ring with Unity]
+  Let $R$ be a ring wuth unity, the mapping $\phi(n) = n \cdot 1$
+  is a homomorphism from $Z$ to $R$.
+\end{theorem}
+\begin{proof}
+  Obviously, $\phi$ is a function, then we need to check whether $\phi$ is a homomorphism,
+  for all $a \ b \in Z$:
+  \begin{itemize}
+    \item $\phi(a + b) = (a + b) \cdot 1 = a \cdot 1 + b \cdot 1 = \phi(a) + \phi(b)$
+    \item $\phi(ab) = (ab) \cdot 1 = (a \cdot 1)(b \cdot 1) = \phi(a)\phi(b)$
+  \end{itemize}
+\end{proof}
+
+\begin{corollary}
+  Let $R$ a ring with unity, then $R$ contains $Z_n$ 
+  where $n > 0$ is the characteristic of $R$ 
+  or $\Z$ if the characteristic of $R$ is $0$.
+\end{corollary}
+\begin{proof}
+  By Theorem 15.5, we know $\phi(n) = n \cdot 1$ is a homomorphism
+  from $\Z$ to $R$, if $\chara R = m$ where $m > 0$, then we know
+  $\Ker \phi = \text{ the set of multiple of $m$ } = m \Z = \cyc{m}$,
+  therefore $\phi(\Z) \approx \Z / m \Z \approx Z_m$ is a subring of $R$.
+  If $\chara R = 0$, then $\Ker \phi = \0$, 
+  therefore $\phi(\Z) \approx \Z$ is a subring of $R$.
+\end{proof}
+
+\begin{corollary}
+  For any positive integer $m$, the mapping $\phi(x) = x \modu m$
+  is a homomorphism from $Z$ to $Z_m$.
+\end{corollary}
+
+\begin{corollary}
+  Let $F$ a field, then $F$ contains $Z_p$
+  if $F$ has a non-zero characteristic $p$
+  or $Q$ if $F$ has a zero characteristic.
+\end{corollary}
+\begin{proof}
+  By Corollary 15.1, we know $F$ contains $Z_p$ if $\chara F$ is non-zero.
+  We claim the mapping 
+  $\displaystyle \phi(\frac{a}{b}) = (a \cdot 1)\inv{(b \cdot 1)}$ 
+  is a homomorphism from $Q$ to $F$. We need to show that $\phi$ \textbf{is} a function.
+  For any $\displaystyle \frac{a}{b} = \frac{c}{d}$,
+  we know $ad = bc$, 
+  \begin{align*}
+    ad \cdot 1 =& bc \cdot 1 \\
+    (a \cdot 1)(d \cdot 1) =& (b \cdot 1) (c \cdot 1) \\
+    (a \cdot 1)\inv{(b \cdot 1)} =& (c \cdot 1) \inv{(d \cdot 1)}
+  \end{align*}
+  therefore $\displaystyle \phi(\frac{a}{b}) = \phi(\frac{c}{d})$.
+
+  Then we need to check that $\phi$ preserves operations, 
+  for any $\displaystyle \frac{a}{b} \ \frac{c}{d} \ in \mathbb{Q}$ :
+  \begin{itemize}
+    \item 
+      \begin{align*}
+         & \phi(\frac{a}{b} + \frac{c}{d}) \\
+        =& \phi(\frac{ad + bc}{bd}) \\
+        =& ((ad + bc) \cdot 1) \inv{(bd \cdot 1)} \\
+        =& (ad \cdot 1 + bc \cdot 1) \inv{(bd \cdot 1)}  \\
+        =& (ad \cdot 1)\inv{(bd \cdot 1)} + (bc \cdot 1) \inv{(bd \cdot 1)} \\
+        =& \phi(\frac{ad}{bd}) + \phi(\frac{bc}{bd}) \\
+        =& \phi(\frac{a}{b}) + \phi(\frac{c}{d})
+      \end{align*}
+    \item 
+      \begin{align*}
+         & \phi(\frac{a}{b} \times \frac{c}{d}) \\
+        =& \phi(\frac{ac}{bd}) \\
+        =& (ac \cdot 1)\inv{(bd \cdot 1)} \\
+        =& (a \cdot 1)(c \cdot 1)\inv{(d \cdot 1)}\inv{(b \cdot 1)} \\
+        =& (a \cdot 1)\inv{(b \cdot 1)}(c \cdot 1)\inv{(d \cdot 1)} \\
+        =& \phi(\frac{a}{b}) \phi(\frac{c}{d})
+      \end{align*}
+  \end{itemize}
+ 
+  Therefore $\phi$ is a homomorphism from $\Q$ to $F$,
+  then $\phi(\Q) \approx \Q / \Ker \phi$ is a subring of $F$.
+  We claim $\Ker \phi = \cyc{0}$. For any $\displaystyle \frac{a}{b} \in \Ker \phi$,
+  we know $\displaystyle \phi(\frac{a}{b}) = \phi(0) = 0$, 
+  therefore $(a \cdot 1)\inv{(b \cdot 1)} = 0$, we know $F$ is an integral domain,
+  so one of $(a \cdot 1)$ and $\inv{(b \cdot 1)}$ is zero. 
+  But we know no one have $0$ as invert element, so $(a \cdot 1)$ must be $0$.
+  By $\chara F = 0$, we know no positive $a$ such that $a \cdot 1 = 0$, so $a = 0$
+  and $\displaystyle \frac{a}{b} = 0$.
+\end{proof}
+
+\end{document}

@@ -1,0 +1,74 @@
+\documentclass[../main.tex]{subfiles}
+
+\setcounter{section}{15}
+
+\begin{document}
+
+\setcounter{exercise}{22}
+\begin{exercise}
+  Show that the homomorphism preserve idempotent.
+\end{exercise}
+\begin{proof}
+  $\phi(a) = \phi(a^2) = \phi(a)^2$.
+\end{proof}
+
+\setcounter{exercise}{35}
+\begin{exercise}
+  The sum of the squares of three consecutive integers 
+  can not be a square.
+\end{exercise}
+\begin{proof}
+  This proof comes from math stackexchange. \par
+  For any integer $x$, we found $(x - 1)^2 + x^2 + (x + 1)^2 = 3x^2 + 2$,
+  if such square exists, then it must not a multiple of $3$,
+  and the remainder should be $2$, therefore, 
+  the number we want has form $3n + r$ where $n$ is integer and $0 < r < 3$ 
+  (Note that $0 \neq r$ since the number we want is not a multiple of $3$).
+  Then $(3n + r)^2 = 9n^2 + 6nr + r^2$, and $1^2 = 1$, $2^2 = 1$.
+  Therefore no $r$ such that $r^2 = 2$, so $3x^2 + 2$ can not be a square.
+\end{proof}
+
+\setcounter{exercise}{45}
+\begin{exercise}
+  Prove that any automorphism of a field $F$ is the identity
+  from the prime subfield to itself.
+\end{exercise}
+\begin{proof}
+  We know prime subfield is a subfield that does not contain any
+  proper non-trivial subfield, therefore it is
+  the minimal subfield that contains $1$.
+  It is finite if $\chara R \neq 0$ and it is $Q$ if $\chara R = 0$.
+
+  Let $\phi$ a automorphism of $F$, then $\phi(1) = 1$,
+  any element in such prime subfield has form $n \cdot \inv{(b \cdot 1)}$
+  where $n$ and $b$ are integers. Note that $\phi(n \cdot \inv{(b \cdot 1)})$ is determined by $\phi(1)$,
+  and $\phi(1) = 1$, so $\phi$ is the identity.
+\end{proof}
+
+\setcounter{exercise}{48}
+\begin{exercise}
+  Let $R$ and $S$ be commutative rings with unity,
+  $\phi$ a homomorphism from $R$ onto $S$ and $\chara R \neq 0$.
+  Prove that $\chara S$ divides $\chara R$.
+\end{exercise}
+\begin{proof}
+  Since $\phi$ is onto and $R$ has unity, we know $\phi(1) = 1$.
+  Let $\chara R = n$, then $\phi(n \cdot 1) = n \cdot \phi(1) = 0$,
+  therefore the order of unity of $S$ under additive divides $n$.
+\end{proof}
+
+\setcounter{exercise}{51}
+\begin{exercise}
+  Show that a homomorphism from a field onto a non-zero ring
+  must be an isomorphism.
+\end{exercise}
+\begin{proof}
+  We need to show that such homomorphism $\phi$ is one-to-one.
+  Since $F$ a field, we know $\Ker \phi$ is 
+  either a zero ideal or $F$ itself. We may suppose $\Ker \phi = F$,
+  since another case is trivial.
+  Then $\phi(F) = \0$, however, $\phi$ is onto and the codomain is not a zero-ring,
+  so $\phi(F)$ cannot be $\0$.
+\end{proof}
+
+\end{document}
