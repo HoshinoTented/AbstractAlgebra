@@ -122,4 +122,55 @@
   \end{align*}
 \end{proof}
 
+\begin{exercise}
+  Let $m$ and $n$ are distinct positive integer, Show that $mZ \approx nZ$ implies False.
+\end{exercise}
+\begin{proof}
+  Note that a ring isomorphism $\phi : mZ \rightarrow nZ$ 
+  is also a (additive) group isomorphism,
+  therefore $\phi(m) = n \text{ or } -n$.
+  Consider $\phi(m^2)$, we know $n^2 = \phi(m^2) = \phi(m \cdot m)$ since we are in $Z$,
+  then $m \cdot \phi(m) = m \cdot (\pm n) = \pm mn$, 
+  we get $\pm m = n$ by cancellation (since $Z$ is an integral domain).
+  We know both $m$ and $n$ are positive, so $-m = n$ is impossible, therefore $m = n$,
+  but we also know $m$ and $n$ are distinct.
+\end{proof}
+
+\begin{exercise}
+  Let $D$ an integral domain and let $F$ be the field of quotient of $D$.
+  For any field $E$ that contains $D$, show that $F$ is ring-isomorphic 
+  to some subfield of $E$.
+\end{exercise}
+\begin{proof}
+  Consider the mapping $\phi(a/b) = a\inv{b}$, but we have to show that it \textbf{is} a mapping.
+  For any $a/b$ and $c/d$ in $F$ such that $a/b = c/d$, that is, $ad = bc$.
+  Then $\phi(a/b) = a\inv{b} = a\inv{b}d\inv{d} = bc\inv{b}\inv{d} = c\inv{d} = \phi(c/d)$
+  (recall that $E$ is commutative).
+
+  We claim $\phi$ is a homomorphism from $F$ to $E$, for any $a/b \ c/d \in F$ 
+  (We denote $+_F$ as the addition of $F$ and $+$ as the addition of $E$):
+  \begin{itemize}
+    \item \begin{align*}
+       & \phi(a/b +_F c/d) \\
+      =& \phi((ad + bc) / bd) \\
+      =& (ad + bc)\inv{(bd)} \\
+      =& ad\inv{d}\inv{b} + bc\inv{d}\inv{b} \\
+      =& a\inv{b} + c\inv{d} \\
+      =& \phi(a/b) + \phi(c/d)
+    \end{align*}
+    \item \begin{align*}
+       & \phi(a/b \cdot c/d) \\
+      =& \phi(ac/bd) \\
+      =& ac\inv{(bd)} \\
+      =& a\inv{b}c\inv{d} \\
+      =& \phi(a/b)\phi(c/d)
+    \end{align*}
+  \end{itemize}
+
+  Further more, we hope that $\phi$ is also one-to-one, suppose $\phi(a/b) = \phi(c/d)$,
+  we know $a\inv{b} = c\inv{d}$ and then $ad = bc$, which implies $a/b = c/d$.
+
+  Therefore, $F \approx \phi(F)$ where $\phi(F)$ is a subfield of $E$ (it is a field since $F$ is a field).
+\end{proof}
+
 \end{document}
