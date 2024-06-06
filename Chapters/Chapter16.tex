@@ -1,0 +1,62 @@
+\documentclass[../main.tex]{subfiles}
+
+\setcounter{section}{16}
+
+\begin{document}
+
+\begin{theorem}[Division Algorithm for $\poly{F}$]
+  Let $F$ be a field and $f(x) \ g(x) \in \poly{F}$ where $g(x) \neq 0$.
+  Then there are unique $q(x) \ r(x) \in \poly{F}$ such that
+  $f(x) = g(x)q(x) + r(x)$ and either $r(x) = 0$ or $\deg r(x) < \deg g(x)$.
+\end{theorem}
+\begin{proof}
+  % If $\deg f(x) < \deg g(x)$, then $q(x) = 0$ and $r(x) = f(x)$.
+  % Now suppose $\deg f(x) = m$ and $\deg g(x) = n$ where $m \ge n$.
+  % There exist $q$ such that $f_m = g_n \times q$ where
+  % $f_m \ g_n$ are coefficients of $f(x) \ g(x)$ respectively.
+  % We claim $q$ is the coefficient of degree $m - n$ of $q(x)$,
+  % we continue this progress on $f(x) - (g(x) \times q x^{m - n})$ 
+  % and find other coefficients,
+  % note that the degree is smaller than $m$, so the algorithm will terminate at some point.
+
+  If $\deg f(x) < \deg g(x)$, then $q(x) = 0$ and $r(x) = f(x)$, 
+  otherwise, we induction/recursion on the degree of $f(x)$:
+  Let $m = \deg f(x)$ and $n = \deg g(x)$,
+  \begin{itemize}
+    \item Base: For any $g(x)$, if $0 \ge n$ which implies $n = 0$, 
+      then there is $q$ such that $f(x) = g(x) \times q + 0$ and $0 = 0$.
+    \item Induction: For any $f(x)$ with degree belows $m$, and any $g(x)$,
+      there are $q(x)$ and $r(x)$ such that $f(x) = g(x)q(x) + r(x)$,
+      then there are $q$ such that $f_m = g_n \times q$, also, by induction hypothesis,
+      we know there are $q^\prime(x)$ and $r(x)$ 
+      such that $f(x) - g(x)qx^{m - n} = g(x)q^\prime(x) + r(x)$,
+      which is in fact $f(x) = g(x)q^\prime(x) + r(x) + g(x) qx^{m - n} = g(x) (q^\prime(x) + qx^{m - n}) + r(x)$.
+  \end{itemize}
+
+  The result is unique by comparing the degree.
+\end{proof}
+
+\begin{corollary}[Remainder Theorem]
+  Let $F$ be a field, $a \in F$ and $f(x) \in \poly{F}$. Then $f(a)$
+  is the remainder in the division of $f(x)$ by $x - a$.
+\end{corollary}
+\begin{proof}
+  Induction on the degree of $f(x)$ with hypothesis:
+  Let $n = \deg \poly{F}$, $m \in F$, then $f(a) + ma^{n + 1}$
+  is the remainder in the division of $f(x) + max^n$ by $x - a$.
+  \begin{itemize}
+    \item Base: Let $n = 0$, $m \in F$, then the remainder
+          in the divison of $f(x) + max^0 = f_0 + ma$ by $x - a$
+          is obviously $f_0 + ma = f(a) + ma^{0 + 1} = f(a) + ma$.
+    \item Induction: Let $n = \deg f(a)$, $m \in F$, the remainder in 
+          the division of $f(x) + max^n$ by $x - a$ is
+          the divison of $f(x) + max^n - (f_n + ma)x^{n - 1}(x - a) = f^\prime(x) + (f_n + ma)x^{n - 1}a$ by $x - a$
+          where $f^\prime(x) = f(x) - f_n x^n$.
+          By induction hypothesis, we know the remainder in the divison of $f^\prime(x) + (f_n + ma)x^{n - 1}$
+          by $x - a$ is $f^\prime(a) + (f_n + ma)a^{n - 1 + 1} = f^\prime(a) + (f_n + ma)a^n = f(a) + ma^{n + 1}$.
+  \end{itemize}
+
+  Then, choose $m = 0$, we get $f(a)$ is the remainder is the divison of $f(a)$ by $x - a$.
+\end{proof}
+
+\end{document}
