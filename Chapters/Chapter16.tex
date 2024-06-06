@@ -59,4 +59,34 @@
   Then, choose $m = 0$, we get $f(a)$ is the remainder is the divison of $f(a)$ by $x - a$.
 \end{proof}
 
+\begin{corollary}[Factor Theorem]
+  Let $F$ be a field, $a \in F$ and $f(x) \in \poly{F}$, then
+  $a$ is a zero of $f(x)$ (i.e. $f(a) = 0$) iff $x - a$ is a factor
+  of $f(x)$.
+\end{corollary}
+\begin{proof}
+  ~
+  \begin{itemize}
+    \item $(\Rightarrow)$ If $f(a) = 0$, then by Corollary 16.1.
+    \item $(\Leftarrow)$ If $x - a$ is a factor of $f(x)$, then the remainder is $0$.
+          By Corollary 16.1, we know $f(a)$ is the remainder 
+          in the division of $f(x)$ by $x - a$, then $f(a) = 0$, which implies $a$ is a zero of $f(x)$.
+  \end{itemize}
+\end{proof}
+
+\setcounter{theorem}{3}
+\begin{theorem}[$\poly{F}$ is a principal integral domain]
+  Let $F$ be a field, then $\poly{F}$ is a principal integral domain.
+\end{theorem}
+\begin{proof}
+  $F$ is an integral domain, so is $\poly{F}$.
+  For any ideal $I$, let $f(x) \in I$ where $\deg f(x)$ is smallest in $I$ beside the element $0$,
+  we claim $\cyc{f(x)} = I$. For any element $g(x)$ in $I$, it is easy to prove that
+  the remainder $r(x)$ in the divison of $g(x)$ by $f(x)$ is also in $I$
+  (use the fact that $I$ is an ideal).
+  We know $r(x) = 0$ or $\deg r(x) < \deg f(x)$, if $r(x) = 0$, then $g(x) \in \cyc{f(x)}$,
+  otherwise, $\deg r(x) < \deg f(x)$ contradicts the selection of $f(x)$.
+  Therefore, $I \subseteq \cyc{f(X)}$.
+\end{proof}
+
 \end{document}
