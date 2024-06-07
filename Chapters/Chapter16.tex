@@ -57,6 +57,14 @@
   \end{itemize}
 
   Then, choose $m = 0$, we get $f(a)$ is the remainder is the divison of $f(a)$ by $x - a$.
+
+  The Path: It doesn't work that we induction on the origin proposition,
+  we need to prove that 
+  $f(x) - f_n x^{n - 1} (x - a) = f^\prime(x) + f_n x^{n - 1} a$ 
+  divided by $x - a$ produces the remainder we want.
+  Therefore, we need a weaker induction hypothesis. By comparing with the origin proposition,
+  we find that we can prove the origin proposition by replacing $f_n$ with $0$ if the new induction hypothesis
+  is true.
 \end{proof}
 
 \begin{corollary}[Factor Theorem]
@@ -81,12 +89,17 @@
 \begin{proof}
   $F$ is an integral domain, so is $\poly{F}$.
   For any ideal $I$, let $f(x) \in I$ where $\deg f(x)$ is smallest in $I$ beside the element $0$,
-  we claim $\cyc{f(x)} = I$. For any element $g(x)$ in $I$, it is easy to prove that
-  the remainder $r(x)$ in the divison of $g(x)$ by $f(x)$ is also in $I$
-  (use the fact that $I$ is an ideal).
+  we claim $\cyc{f(x)} = I$. For any element $g(x)$ in $I$, we know $f(x) = g(x)q(x) + r(x)$,
+  then $r(x) = f(x) - g(x)q(x) \in I$.
   We know $r(x) = 0$ or $\deg r(x) < \deg f(x)$, if $r(x) = 0$, then $g(x) \in \cyc{f(x)}$,
   otherwise, $\deg r(x) < \deg f(x)$ contradicts the selection of $f(x)$.
   Therefore, $I \subseteq \cyc{f(X)}$.
+
+  The Path: We may suppose the proposition is true, and find out what properties
+  the generator should hold. Obviously, it has to have the smallest degree, unless
+  it will unable to generate the element those have smaller degree. Also, it is
+  easy to see that any element with the smallest degree is acceptable since $F$ is a field,
+  we can always get other elements by multiple a field element (degree $0$).
 \end{proof}
 
 \end{document}
