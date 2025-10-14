@@ -110,4 +110,191 @@
   \end{itemize}
 \end{proof}
 
+\begin{exercise}
+  Let $u, v \in V$. Show that $\norm{au + bv} = \norm{bu + av}$ for any $a, b \in \mathbb{R}$ $\iff$ $\norm{u} = \norm{v}$.
+\end{exercise}
+\begin{proof}
+  ~
+  \begin{itemize}
+    \item We have $\norm{au + bv}^2 = \ip{au}{au} + \ip{bv}{bv} + \ip{au}{bv} + \ip{bv}{au}$
+          and     $\norm{bu + av}^2 = \ip{bu}{bu} + \ip{av}{av} + \ip{bu}{av} + \ip{av}{bu}$.
+          Note that $\ip{au}{bv} = a\bar{b}\ip{u}{v} = \bar{a}b\ip{u}{v} = \ip{bu}{av}$,
+          similarly, $\ip{bv}{au} = \ip{av}{bu}$.
+          Thus $\ip{au}{au} + \ip{bv}{bv} = \ip{bu}{bu} + \ip{av}{av}$, let $a = \sqrt{2}$ and $b = 1$,
+          we have $\sqrt{2}^2\ip{u}{u} + \ip{v}{v} = \ip{u}{u} + \sqrt{2}^2\ip{v}{v}$
+          therefore $\ip{u}{u} = \ip{v}{v}$, thus $\norm{u} = \norm{v}$.
+    \item $\norm{au + bv}^2 - \norm{bu + av}^2 = a^2\ip{u}{u} + b^2\ip{v}{v} + b^2\ip{u}{u} + a^2\ip{a}{a} = 0$.
+  \end{itemize}
+\end{proof}
+
+\setcounter{exercise}{8}
+\begin{exercise}
+  Let $\norm{u} = \norm{v} = 1$ and $\ip{u}{v} = 1$. Show that $u = v$.
+\end{exercise}
+\begin{proof}
+  We know $\ip{u}{v} = \ip{v}{u} = 1$ and then
+  $\ip{u}{v} - \ip{v}{v} = 1 - 1 = 0 = \ip{u - v}{v}$ and
+  $- \ip{v}{u} + \ip{u}{u} = - 1 + 1 = 0 = \ip{u - v}{u}$ therefore 
+  $\ip{u - v}{v} - \ip{u - v}{u} = \ip{u - v}{u - v} = 0$,
+  thus $u - v = 0$.
+\end{proof}
+
+\begin{exercise}
+  Let $u, v \in V$ and $\norm{u}, \norm{v} \le 1$. Show that:
+  \[
+  \sqrt{1 - \norm{u}^2}\sqrt{1 - \norm{v}^2} \le 1 - |\ip{u}{v}|
+  \]
+\end{exercise}
+\begin{proof}
+  By Cauchy-Schwarz inequality, we have $1 - |\ip{u}{v}| \ge 1 - \norm{u}\norm{v}$.
+  We will show that $\sqrt{1 - \norm{u}^2}\sqrt{1 - \norm{v}^2} \le 1 - \norm{u}\norm{v}$.
+  \begin{align*}
+    \sqrt{1 - \norm{u}^2}\sqrt{1 - \norm{v}^2} & \le 1 - \norm{u}\norm{v} \\
+    (1 - \norm{u}^2)(1 - \norm{v}^2) & \le (1 - \norm{u}\norm{v})^2 \\
+    1 - \norm{u}^2 - \norm{v}^2 + \norm{u}^2\norm{v}^2 & \le 1 - 2\norm{u}\norm{v} + \norm{u}^2\norm{v}^2 \\
+    - \norm{u}^2 - \norm{v}^2 & \le - 2\norm{u}\norm{v} \\
+    \norm{u}^2 + \norm{v}^2 & \ge 2\norm{u}\norm{v} \\
+    \norm{u}^2 - 2\norm{u}\norm{v} + \norm{v}^2 & \ge 0 \\
+    (\norm{u} - \norm{v})^2 & \ge 0 \\
+  \end{align*}
+  The second step is well since both sides are non-negaive.
+\end{proof}
+
+\begin{exercise}
+  Find $u, v \in \mathbb{R}^2$, such that $u$ a scalar multiple of $(1, 3)$
+  and $v$ is perpenticular to $(1, 3)$ and $(1, 2) = u + v$.
+\end{exercise}
+\begin{proof}
+  人话：找到一个关于 $(1, 3)$ 和垂直于 $(1, 3)$ 的向量 的线性组合，使得它等于 $(1, 2)$.
+
+  We have $(3, -1) \perp (1, 3)$, then $x = \frac{7}{10}$ and $y = \frac{1}{10}$
+  is a solution of:
+  \begin{align*}
+    x + 3y &= 1 \\
+    3x - 1y &= 2 \\
+  \end{align*}
+  Thus $u = \frac{7}{10}(1, 3)$ and $v = \frac{1}{10}(3, -1)$.
+\end{proof}
+
+\setcounter{exercise}{13}
+\begin{exercise}
+  Let $v \in V$ and $v \neq 0$.
+  Show that for any $u \in V$ and $\norm{u} = 1$, then
+  \[
+  \norm{v - \frac{v}{\norm{v}}} \le \norm{v - u}
+  \]
+  equal only if $u = \frac{v}{\norm{v}}$.
+
+  这段话说的是：$v$ 穿过单位圆的点的向量是距离 $v$ 最近的元素。
+\end{exercise}
+\begin{proof}
+  Let $v^\prime = \frac{v}{\norm{v}}$ and $w \in V$ where $w \perp v^\prime$ such that $u = cv^\prime + w$,
+  we can see $|c| \le 1$ by 勾股定理. Then
+  \begin{align*}
+    \norm{v - v^\prime} & \le \norm{v - u} \\
+    \norm{v - v^\prime}^2 & \le \norm{v - u}^2 \\
+    \ip{v}{v} + \ip{-v^\prime}{-v^\prime} + \ip{v}{-v^\prime} + \ip{-v^\prime}{v} & \le \ip{v}{v} + \ip{-u}{-u} + \ip{v}{-u} + \ip{-u}{v} \\
+    \ip{v}{-v^\prime} + \ip{-v^\prime}{v} & \le \ip{v}{-u} + \ip{-u}{v} \\
+    - \ip{v}{v^\prime} - \ip{v^\prime}{v} & \le - \ip{v}{u} - \ip{u}{v} \\
+    (-1) (\ip{v}{v^\prime} + \overline{\ip{v}{v^\prime}}) & \le (-1) (\ip{v}{cv^\prime + w} + \ip{cv^\prime + w}{v}) \\
+    \ip{v}{v^\prime} + \overline{\ip{v}{v^\prime}} & \ge \ip{v}{cv^\prime + w} + \ip{cv^\prime + w}{v} \\
+    \ip{v}{v^\prime} + \ip{v}{v^\prime} & \ge \ip{v}{cv^\prime} + \ip{v}{w} + \ip{cv^\prime}{v} + \ip{w}{v} \\
+    2 \ip{v}{v^\prime} & \ge \ip{v}{cv^\prime} + \ip{cv^\prime}{v} \\
+    2 \ip{v}{v^\prime} & \ge \bar{c} \ip{v}{v^\prime} + c \ip{v^\prime}{v} \\
+    2 \ip{v}{v^\prime} & \ge \bar{c} \ip{v}{v^\prime} + c \overline{\ip{v}{v^\prime}} \\
+    2 \ip{v}{v^\prime} & \ge \bar{c} \ip{v}{v^\prime} + c \ip{v}{v^\prime} \\
+    2 & \ge \bar{c} + c \\
+    2 & \ge 2 \real c \\
+    1 & \ge \real c \\
+  \end{align*}
+  We have $\real c \le |c|$ and $|c| \le 1$, thus $\real c \le 1$.
+
+  The inequality equals if $\real c = 1$, which means $c = 1$ as $|c| = 1$ so the imagine part is $0$,
+  thus $u = cv^\prime + w = v^\prime + w$ while $\norm{u} = \norm{v^\prime} = 1$, which means $w = 0$,
+  therefore $u = v^\prime$.
+\end{proof}
+
+\begin{exercise}
+  Let non-zero $u, v \in \mathbb{R}^2$. Show that:
+  \[
+  \ip{u}{v} = \norm{u} \norm{v} \cos \theta
+  \]
+  where $\theta$ is the angle between $u$ and $v$.
+\end{exercise}
+\begin{proof}
+  Note that the inner product of $\mathbb{R}^2$ is euclidian inner product,
+  then let $u = a (\cos \alpha, \sin \alpha)$ and $v = b (\cos \beta, \sin \beta)$,
+  thus
+  \begin{align*}
+    \ip{u}{v} &= ab (\cos \alpha \cos \beta) + ab (\sin \alpha \sin \beta) \\
+              &= ab (\cos \alpha \cos \beta + \sin \alpha \sin \beta) \\
+              &= ab (\cos \alpha \cos (- \beta) - \sin \alpha \sin (- \beta)) \\
+              &= ab (\cos (\alpha - \beta)) \\
+              &= \norm{u} \norm{v} (\cos (\alpha - \beta)) \\
+  \end{align*}
+  Recall that $\norm{u} = a$ and $\norm{v} = b$, since $\norm{(\cos \alpha, \sin \alpha)} = 1$,
+  similar to $b$. Also $\cos \theta = \cos - \theta$ and $\sin - \theta = - \sin \theta$.
+\end{proof}
+
+\begin{exercise}
+  The angle between two vectors in $R^n$ are hard to see when $n > 3$, thus define the angle between $u, v \in R^n$
+  by:
+  \[
+  \arccos \frac{\ip{x}{y}}{\norm{x}\norm{y}}
+  \],
+  try explain why this requires Cauchy-Schwarz inequality.
+\end{exercise}
+\begin{proof}
+  Note that $\arccos$ is the inverse of $\cos$, thus $\arccos$ only defines
+  at $[ -1 , 1 ]$, which means $|\frac{\ip{x}{y}}{\norm{x}\norm{y}}| \le 1$,
+  Cauchy-Schwarz inequality says $|\ip{x}{y}| \le \norm{x}\norm{y}$, thus $|\frac{\ip{x}{y}}{\norm{x}\norm{y}}| \le 1$.
+\end{proof}
+
+\setcounter{exercise}{19}
+\begin{exercise}
+  Show that $u, v \in V$, then $|\norm{u} - \norm{v}| \le \norm{u - v}$.
+\end{exercise}
+\begin{proof}
+  We will show $|\norm{u} - \norm{v}|^2 \le \norm{u - v}^2$,
+  we can see that no matter $\norm{u} - \norm{v}$ greater or less than $0$,
+  $|\norm{u} - \norm{v}|^2$ is always $\norm{u}^2 + \norm{v}^2 - 2\norm{u}\norm{v}$,
+  thus
+  \begin{align*}
+    \norm{u}^2 + \norm{v}^2 - 2\norm{u}\norm{v} & \le \ip{u}{u} + \ip{v}{v} + \ip{u}{- v} + \ip{- v}{u} \\
+    - 2\norm{u}\norm{v} & \le (-1) (\ip{u}{v} + \ip{v}{u}) \\
+    - 2\norm{u}\norm{v} & \le (-1) (\ip{u}{v} + \overline{\ip{u}{v}}) \\
+    - 2\norm{u}\norm{v} & \le (-2) \real \ip{u}{v} \\
+    \norm{u}\norm{v} & \ge \real \ip{u}{v} \\
+  \end{align*}
+  Recall that $|\ip{u}{v}| \le \norm{u}\norm{v}$ and $\real \ip{u}{v} \le |\real \ip{u}{v}| \le |\ip{u}{v}|$.
+\end{proof}
+
+\setcounter{exercise}{21}
+\begin{exercise}
+  Let $u, v \in V$, show that
+  \[
+  \norm{u + v} \norm{u - v} \le \norm{u}^2 + \norm{v}^2
+  \]
+\end{exercise}
+\begin{proof}
+  The the left hand side is:
+  \begin{align*}
+     & \norm{u + v} \norm{u - v} \\
+    =& \sqrt{\ip{u + v}{u + v} \ip{u - v}{u - v}} \\
+    =& \sqrt{(\norm{u}^2 + \norm{v}^2 + \ip{u}{v} + \ip{v}{u})(\norm{u}^2 + \norm{v}^2 + \ip{u}{-v} + \ip{-v}{u})} \\
+    =& \sqrt{(\norm{u}^2 + \norm{v}^2 + (\ip{u}{v} + \ip{v}{u}))(\norm{u}^2 + \norm{v}^2 - (\ip{u}{v} + \ip{v}{u}))} \\
+  \end{align*}
+  let $a = \norm{u}^2 + \norm{v}^2$ and $b = \ip{u}{v} + \ip{v}{u}$, then
+  \begin{align*}
+     & \norm{u + v} \norm{u - v} \\
+    =& \sqrt{(a + b)(a - b)} \\
+    =& \sqrt{a^2 - b^2} \\
+  \end{align*}
+  while the right hand side is: $\norm{u}^2 + \norm{v}^2 = a$, then square both sides we have:
+  \[
+  a^2 - b^2 \le a^2
+  \]
+  which is obviously true, cause $b^2 \ge 0$ (it is not the case that $b$ is a complex number, as $b = \norm{u + v}^2 - \norm{u}^2 - \norm{v}^2$).
+\end{proof}
+    
 \end{document}

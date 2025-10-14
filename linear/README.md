@@ -1,0 +1,1 @@
+Some chapter is written in Typst, see [this](/linear-typst/)

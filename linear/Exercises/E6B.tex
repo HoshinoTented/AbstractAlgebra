@@ -1,0 +1,223 @@
+\documentclass[../main.tex]{subfiles}
+
+\begin{document}
+
+\setcounter{section}{6}
+
+\begin{exercise}
+  Let $\join{e}{m - 1}$ a list of vectors in $V$, such that
+  \[
+  \norm{\joinp[+]{a}{e}{m - 1}}^2 = |a_1|^2 + \cdots + |a_{m - 1}|^2
+  \]
+  for any $\join{a}{m - 1} \in V$.
+  Show that $\join{e}{m - 1}$ is an orthonormal basis.
+\end{exercise}
+\begin{proof}
+  For any $i = 0, \cdots, m - 1$, we have $\norm{e_i}^2 = |1|^2$
+  if we pick $a_i = 1$ and others $= 0$.
+
+  For any $i, j = 0, \cdots, m - 1$ and $i \neq j$, we have
+  $\norm{a_ie_i + a_je_j}^2 = |a_i|^2 + |a_j|^2$. Then
+  \begin{align*}
+     & \norm{a_ie_i + a_je_j}^2 \\
+    =& \ip{a_ie_i + a_je_j}{a_ie_i + a_je_j} \\
+    =& \ip{a_ie_i}{a_ie_i} + \ip{a_je_j}{a_je_j} + \ip{a_ie_i}{a_je_j} + \ip{a_je_j}{a_ie_i} \\
+    =& a_i\bar{a_i}\ip{e_i}{e_i} + a_j\bar{a_j}\ip{e_j}{e_j} + a_i\bar{a_j}\ip{e_i}{e_j} + a_j\bar{a_i}\ip{e_j}{e_i} \\
+    =& a_i\bar{a_i} + a_j\bar{a_j} + a_i\bar{a_j}\ip{e_i}{e_j} + a_j\bar{a_i}\ip{e_j}{e_i} \\
+    =& |a_i|^2 + |a_j|^2 + a_i\bar{a_j}\ip{e_i}{e_j} + a_j\bar{a_i}\overline{\ip{e_i}{e_j}} \\
+    =& |a_i|^2 + |a_j|^2
+  \end{align*}
+  that means $a_i\bar{a_j}\ip{e_i}{e_j} + a_j\bar{a_i}\overline{\ip{e_i}{e_j}} = 0$. 
+  Pick $a_i = a_j = 1$ we have $2 \real \ip{e_i}{e_j} = 0$ and pick $a_i = i$, $a_j = 1$
+  we have $- 2 \textnormal{Im} \ip{e_i}{e_j} = 0$.
+\end{proof}
+
+\begin{exercise}
+  ~
+  \begin{itemize}
+    \item Let $\theta \in R$, show that:
+          \[
+          (\cos \theta, \sin \theta), (- \sin \theta, \cos \theta)
+          \quad \text{ and } \quad
+          (\cos \theta, \sin \theta), (\sin \theta, - \cos \theta)
+          \]
+          are orthonormal basis of $R^2$.
+    \item Show that any orthogonal basis of $R^2$ is in one of such form.
+  \end{itemize}
+\end{exercise}
+\begin{proof}
+  ~
+  \begin{itemize}
+    \item They are normal cause $\cos^2 \theta + \sin^2 \theta = 1$,
+          and orthogonal cause $- \cos \theta \sin \theta + \sin \theta \cos \theta = \cos \theta \sin \theta - \sin \theta \cos \theta = 0$.
+    \item Any vector with length $1$ in $R^2$ must in form of $(\cos \theta, \sin \theta)$.
+          For any orthonormal basis, suppose it is $(\cos \theta, \sin \theta), (\cos \alpha, \sin \alpha)$,
+          we may write $\alpha$ as $\beta - \frac{\pi}{2}$, then the inner product of them
+          is $\cos \theta \cos (\beta - \frac{\pi}{2}) + \sin \theta \sin (\beta - \frac{\pi}{2})$.
+          Recall that $\sin \theta = \cos (\theta - \frac{\pi}{2})$ for any $\theta$, then
+          \begin{align*} 
+             & \cos \theta \cos (\beta - \frac{\pi}{2}) + \sin \theta \sin (\beta - \frac{\pi}{2}) \\
+            =& \cos \theta \sin \beta + \sin \theta \cos (\beta - \pi) \\
+            =& \cos \theta \sin \beta + \sin \theta (- \cos \beta) \\
+            =& \cos \theta \sin \beta - \sin \theta \cos \beta \\
+            =& \sin (\theta - \beta) \\
+            =& 0
+          \end{align*}
+          That means $\theta + \beta = k \pi$, thus $\theta + \alpha = k \pi - \frac{\pi}{2}$.
+          If $k$ is odd, then $\cos \alpha = \cos (k \pi - \frac{\pi}{2} - \theta) = \cos (\pi - \frac{\pi}{2} - \theta) = \sin (\pi - \theta) = - \sin (- \theta) = \sin \theta$
+          and $\sin \alpha = \sin (k \pi - \frac{\pi}{2} - \theta) = \sin (\pi - \frac{\pi}{2} - \theta) = \sin (\frac{\pi}{2} - \theta) = \sin (- (\theta + \frac{\pi}{2})) = - \sin (\theta + \frac{\pi}{2}) = - \cos \theta$.
+          Similar to the case that $k$ is even.
+  \end{itemize}
+\end{proof}
+
+\setcounter{exercise}{8}
+\begin{exercise}
+  Suppose $\join{e}{m - 1}$ is the result of applying Gram-Schmidt Procedure to
+  a linear independent list $\join{v}{m - 1}$.
+  Show that $\ip{v_k}{e_k} > 0$ for all $k$.
+\end{exercise}
+\begin{proof}
+  By definition, we have
+  $e_k = \frac{f_k}{\norm{f_k}}$ where $f_k = v_k - \frac{\ip{v_k}{f_0}}{\norm{f_0}^2} f_0 - \cdots$,
+  thus $v_k = f_k + \frac{\ip{v_k}{f_0}}{\norm{f_0}^2} f_0 + \cdots = e_k \norm{f_k} + \cdots$,
+  thus $\ip{v_k}{e_k} = \norm{f_k} > 0$.
+\end{proof}
+
+\begin{exercise}
+  \label{E:Gram-Schmidt-Procedure-Uniqueness}
+  Let $\join{v}{m - 1}$ is linear independent list in $V$.
+  Explain why the result of applying Gram-Schmidt Procedure on $\join{v}{m - 1}$
+  is the only orthonormal list such that for all $k = 0, \cdots, m - 1$,
+  $\ip{v_k}{e_k} > 0$ and $\spanv(\join{v}{k}) = \spanv(\join{e}{k})$.
+\end{exercise}
+\begin{proof}
+  Let $\join{e}{m - 1}$ is the result of Gram-Schmidt procedure
+  and $\join{f}{m - 1}$ is any orthonormal list holds the properties.
+
+  We induction on $m$:
+  \begin{itemize}
+    \item Base($m = 0$): We have $\spanv(v_0) = \spanv(e_0) = \spanv(f_0)$,
+          which means $f_0 = k e_0$, then we have $\ip{v_0}{f_0} = \ip{v_0}{ke_0} = \bar{k} \ip{v_0}{e_0} > 0$.
+          By $\ip{v_0}{e_0} > 0$ we know $\ip{v_0}{e_0}$ is real, then $\bar{k}$ is real,
+          thus $k$ is real.
+          Then by $\ip{f_0}{e_0} = \ip{ke_0}{e_0} = k$ and
+          $\ip{f_0}{e_0} = \ip{f_0}{\frac{1}{k}f_0} = \bar{\frac{1}{k}}$, we know $|k| = 1$.
+          Then by $\bar{k}\ip{v_0}{e_0} > 0$ and $\ip{v_0}{e_0} > 0$, we know $k > 0$, thus $k = 1$,
+          therefore $f_0 = e_0$.
+    \item Ind($m = n + 1$): $\join{e}{m - 1} = \join{f}{m - 1}$ if they holds the property (positive inner product and span),
+          and they hold by assumption. Then $\spanv(\join{e}{m - 1}) = \spanv(\join{f}{m - 1})$,
+          and $e_m, f_m$ are orthogonal to any vector in $\spanv(\join{e}{m - 1})$.
+          Since $\spanv(\join{f}{m}) = \spanv(\join{v}{m}) = \spanv(\join{e}{m})$,
+          we can write $f_m$ in form of $\joinp[+]{c}{e}{m}$, where $c_k = \ip{f_m}{e_k}$,
+          thus $f_m = c_m e_m$, as $f_m$ is orthogonal to any vector in $\spanv(\join{e}{m - 1})$,
+          therefore $\spanv(f_m) \in \spanv(e_m)$.
+          Then we can apply the step as Base case did to $f_m$ and $e_m$,
+          and then $f_m = e_m$. Thus $\join{e}{m} = \join{f}{m}$.
+  \end{itemize}
+
+  In fact, the proof doesn't involve any property of the result of Gram-Schmidt Procedure,
+  so it says any two orthonormal list with those properties are equal, and
+  the result of Gram-Schmidt Procedure holds those properties.
+\end{proof}
+
+\setcounter{exercise}{12}
+\begin{exercise}
+  A $\join{v}{m - 1}$ list in $V$ is linear dependent $\iff$ one vector of the result of
+  Gram-Schmidt Procedure is $0$.
+\end{exercise}
+\begin{proof}
+  ~
+  \begin{itemize}
+    \item $(\Leftarrow)$ Each $f_k$ is a (non-trivial) linear combination of $\join{f}{k - 1}, v_k$,
+          if $f_k = 0$ for some $k$, that means there is a (non-trivial) linear combination of $\join{f}{k - 1}, v_k$
+          produces $0$, where $\spanv(\join{f}{k - 1}) = \spanv(\join{v}{k - 1})$, thus $f_k = 0$
+          implies $v_k \in \spanv(\join{v}{k - 1})$, thus $\join{v}{k}$ is linear dependent.
+    \item $(\Rightarrow)$ Let $k$ minimum such that $\join{v}{k}$ is linear dependent,
+          thus $\join{v}{k - 1}$ is linear independent.
+          We know $f_k$ is a linear combination of $\join{f}{k - 1}, v_k$,
+          where $\spanv(\join{f}{k - 1}) = \spanv(\join{v}{k - 1})$,
+          thus $f_k \in \spanv(\join{f}{k - 1}, v_k) = \spanv(\join{v}{k - 1}, v_k) = \spanv(\join{v}{k - 1}) = \spanv(\join{f}{k - 1})$.
+          Also, we know $f_k$ is orthogonal to any previous $f_{k - i}$, thus
+          if we write $f_k$ in a linear combination of $\join{f}{k - 1}$, we will see
+          all coefficients are $0$, thus $f_k = 0$.
+  \end{itemize}
+\end{proof}
+
+\begin{exercise}
+  Let $V$ a real inner product vector space, and $\join{v}{m - 1}$ a linear independent list in $V$.
+  Show that there are $2^m$ distinct orthonormal list $\join{e}{m - 1}$, such that:
+  \[
+  \spanv(\join{v}{k}) = \spanv(\join{e}{k})
+  \]
+  for any $k = 1, \cdots, m$.
+\end{exercise}
+\begin{proof}
+  Binary.
+
+  We start from applying Gram-Schmidt Procedure on $\join{v}{m - 1}$, say $\join{e}{m - 1}$.
+  Then for each $e_k$, we can replace it with $- e_k$, thus we have at least
+  $2^m$ distinct orthonormal list holds the propery.
+
+  For at most case, it should be done easily by \ref{E:Gram-Schmidt-Procedure-Uniqueness}.
+\end{proof}
+
+\begin{exercise}
+  Suppose $\ip{\cdot}{\cdot}_1$ and $\ip{\cdot}{\cdot}_2$ are inner product over $V$,
+  such that $\ip{u}{v}_1 = 0 \iff \ip{u}{v}_2 = 0$.
+  Show that there is $c > 0$ such that $\ip{u}{v}_1 = c \ip{u}{v}_2$ for any $u, v \in V$.
+\end{exercise}
+\begin{proof}
+  For any $v, w \in V$, we can write $w$ in form of $av + u$ where $v \perp u$.
+  Then $\ip{v}{w}_1 = \ip{v}{av + u}_1 = \bar{a}\ip{v}{v}_1$
+  and $\ip{v}{w}_2 = \ip{v}{av + u}_2 = \bar{a}\ip{v}{v}_2$,
+  thus $\ip{v}{w}_1 = \frac{\ip{v}{v}_1}{\ip{v}{v}_2}\ip{v}{w}_2$.
+  % Remaining proof comes from stackoverflow
+  Similarly, we can write $v$ in form of $aw + u$ where $w \perp u$,
+  then $\ip{v}{w}_1 = \ip{aw + u}{w}_1 = a\ip{w}{w}_1$
+  and $\ip{v}{w}_2 = \ip{aw + u}{w}_2 = a\ip{w}{w}_2$,
+  thus $\ip{v}{w}_1 = \frac{\ip{w}{w}_1}{\ip{w}{w}_2}\ip{v}{w}_2$.
+  Thus $\frac{\ip{v}{v}_1}{\ip{v}{v}_2} = \frac{\ip{w}{w}_1}{\ip{w}{w}_2}$,
+  that means the scalar between two different inner products of different vectors are the same.
+\end{proof}
+
+\setcounter{exercise}{16}
+\begin{exercise}
+  Let $F = \mathbb{C}$ and $V$ is finite. Show that let $T \in \LT(V)$,
+  and the only eigenvalue is $1$, and for any $v$, $\norm{Tv} \le \norm{v}$,
+  then $T = I$.
+\end{exercise}
+\begin{proof}
+  Since $F = \mathbb{C}$ and $V$ is finite, we know there is a basis $\join{v}{m - 1}$
+  such that $\M(T)$ is upper-trianglar. Then apply Gram-Schmidt Procedure on $\join{v}{m - 1}$,
+  say $\join{e}{m - 1}$. It is easy to show that $\M(T, \join{e}{m - 1})$ is upper-trianglar,
+  as for any $k$, we have $\spanv(\join{e}{k}) = \spanv(\join{v}{k})$ is invariant under $T$.
+
+  Then for any $k$, we know $\norm{Te_k} \le \norm{e_k} = 1$,
+  however, $\norm{Te_k} \ge 1 \norm{e_k} = 1$ 
+  (cause $Te_k$ must be a linear combination of $\join{e}{k}$,
+  and we know the coefficients of $e_k$ is $1$, which is in the diagonal/the eigenvalue).
+  Thus $\M(T, \join{e}{m - 1})$ is a diagonal matrix with all $1$ in the diagonal, which is $I$.
+\end{proof}
+
+\begin{exercise}
+  Let $\join{u}{m - 1} \in V$ a linear independent list. Show that
+  there is $v \in V$ such that $\ip{u_k}{v} = 1$ for all $k \in \{ 0, \cdots, m - 1 \}$.
+\end{exercise}
+\begin{proof}
+  Induction on $m$.
+  \begin{itemize}
+    \item Base($m = 1$): Take $v = \frac{1}{\norm{u_k}^2}u_k$.
+    \item Ind($m = n + 1$): By induction hypothesis, we have $v$
+          such that $\ip{u_k}{v} = 1$ for all $k \in \{ 0, \cdots, n - 1 \}$.
+          Then let $w \in V$ such that $w$ is orthogonal to $\join{u}{n - 1}$.
+          this is possible by using Gram-Schmidt Procedure on $\join{u}{m - 1}$.
+          And $s$ such that $\bar{s} = \frac{1 - \ip{u_{m - 1}}{v}}{\ip{u_{m - 1}}{w}}$,
+          then we have
+          $\ip{u_{m - 1}}{v + sw} = \ip{u_{m - 1}}{v} + \ip{u_{m - 1}}{sw} = \ip{u_{m - 1}}{v} + \bar{s}\ip{u_{m - 1}}{w} = \ip{u_{m - 1}}{v} + (1 - \ip{u_{m - 1}}{v}) = 1$.
+          Also, for any $u_k$ where $k = \{ 0, \cdots, n - 1 \}$, we have $\ip{u_k}{v + sw} = \ip{u_k}{v} + \ip{u_k}{sw} = \ip{u_k}{v} = 1$,
+          since $w$ is orthogonal to $u_k$.
+          Thus $\ip{u_k}{v + sw} = 1$ for all $k \in \{ 0, \cdots, m - 1 \}$.
+  \end{itemize}
+\end{proof}
+
+\end{document}

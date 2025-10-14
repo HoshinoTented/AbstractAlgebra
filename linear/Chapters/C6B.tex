@@ -1,0 +1,63 @@
+\documentclass[../main.tex]{subfiles}
+
+\begin{document}
+
+\setcounter{section}{6}
+
+\setcounter{theorem}{31}
+\begin{theorem}[Gram-Schmidt Procedure]
+  Let $\join{v}{m - 1}$ a linear independent list in $V$, Let $f_0 = v_0$,
+  for any $k = 1, \cdots, m - 1$:
+  \[
+    f_k = v_k - \frac{\ip{v_k}{f_0}}{\norm{f_0}^2}f_0 - \cdots -\frac{\ip{v_k}{f_{k - 1}}}{\norm{f_{k - 1}}^2}f_{k - 1}
+  \].
+
+  For any $k = 0, \cdots, m - 1$, define $e_k = \frac{f_k}{\norm{f_k}}$,
+  then $\join{e}{m - 1}$ is orthonormal in $V$, and for any $k = 0, \cdots, m - 1$
+  we have:
+  \[
+  \spanv(\join{v}{m - 1}) = \spanv(\join{e}{m - 1})
+  \]
+\end{theorem}
+\begin{proof}
+  The best way to prove an theorem about algorithm is to understand what the algorithm
+  does. Let's put this formula aside and rephrase what the algorithm doing. 
+  
+  We first need a helper function, say \textit{orthogonalize}: given $v, w$ that $v \neq \lambda w$,
+  produce $f_w$ such that $v$ is orthogonal to $f_w$ and $f_w \in \spanv(v, w)$,
+  this is done by $w - \frac{\ip{w}{v}}{\norm{v}^2}v$.
+
+  Suppose $v, u$ are orthogonal, $w$ is orthogonal to $v$, we will show that
+  $\textnormal{orthogonalize}(u, w)$ is orthogonal to $v$. This is trivial by calculating
+  $\ip{w - \frac{\ip{w}{u}}{\norm{u}^2}u}{v} = \ip{w}{v} - \ip{\frac{\ip{w}{u}}{\norm{u}^2}}{v} = 0 - 0 = 0$.
+
+  Then, let $\join{f}{k - 1}$ an orthogonal list and $v_k \notin \spanv(\join{f}{k - 1})$,
+  for any $i = 0, \cdots, k - 1$, define:
+  \[
+  o_i = \begin{cases}  
+    \mathrm{orthogonalize}(f_0, v_k) \quad \text{if } i = 0 \\
+    \mathrm{orthogonalize}(f_i, o_{i - 1}) \quad \text{otherwise}
+  \end{cases}
+  \]
+  We induction on $i$ and show that $o_i$ is orthogonal to $\join{f}{i}$
+  \begin{itemize}
+    \item Base$(i = 0)$: $o_0 = \mathrm{orthogonalize}(f_0, v_k)$ and it is orthogonal to $f_0$ by the property of \textit{orthogonalize}.
+    \item Ind$(i = n + 1)$: $o_{n + 1} = \mathrm{orthogonalize}(f_{n + 1}, o_n)$, 
+          thus $o_{n + 1}$ is orthogonal to $f_{n + 1} = f_i$ by the property of \textit{orthogonalize}.
+
+          We have $o_n = o_{i - 1}$ is orthogonal to $\join{f}{i - 1}$, then for each $f_0, \cdots, f_{i - 1}$,
+          we have $o_i$ is orthogonal to $f_0, \cdots, f_{i - 1}$ respectively, \\
+          cause $o_i = \mathrm{orthogonalize}(f_i, o_{i - 1})$ and $o_{i - 1}$ is
+          orthogonal to $\join{f}{i - 1}$.
+  \end{itemize}
+
+  Then $o_{k - 1}$ is orthogonal to $\join{f}{k - 1}$, we can unfold $o_{k - 1}$
+  and see:
+  \[
+  o_{k - 1} = ((v_k - \frac{\ip{v_k}{f_0}}{\norm{f_0}^2}f_0) - \cdots) - \frac{\ip{v_k}{f_{k - 1}}}{\norm{f_{k - 1}}^2}f_{k - 1}
+  \].
+
+  Then we normalize the orthogonal list to get a orthonormal list.
+\end{proof}
+
+\end{document}
